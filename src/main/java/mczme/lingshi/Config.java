@@ -1,4 +1,4 @@
-package com.example.examplemod;
+package mczme.lingshi;
 
 import java.util.List;
 import java.util.Set;
