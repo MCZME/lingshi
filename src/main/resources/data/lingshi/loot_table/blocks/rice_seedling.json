@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "lingshi:rice_seedling",
+          "conditions": [
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:block_state_property",
+                "block": "lingshi:rice_seedling",
+                "properties": {
+                  "age": "1"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

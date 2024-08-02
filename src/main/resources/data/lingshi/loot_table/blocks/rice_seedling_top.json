@@ -1,0 +1,25 @@
+{
+  "pools": [
+    {
+      "rolls": {
+        "min": 3,
+        "max": 5
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "lingshi:rice_of_ear",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "lingshi:rice_seedling_top",
+              "properties": {
+                "age": "4"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

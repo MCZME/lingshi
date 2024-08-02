@@ -9,17 +9,17 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import static mczme.lingshi.common.registry.ModItems.ITEMS_LIST;
 import static mczme.lingshi.lingshi.MODID;
 
 public class CreateTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> LINGSHI_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
-            .title(Component.translatable("lingshi.lingshi_tab")) //The language key for the title of your CreativeModeTab
+            .title(Component.translatable("lingshi.lingshi_tab"))
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> ModItems.RICE.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.accept(ModItems.RICE.get());
-                output.accept(ModItems.RICE_SEEDING.get());
+                ITEMS_LIST.forEach(item -> output.accept(item.get()));
             }).build());
 
     public static void register(IEventBus modEventBus) {

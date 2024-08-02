@@ -30,7 +30,9 @@ public class DataGenerators {
 //        block loot
         event.getGenerator().addProvider(
                 event.includeServer(),
-                new LootTableProvider(output, Set.of(), List.of(new LootTableProvider.SubProviderEntry(BlockLoot::new, LootContextParamSets.BLOCK)),lookupProvider)
+                new LootTableProvider(output, Set.of(),
+                        List.of(new LootTableProvider.SubProviderEntry(BlockLoot::new, LootContextParamSets.BLOCK)),
+                        lookupProvider)
         );
     }
 }

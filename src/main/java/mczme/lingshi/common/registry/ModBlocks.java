@@ -1,6 +1,7 @@
 package mczme.lingshi.common.registry;
 
-import mczme.lingshi.common.block.RiceSeedling;
+import mczme.lingshi.common.block.RiceSeedlingBlock;
+import mczme.lingshi.common.block.RiceSeedlingTopBlock;
 import mczme.lingshi.lingshi;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -22,7 +23,9 @@ public class ModBlocks {
             .instabreak()
             .sound(SoundType.CROP)
             .pushReaction(PushReaction.DESTROY));
-    public static final Supplier<RiceSeedling> RICE_SEEDING = BLOCKS.registerBlock("rice_seeding", RiceSeedling::new,
+    public static final Supplier<RiceSeedlingBlock> RICE_SEEDLING = BLOCKS.registerBlock("rice_seedling", RiceSeedlingBlock::new,
+            BlockBehaviour.Properties.of());
+    public static final Supplier<RiceSeedlingTopBlock> RICE_SEEDING_TOP = BLOCKS.registerBlock("rice_seedling_top", RiceSeedlingTopBlock::new,
             BlockBehaviour.Properties.of());
 
     public static void register(IEventBus modEventBus) {

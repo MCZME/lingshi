@@ -1,6 +1,7 @@
 package mczme.lingshi.common.data.loot;
 
 import mczme.lingshi.common.registry.ModBlocks;
+import mczme.lingshi.common.registry.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
@@ -11,7 +12,7 @@ import java.util.Set;
 public class BlockLoot extends BlockLootSubProvider {
 
     public static final Set<Block> BLOCK = Set.of(
-            ModBlocks.RICE.get()
+
     );
 
     public BlockLoot(HolderLookup.Provider lookupProvider) {
@@ -21,7 +22,7 @@ public class BlockLoot extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        this.dropSelf(ModBlocks.RICE.get());
+
     }
 
     @Override

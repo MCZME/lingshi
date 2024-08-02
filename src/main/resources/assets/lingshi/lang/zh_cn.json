@@ -1,5 +1,7 @@
 {
   "lingshi.lingshi_tab": "灵食",
   "block.lingshi.rice": "稻米",
-  "block.lingshi.rice_seeding": "稻苗"
+  "item.lingshi.rice_seedling": "稻苗",
+  "item.lingshi.rice_of_ear": "稻穗"
+
 }
