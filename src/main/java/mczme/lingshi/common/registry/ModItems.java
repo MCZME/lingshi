@@ -1,6 +1,5 @@
 package mczme.lingshi.common.registry;
 
-import mczme.lingshi.common.item.RiceSeedlingItem;
 import mczme.lingshi.lingshi;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -16,7 +15,7 @@ public class ModItems {
     public static final List<Supplier<Item>> ITEMS_LIST = new ArrayList<>();
 
     public static final Supplier<Item> RICE = registerWithCreateTab("rice", ()->new BlockItem(ModBlocks.RICE.get(), new Item.Properties()));
-    public static final Supplier<Item> RICE_SEEDLING =registerWithCreateTab("rice_seedling", ()->new RiceSeedlingItem(ModBlocks.RICE_SEEDLING.get(),new Item.Properties()));
+    public static final Supplier<Item> RICE_SEEDLING =registerWithCreateTab("rice_seedling", ()->new BlockItem(ModBlocks.RICE_SEEDLING.get(), new Item.Properties()));
     public static final Supplier<Item> RICE_OF_EAR = registerWithCreateTab("rice_of_ear", () -> new Item(new Item.Properties()));
 
     public static final Supplier<Item> TEA_TREE = registerWithCreateTab("tea_tree", () -> new BlockItem(ModBlocks.TEA_TREE.get(), new Item.Properties()));

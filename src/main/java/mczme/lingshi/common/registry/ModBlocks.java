@@ -1,10 +1,6 @@
 package mczme.lingshi.common.registry;
 
-import mczme.lingshi.common.block.RiceSeedlingBlock;
-import mczme.lingshi.common.block.RiceSeedlingTopBlock;
-import mczme.lingshi.common.block.TeaBlock;
-import mczme.lingshi.common.block.TeaTreeBlock;
-import mczme.lingshi.common.item.Tea;
+import mczme.lingshi.common.block.*;
 import mczme.lingshi.lingshi;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -19,7 +15,7 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(lingshi.MODID);
 
-    public static final Supplier<CropBlock> RICE = BLOCKS.registerBlock("rice", CropBlock::new,
+    public static final Supplier<CropBlock> RICE = BLOCKS.registerBlock("rice", RiceBlock::new,
             BlockBehaviour.Properties.of().mapColor(MapColor.PLANT)
             .noCollission()
             .randomTicks()
