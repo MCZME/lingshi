@@ -2,6 +2,9 @@ package mczme.lingshi.common.registry;
 
 import mczme.lingshi.common.block.RiceSeedlingBlock;
 import mczme.lingshi.common.block.RiceSeedlingTopBlock;
+import mczme.lingshi.common.block.TeaBlock;
+import mczme.lingshi.common.block.TeaTreeBlock;
+import mczme.lingshi.common.item.Tea;
 import mczme.lingshi.lingshi;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -23,10 +26,11 @@ public class ModBlocks {
             .instabreak()
             .sound(SoundType.CROP)
             .pushReaction(PushReaction.DESTROY));
-    public static final Supplier<RiceSeedlingBlock> RICE_SEEDLING = BLOCKS.registerBlock("rice_seedling", RiceSeedlingBlock::new,
-            BlockBehaviour.Properties.of());
-    public static final Supplier<RiceSeedlingTopBlock> RICE_SEEDING_TOP = BLOCKS.registerBlock("rice_seedling_top", RiceSeedlingTopBlock::new,
-            BlockBehaviour.Properties.of());
+    public static final Supplier<RiceSeedlingBlock> RICE_SEEDLING = BLOCKS.registerBlock("rice_seedling", RiceSeedlingBlock::new, BlockBehaviour.Properties.of());
+    public static final Supplier<RiceSeedlingTopBlock> RICE_SEEDING_TOP = BLOCKS.registerBlock("rice_seedling_top", RiceSeedlingTopBlock::new, BlockBehaviour.Properties.of());
+
+    public static final Supplier<TeaTreeBlock> TEA_TREE = BLOCKS.registerBlock("tea_tree", TeaTreeBlock::new,BlockBehaviour.Properties.of());
+    public static final Supplier<TeaBlock> TEA_LEAF = BLOCKS.registerBlock("tea_leaf", TeaBlock::new,BlockBehaviour.Properties.of());
 
     public static void register(IEventBus modEventBus) {
         BLOCKS.register(modEventBus);

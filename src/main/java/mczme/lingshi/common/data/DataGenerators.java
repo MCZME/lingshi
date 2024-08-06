@@ -1,5 +1,6 @@
 package mczme.lingshi.common.data;
 
+import mczme.lingshi.common.data.lang.ChineseLanguageProvider;
 import mczme.lingshi.common.data.loot.BlockLoot;
 import mczme.lingshi.lingshi;
 import net.minecraft.core.HolderLookup;
@@ -33,6 +34,12 @@ public class DataGenerators {
                 new LootTableProvider(output, Set.of(),
                         List.of(new LootTableProvider.SubProviderEntry(BlockLoot::new, LootContextParamSets.BLOCK)),
                         lookupProvider)
+        );
+
+//        lang datagen
+        event.getGenerator().addProvider(
+                event.includeServer(),
+                new ChineseLanguageProvider(output)
         );
     }
 }

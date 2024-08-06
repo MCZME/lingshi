@@ -19,6 +19,9 @@ public class ModItems {
     public static final Supplier<Item> RICE_SEEDLING =registerWithCreateTab("rice_seedling", ()->new RiceSeedlingItem(ModBlocks.RICE_SEEDLING.get(),new Item.Properties()));
     public static final Supplier<Item> RICE_OF_EAR = registerWithCreateTab("rice_of_ear", () -> new Item(new Item.Properties()));
 
+    public static final Supplier<Item> TEA_TREE = registerWithCreateTab("tea_tree", () -> new BlockItem(ModBlocks.TEA_TREE.get(), new Item.Properties()));
+    public static final Supplier<Item> TEA_LEAF = registerWithCreateTab("tea_leaf", () -> new Item(new Item.Properties()));
+
     private static Supplier<Item> registerWithCreateTab(String item_name, Supplier<Item> itemSupplier) {
         Supplier<Item> item = ITEMS.register(item_name, itemSupplier);
         ITEMS_LIST.add(item);

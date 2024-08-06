@@ -1,0 +1,50 @@
+{
+	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"0": "lingshi:block/tea_tree_branch",
+		"particle": "lingshi:block/tea_tree_branch"
+	},
+	"elements": [
+		{
+			"from": [2, 6, 2],
+			"to": [14, 14, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 10, 8]},
+			"color": 6,
+			"faces": {
+				"north": {"uv": [0, 0, 12, 8], "texture": "#missing"},
+				"east": {"uv": [0, 0, 12, 8], "texture": "#missing"},
+				"south": {"uv": [0, 0, 12, 8], "texture": "#missing"},
+				"west": {"uv": [0, 0, 12, 8], "texture": "#missing"},
+				"up": {"uv": [0, 0, 12, 12], "texture": "#missing"},
+				"down": {"uv": [0, 0, 12, 12], "texture": "#missing"}
+			}
+		},
+		{
+			"from": [2.05025, 0, 12.94975],
+			"to": [18.05025, 14, 12.94975],
+			"rotation": {"angle": 45, "axis": "y", "origin": [3.05025, 5, 12.94975]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
+			}
+		},
+		{
+			"from": [3.05025, 0, 2.05025],
+			"to": [3.05025, 14, 18.05025],
+			"rotation": {"angle": 45, "axis": "y", "origin": [3.05025, 5, 3.05025]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
+			}
+		}
+	]
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "lingshi:block/riceseedling_age0"
+    },
+    "age=1": {
+      "model": "lingshi:block/riceseedling_age0"
+    },
+    "age=2": {
+      "model": "lingshi:block/riceseedling_age0"
+    },
+    "age=3": {
+      "model": "lingshi:block/riceseedling_age0"
+    }
+  }
+}
