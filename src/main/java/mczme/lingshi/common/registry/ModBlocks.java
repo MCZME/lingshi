@@ -28,6 +28,8 @@ public class ModBlocks {
     public static final Supplier<TeaTreeBlock> TEA_TREE = BLOCKS.registerBlock("tea_tree", TeaTreeBlock::new,BlockBehaviour.Properties.of());
     public static final Supplier<TeaBlock> TEA_LEAF = BLOCKS.registerBlock("tea_leaf", TeaBlock::new,BlockBehaviour.Properties.of());
 
+    public static final Supplier<ChoppingBoardBlock> CHOPPING_BOARD = BLOCKS.registerBlock("chopping_board", ChoppingBoardBlock::new,BlockBehaviour.Properties.of());
+
     public static void register(IEventBus modEventBus) {
         BLOCKS.register(modEventBus);
     }

@@ -1,6 +1,7 @@
 package mczme.lingshi;
 
 import mczme.lingshi.common.createtab.CreateTabs;
+import mczme.lingshi.common.registry.BlockEntitys;
 import mczme.lingshi.common.registry.ModBlocks;
 import mczme.lingshi.common.registry.ModItems;
 import org.slf4j.Logger;
@@ -25,6 +26,7 @@ public class lingshi
         ModBlocks.register(modEventBus);
         ModItems.register(modEventBus);
         CreateTabs.register(modEventBus);
+        BlockEntitys.register(modEventBus);
 
     }
 

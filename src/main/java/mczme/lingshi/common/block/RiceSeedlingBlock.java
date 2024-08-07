@@ -146,12 +146,12 @@ public class RiceSeedlingBlock extends BushBlock implements BonemealableBlock, L
                     pLevel.setBlockAndUpdate(pPos, pState.setValue(WATERLOGGED, false));
                 }
             } else {
-                RiceSeedlingTopBlock riceUpper = ModBlocks.RICE_SEEDING_TOP.get();
+                RiceSeedlingTopBlock Upper = ModBlocks.RICE_SEEDING_TOP.get();
                 int remainingGrowth = ageGrowth - this.getMaxAge() - 1;
-                if (riceUpper.defaultBlockState().canSurvive(pLevel, pPos.above()) && pLevel.isEmptyBlock(pPos.above())) {
+                if (Upper.defaultBlockState().canSurvive(pLevel, pPos.above()) && pLevel.isEmptyBlock(pPos.above())) {
                     pLevel.setBlockAndUpdate(pPos, pState.setValue(AGE, this.getMaxAge()));
                     pLevel.setBlockAndUpdate(pPos, pState.setValue(EMERGE, true));
-                    pLevel.setBlock(pPos.above(), riceUpper.defaultBlockState().setValue(RiceSeedlingTopBlock.AGE, remainingGrowth), 2);
+                    pLevel.setBlock(pPos.above(), Upper.defaultBlockState().setValue(RiceSeedlingTopBlock.AGE, remainingGrowth), 2);
                 }
             }
         }
