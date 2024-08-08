@@ -41,5 +41,11 @@ public class DataGenerators {
                 event.includeServer(),
                 new ChineseLanguageProvider(output)
         );
+
+//        state datagen
+        event.getGenerator().addProvider(
+                event.includeServer(),
+                new BlockStates(output, existingFileHelper)
+        );
     }
 }

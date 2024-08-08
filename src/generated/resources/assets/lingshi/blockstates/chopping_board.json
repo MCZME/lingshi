@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "lingshi:block/chopping_board",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "lingshi:block/chopping_board",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "lingshi:block/chopping_board"
+    },
+    "facing=west": {
+      "model": "lingshi:block/chopping_board",
+      "y": 90
+    }
+  }
+}

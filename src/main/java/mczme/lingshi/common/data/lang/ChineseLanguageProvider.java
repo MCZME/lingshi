@@ -22,6 +22,6 @@ public class ChineseLanguageProvider extends LanguageProvider {
         this.add(ModItems.TEA_TREE.get(), "茶树");
         this.add(ModItems.TEA_LEAF.get(), "茶叶");
 
-        this.add(ModItems.CHOPPING_BOARD.get(), "菜板");
+        this.add(ModItems.CHOPPING_BOARD.get(), "砧板");
     }
 }
