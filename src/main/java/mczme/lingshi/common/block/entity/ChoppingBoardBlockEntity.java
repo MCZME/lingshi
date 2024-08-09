@@ -1,15 +1,23 @@
 package mczme.lingshi.common.block.entity;
 
+import mczme.lingshi.common.recipe.ChoppingBoardRecipe;
+import mczme.lingshi.common.recipe.input.ChoppingBoardRecipeInput;
 import mczme.lingshi.common.registry.BlockEntitys;
+import mczme.lingshi.common.registry.ModRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.ticks.ContainerSingleItem;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class ChoppingBoardBlockEntity extends BlockEntity implements ContainerSingleItem {
 
@@ -55,6 +63,26 @@ public class ChoppingBoardBlockEntity extends BlockEntity implements ContainerSi
     @Override
     public void setTheItem(ItemStack pItem) {
         this.item= pItem;
+    }
+
+    public List<ItemStack> getRecipeAndResult(ItemStack itemStack){
+        List<ItemStack> list = new ArrayList<>();
+        ChoppingBoardRecipeInput input = new ChoppingBoardRecipeInput(itemStack);
+        if (level.isClientSide()) {
+            return null;
+        }
+        RecipeManager recipes = level.getRecipeManager();
+        Optional<RecipeHolder<ChoppingBoardRecipe>> optional = recipes.getRecipeFor(
+                ModRecipes.CHOPPING_BOARD_RECIPE.get(),
+                input,
+                level
+        );
+        ItemStack result = optional
+                .map(RecipeHolder::value)
+                .map(e -> e.assemble(input, level.registryAccess()))
+                .orElse(ItemStack.EMPTY);
+        list.add(result);
+        return list;
     }
 
 

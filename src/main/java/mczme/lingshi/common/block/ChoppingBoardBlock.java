@@ -10,6 +10,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -29,6 +30,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class ChoppingBoardBlock extends BaseEntityBlock {
 
@@ -64,7 +67,19 @@ public class ChoppingBoardBlock extends BaseEntityBlock {
                     blockEntity.setTheItem(stack);
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;
-                } else {
+                } else if(!blockEntity.getTheItem().isEmpty()&& !stack.isEmpty()) {
+                    if(pPlayer.getMainHandItem().is(Items.DIAMOND))
+                    {
+                        List<ItemStack> stacks = blockEntity.getRecipeAndResult(blockEntity.getTheItem());
+                        if(stacks == null||stacks.getFirst().isEmpty()) {
+                            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+                        }
+                        stacks.forEach(itemStack -> Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY(), pPos.getZ(), itemStack));
+                        blockEntity.setTheItem(ItemStack.EMPTY);
+                        blockEntity.setChanged();
+                        return ItemInteractionResult.SUCCESS;
+                    }
+                }else {
                     return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
                 }
         }
@@ -86,6 +101,15 @@ public class ChoppingBoardBlock extends BaseEntityBlock {
         return InteractionResult.PASS;
     }
 
+    @Override
+    protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
+        if (pLevel.getBlockEntity(pPos) instanceof ChoppingBoardBlockEntity blockEntity) {
+            Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY(), pPos.getZ(), blockEntity.getTheItem());
+            blockEntity.setTheItem(ItemStack.EMPTY);
+        }
+        super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
+    }
+
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
@@ -94,18 +118,13 @@ public class ChoppingBoardBlock extends BaseEntityBlock {
 
     @Override
     protected VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        switch (pState.getValue(FACING)) {
-            case NORTH:
-                return NORTH_SHAPE;
-            case SOUTH:
-                return SOUTH_SHAPE;
-            case WEST:
-                return WEST_SHAPE;
-            case EAST:
-                return EAST_SHAPE;
-            default:
-                return NORTH_SHAPE;
-        }
+        return switch (pState.getValue(FACING)) {
+            case NORTH -> NORTH_SHAPE;
+            case SOUTH -> SOUTH_SHAPE;
+            case WEST -> WEST_SHAPE;
+            case EAST -> EAST_SHAPE;
+            default -> NORTH_SHAPE;
+        };
     }
 
     @Override
