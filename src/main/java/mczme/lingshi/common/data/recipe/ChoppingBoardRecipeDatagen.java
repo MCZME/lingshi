@@ -9,6 +9,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class ChoppingBoardRecipeDatagen extends RecipeProvider {
@@ -18,8 +20,11 @@ public class ChoppingBoardRecipeDatagen extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput output) {
-        new ChoppingBoardRecipeBuilder(new ItemStack(Items.WOODEN_AXE),Ingredient.of(Items.APPLE))
-                .unlockedBy("test",has(Items.APPLE)).save(output, "test_0");
+        List<ItemStack> items = new ArrayList<>();
+        items.add(new ItemStack(Items.WOODEN_AXE));
+        items.add(new ItemStack(Items.OAK_PLANKS));
+        new ChoppingBoardRecipeBuilder(items,Ingredient.of(Items.DIAMOND),Ingredient.of(Items.APPLE))
+                .save(output, "test_0");
     }
 
 }

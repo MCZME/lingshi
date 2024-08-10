@@ -1,7 +1,6 @@
 package mczme.lingshi.common.block.entity;
 
 import mczme.lingshi.common.recipe.ChoppingBoardRecipe;
-import mczme.lingshi.common.recipe.input.ChoppingBoardRecipeInput;
 import mczme.lingshi.common.registry.BlockEntitys;
 import mczme.lingshi.common.registry.ModRecipes;
 import net.minecraft.core.BlockPos;
@@ -65,9 +64,8 @@ public class ChoppingBoardBlockEntity extends BlockEntity implements ContainerSi
         this.item= pItem;
     }
 
-    public List<ItemStack> getRecipeAndResult(ItemStack itemStack){
-        List<ItemStack> list = new ArrayList<>();
-        ChoppingBoardRecipeInput input = new ChoppingBoardRecipeInput(itemStack);
+    public List<ItemStack> getRecipeAndResult(ItemStack itemStack,ItemStack tool){
+        SingleRecipeInput input = new SingleRecipeInput(itemStack);
         if (level.isClientSide()) {
             return null;
         }
@@ -77,12 +75,10 @@ public class ChoppingBoardBlockEntity extends BlockEntity implements ContainerSi
                 input,
                 level
         );
-        ItemStack result = optional
+        return optional
                 .map(RecipeHolder::value)
-                .map(e -> e.assemble(input, level.registryAccess()))
-                .orElse(ItemStack.EMPTY);
-        list.add(result);
-        return list;
+                .map(e -> e.getResults())
+                .orElse(new ArrayList<>());
     }
 
 

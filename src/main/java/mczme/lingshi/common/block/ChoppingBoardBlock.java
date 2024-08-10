@@ -68,8 +68,8 @@ public class ChoppingBoardBlock extends BaseEntityBlock {
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;
                 } else if(!blockEntity.getTheItem().isEmpty()&& !stack.isEmpty() && pPlayer.getMainHandItem().is(Items.DIAMOND)) {
-                    List<ItemStack> stacks = blockEntity.getRecipeAndResult(blockEntity.getTheItem());
-                    if(stacks == null||stacks.getFirst().isEmpty()) {
+                    List<ItemStack> stacks = blockEntity.getRecipeAndResult(blockEntity.getTheItem(),pPlayer.getMainHandItem());
+                    if(stacks == null||stacks.isEmpty()) {
                         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
                     }
                     stacks.forEach(itemStack -> Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY(), pPos.getZ(), itemStack));

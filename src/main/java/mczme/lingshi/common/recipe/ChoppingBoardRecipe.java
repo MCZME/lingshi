@@ -1,34 +1,45 @@
 package mczme.lingshi.common.recipe;
 
-import mczme.lingshi.common.recipe.input.ChoppingBoardRecipeInput;
 import mczme.lingshi.common.registry.ModRecipes;
 import mczme.lingshi.common.registry.ModSerializer;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
-public class ChoppingBoardRecipe implements Recipe<ChoppingBoardRecipeInput> {
+import java.util.ArrayList;
+import java.util.List;
 
+public class ChoppingBoardRecipe implements Recipe<SingleRecipeInput> {
+
+    public static final int MAX_SLOT=3;
     private final Ingredient inputItem;
-    private final ItemStack result;
+    private final Ingredient tool;
+    private final List<ItemStack> result;
 
-    public ChoppingBoardRecipe(Ingredient inputItem, ItemStack result) {
+    public ChoppingBoardRecipe(Ingredient inputItem, Ingredient tool, List<ItemStack> result) {
         this.inputItem = inputItem;
+        this.tool = tool;
         this.result = result;
     }
 
     @Override
-    public boolean matches(ChoppingBoardRecipeInput pInput, Level pLevel) {
-        return this.inputItem.test(pInput.stack());
+    public NonNullList<Ingredient> getIngredients() {
+        NonNullList<Ingredient> list = NonNullList.create();
+        list.add(this.inputItem);
+        return list;
     }
 
     @Override
-    public ItemStack assemble(ChoppingBoardRecipeInput pInput, HolderLookup.Provider pRegistries) {
-        return this.result.copy();
+    public boolean matches(SingleRecipeInput pInput, Level pLevel) {
+        return this.inputItem.test(pInput.item());
+    }
+
+    @Override
+    public ItemStack assemble(SingleRecipeInput pInput, HolderLookup.Provider pRegistries) {
+        return this.result.getFirst().copy();
     }
 
     @Override
@@ -37,8 +48,8 @@ public class ChoppingBoardRecipe implements Recipe<ChoppingBoardRecipeInput> {
     }
 
     @Override
-    public ItemStack getResultItem(HolderLookup.Provider registries) {
-        return this.result;
+    public @NotNull ItemStack getResultItem(HolderLookup.Provider registries) {
+        return this.result.getFirst();
     }
 
     @Override
@@ -55,8 +66,20 @@ public class ChoppingBoardRecipe implements Recipe<ChoppingBoardRecipeInput> {
         return inputItem;
     }
 
-    public ItemStack getResult() {
+    public Ingredient getTool() {
+        return tool;
+    }
+
+    public List<ItemStack> getResult() {
         return result;
     }
 
+    public List<ItemStack> getResults() {
+        List<ItemStack> Result = new ArrayList<>();
+        if(this.result.isEmpty()){
+            return Result;
+        }
+        result.forEach(itemStack -> Result.add(itemStack.copy()));
+        return Result;
+    }
 }

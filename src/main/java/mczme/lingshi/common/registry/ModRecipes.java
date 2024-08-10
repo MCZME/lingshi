@@ -17,8 +17,9 @@ public class ModRecipes {
     public static final Supplier<RecipeType<ChoppingBoardRecipe>> CHOPPING_BOARD_RECIPE =
             RECIPE_TYPES.register(
                     "chopping_board_recipe",
-                    () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(lingshi.MODID, "chopping_board_recipe"))
+                    () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(lingshi.MODID, "chopping_board"))
             );
+
 
     public static void register(IEventBus modEventBus) {
         RECIPE_TYPES.register(modEventBus);
