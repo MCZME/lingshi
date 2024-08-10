@@ -3,6 +3,7 @@ package mczme.lingshi.common.data;
 import mczme.lingshi.common.data.lang.ChineseLanguageProvider;
 import mczme.lingshi.common.data.loot.BlockLoot;
 import mczme.lingshi.common.data.recipe.ChoppingBoardRecipeDatagen;
+import mczme.lingshi.common.data.tag.BlockTags;
 import mczme.lingshi.lingshi;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -53,6 +54,12 @@ public class DataGenerators {
         event.getGenerator().addProvider(
                 event.includeServer(),
                 new ChoppingBoardRecipeDatagen(output, lookupProvider)
+        );
+
+//        block tag datagen
+        event.getGenerator().addProvider(
+                event.includeServer(),
+                new BlockTags(output, lookupProvider,existingFileHelper)
         );
     }
 }

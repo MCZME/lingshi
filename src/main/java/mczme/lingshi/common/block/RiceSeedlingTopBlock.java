@@ -31,7 +31,7 @@ public class RiceSeedlingTopBlock extends CropBlock {
     };
 
     public RiceSeedlingTopBlock(Properties properties) {
-        super(properties.noCollission().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).randomTicks());
+        super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(AGE, 0));
     }
 

@@ -40,7 +40,7 @@ public class RiceSeedlingBlock extends BushBlock implements BonemealableBlock, L
     };
 
     public RiceSeedlingBlock(Properties properties) {
-        super(properties.noCollission().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).randomTicks());
+        super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(EMERGE, false).setValue(AGE, 0).setValue(WATERLOGGED, true));
     }
 

@@ -67,18 +67,15 @@ public class ChoppingBoardBlock extends BaseEntityBlock {
                     blockEntity.setTheItem(stack);
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;
-                } else if(!blockEntity.getTheItem().isEmpty()&& !stack.isEmpty()) {
-                    if(pPlayer.getMainHandItem().is(Items.DIAMOND))
-                    {
-                        List<ItemStack> stacks = blockEntity.getRecipeAndResult(blockEntity.getTheItem());
-                        if(stacks == null||stacks.getFirst().isEmpty()) {
-                            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-                        }
-                        stacks.forEach(itemStack -> Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY(), pPos.getZ(), itemStack));
-                        blockEntity.setTheItem(ItemStack.EMPTY);
-                        blockEntity.setChanged();
-                        return ItemInteractionResult.SUCCESS;
+                } else if(!blockEntity.getTheItem().isEmpty()&& !stack.isEmpty() && pPlayer.getMainHandItem().is(Items.DIAMOND)) {
+                    List<ItemStack> stacks = blockEntity.getRecipeAndResult(blockEntity.getTheItem());
+                    if(stacks == null||stacks.getFirst().isEmpty()) {
+                        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
                     }
+                    stacks.forEach(itemStack -> Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY(), pPos.getZ(), itemStack));
+                    blockEntity.setTheItem(ItemStack.EMPTY);
+                    blockEntity.setChanged();
+                    return ItemInteractionResult.SUCCESS;
                 }else {
                     return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
                 }

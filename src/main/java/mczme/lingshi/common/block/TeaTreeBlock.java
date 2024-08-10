@@ -34,7 +34,7 @@ public class TeaTreeBlock extends BushBlock implements BonemealableBlock {
             Shapes.or(Block.box(7.0, 0, 7.0, 10, 5, 10),Block.box(0,5,0,16,16,16))};
 
     public TeaTreeBlock(Properties properties) {
-        super(properties.randomTicks().noCollission().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY));
+        super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(AGE, 0));
     }
 

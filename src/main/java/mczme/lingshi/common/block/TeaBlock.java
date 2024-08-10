@@ -27,7 +27,7 @@ public class TeaBlock extends CropBlock {
     };
 
     public TeaBlock(Properties properties) {
-        super(properties.randomTicks().noCollission().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY));
+        super(properties);
     }
 
     @Override

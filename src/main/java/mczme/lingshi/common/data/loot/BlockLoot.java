@@ -13,7 +13,8 @@ public class BlockLoot extends BlockLootSubProvider {
 
     public static final Set<Block> BLOCK = Set.of(
             ModBlocks.TEA_TREE.get(),
-            ModBlocks.TEA_LEAF.get()
+            ModBlocks.TEA_LEAF.get(),
+            ModBlocks.CHOPPING_BOARD.get()
     );
 
     public BlockLoot(HolderLookup.Provider lookupProvider) {
@@ -25,6 +26,7 @@ public class BlockLoot extends BlockLootSubProvider {
     protected void generate() {
         dropSelf(ModBlocks.TEA_TREE.get());
         dropOther(ModBlocks.TEA_LEAF.get(), ModItems.TEA_LEAF.get());
+        dropSelf(ModBlocks.CHOPPING_BOARD.get());
     }
 
     @Override
