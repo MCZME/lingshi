@@ -4,6 +4,7 @@ import mczme.lingshi.common.registry.ModBlocks;
 import mczme.lingshi.lingshi;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -11,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
+import static mczme.lingshi.common.tag.ModTags.*;
 import static net.minecraft.tags.BlockTags.*;
 
 public class BlockTags extends BlockTagsProvider {
@@ -22,5 +24,9 @@ public class BlockTags extends BlockTagsProvider {
     protected void addTags(HolderLookup.@NotNull Provider pProvider) {
 //        斧 可挖掘
         tag(MINEABLE_WITH_AXE).add(ModBlocks.CHOPPING_BOARD.get());
+
+//        热源方块
+        tag(HEAT_SOURCE).add(Blocks.CAMPFIRE,
+                Blocks.MAGMA_BLOCK);
     }
 }
