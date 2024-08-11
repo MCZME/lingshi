@@ -1,0 +1,15 @@
+{
+  "type": "lingshi:chopping_board__serializer",
+  "input": {
+    "item": "lingshi:rice_of_ear"
+  },
+  "result": [
+    {
+      "count": 3,
+      "id": "lingshi:rice"
+    }
+  ],
+  "tool": {
+    "tag": "neoforge:knife"
+  }
+}

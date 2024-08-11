@@ -2,6 +2,7 @@ package mczme.lingshi.common.block;
 
 import com.mojang.serialization.MapCodec;
 import mczme.lingshi.common.block.entity.ChoppingBoardBlockEntity;
+import mczme.lingshi.common.tag.NeoforgeTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.Containers;
@@ -10,7 +11,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -62,13 +62,17 @@ public class ChoppingBoardBlock extends BaseEntityBlock {
             ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult
     ) {
         if (pLevel.getBlockEntity(pPos) instanceof ChoppingBoardBlockEntity blockEntity) {
-                ItemStack stack = pStack.consumeAndReturn(1, pPlayer);
-                if (blockEntity.getTheItem().isEmpty() && !stack.isEmpty()) {
-                    blockEntity.setTheItem(stack);
+            ItemStack left_stack = pPlayer.getItemInHand(InteractionHand.OFF_HAND);
+                if (blockEntity.getTheItem().isEmpty() && !pStack.isEmpty() && left_stack.isEmpty()) {
+                    blockEntity.setTheItem(pStack.consumeAndReturn(1,pPlayer));
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;
-                } else if(!blockEntity.getTheItem().isEmpty()&& !stack.isEmpty() && pPlayer.getMainHandItem().is(Items.DIAMOND)) {
-                    List<ItemStack> stacks = blockEntity.getRecipeAndResult(blockEntity.getTheItem(),pPlayer.getMainHandItem());
+                } else if(blockEntity.getTheItem().isEmpty() && pStack.is(NeoforgeTags.KNIFE) && !left_stack.isEmpty()){
+                    blockEntity.setTheItem(left_stack.consumeAndReturn(1,pPlayer));
+                    blockEntity.setChanged();
+                    return ItemInteractionResult.SUCCESS;
+                }else if(!blockEntity.getTheItem().isEmpty()&& !pStack.isEmpty()) {
+                    List<ItemStack> stacks = blockEntity.getRecipeAndResult(pPlayer.getMainHandItem());
                     if(stacks == null||stacks.isEmpty()) {
                         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
                     }

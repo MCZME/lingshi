@@ -3,6 +3,7 @@ package mczme.lingshi.common.block.entity;
 import mczme.lingshi.common.recipe.ChoppingBoardRecipe;
 import mczme.lingshi.common.registry.BlockEntitys;
 import mczme.lingshi.common.registry.ModRecipes;
+import mczme.lingshi.common.tag.NeoforgeTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -64,21 +65,24 @@ public class ChoppingBoardBlockEntity extends BlockEntity implements ContainerSi
         this.item= pItem;
     }
 
-    public List<ItemStack> getRecipeAndResult(ItemStack itemStack,ItemStack tool){
-        SingleRecipeInput input = new SingleRecipeInput(itemStack);
+    public List<ItemStack> getRecipeAndResult(ItemStack tool){
+        SingleRecipeInput input = new SingleRecipeInput(item);
         if (level.isClientSide()) {
             return null;
         }
-        RecipeManager recipes = level.getRecipeManager();
-        Optional<RecipeHolder<ChoppingBoardRecipe>> optional = recipes.getRecipeFor(
-                ModRecipes.CHOPPING_BOARD_RECIPE.get(),
-                input,
-                level
-        );
-        return optional
-                .map(RecipeHolder::value)
-                .map(e -> e.getResults())
-                .orElse(new ArrayList<>());
+        if(tool.is(NeoforgeTags.KNIFE)) {
+            RecipeManager recipes = level.getRecipeManager();
+            Optional<RecipeHolder<ChoppingBoardRecipe>> optional = recipes.getRecipeFor(
+                    ModRecipes.CHOPPING_BOARD_RECIPE.get(),
+                    input,
+                    level
+            );
+            return optional
+                    .map(RecipeHolder::value)
+                    .map(e -> e.getResults())
+                    .orElse(new ArrayList<>());
+        }
+        return new ArrayList<>();
     }
 
 
