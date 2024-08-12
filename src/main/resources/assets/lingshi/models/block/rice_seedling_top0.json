@@ -2,6 +2,6 @@
   "parent": "block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "lingshi:block/riceseedling_top_age3"
+    "cross": "lingshi:block/rice_seedling_top0"
   }
 }

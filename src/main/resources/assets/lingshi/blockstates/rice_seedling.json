@@ -1,16 +1,16 @@
 {
   "variants": {
     "age=0,emerge=false": {
-      "model": "lingshi:block/riceseedling_age0"
+      "model": "lingshi:block/rice_seedling0"
     },
     "age=1,emerge=false": {
-      "model": "lingshi:block/riceseedling_emerge"
+      "model": "lingshi:block/rice_seedling1"
     },
     "age=0,emerge=true": {
-      "model": "lingshi:block/riceseedling_emerge"
+      "model": "lingshi:block/rice_seedling1"
     },
     "age=1,emerge=true": {
-      "model": "lingshi:block/riceseedling_emerge"
+      "model": "lingshi:block/rice_seedling1"
     }
   }
 }
