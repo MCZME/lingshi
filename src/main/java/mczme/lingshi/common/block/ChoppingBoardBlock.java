@@ -59,9 +59,7 @@ public class ChoppingBoardBlock extends BaseEntityBlock {
     }
 
     @Override
-    public ItemInteractionResult useItemOn(
-            ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult
-    ) {
+    public ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
         if (pLevel.getBlockEntity(pPos) instanceof ChoppingBoardBlockEntity blockEntity) {
             if (!pStack.isEmpty()) {
                 if (pStack.is(NeoforgeTags.KNIFE) && !blockEntity.getTheItem().isEmpty()) {
@@ -71,8 +69,8 @@ public class ChoppingBoardBlock extends BaseEntityBlock {
                     }
                     stacks.forEach(itemStack -> Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY(), pPos.getZ(), itemStack));
                     blockEntity.setTheItem(ItemStack.EMPTY);
-                    if(!pLevel.isClientSide()){
-                        pStack.hurtAndBreak(1,  pPlayer, EquipmentSlot.MAINHAND);
+                    if (!pLevel.isClientSide()) {
+                        pStack.hurtAndBreak(1, pPlayer, EquipmentSlot.MAINHAND);
                     }
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;

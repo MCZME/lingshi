@@ -24,7 +24,7 @@ public class lingshi
         ModBlocks.register(modEventBus);
         ModItems.register(modEventBus);
         CreateTabs.register(modEventBus);
-        BlockEntitys.register(modEventBus);
+        BlockEntityTypes.register(modEventBus);
         ModRecipes.register(modEventBus);
         ModSerializer.register(modEventBus);
 

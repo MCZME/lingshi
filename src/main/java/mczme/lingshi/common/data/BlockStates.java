@@ -4,6 +4,7 @@ import mczme.lingshi.common.registry.ModBlocks;
 import mczme.lingshi.lingshi;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
@@ -21,10 +22,14 @@ public class BlockStates extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
 
-        VariantBlockStateBuilder variantBuilder = getVariantBuilder(ModBlocks.CHOPPING_BOARD.get());
+        horizontalBlock(ModBlocks.CHOPPING_BOARD.get(), "block/chopping_board");
+    }
+
+    private void horizontalBlock(Block block, String modelLocation) {
+        VariantBlockStateBuilder variantBuilder = getVariantBuilder(block);
 
         variantBuilder.forAllStates(state -> ConfiguredModel.builder()
-                .modelFile(modelFile("block/chopping_board"))
+                .modelFile(modelFile(modelLocation))
                 .rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot())
                 .build());
     }

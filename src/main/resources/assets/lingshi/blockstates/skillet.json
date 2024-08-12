@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,has_support=false": {
+      "model": "lingshi:block/skillet",
+      "y": 270
+    },
+    "facing=north,has_support=false": {
+      "model": "lingshi:block/skillet",
+      "y": 180
+    },
+    "facing=south,has_support=false": {
+      "model": "lingshi:block/skillet"
+    },
+    "facing=west,has_support=false": {
+      "model": "lingshi:block/skillet",
+      "y": 90
+    },
+    "facing=east,has_support=true": {
+      "model": "lingshi:block/skillet_support",
+      "y": 270
+    },
+    "facing=north,has_support=true": {
+      "model": "lingshi:block/skillet_support",
+      "y": 180
+    },
+    "facing=south,has_support=true": {
+      "model": "lingshi:block/skillet_support"
+    },
+    "facing=west,has_support=true": {
+      "model": "lingshi:block/skillet_support",
+      "y": 90
+    }
+  }
+}

@@ -28,5 +28,8 @@ public class BlockTags extends BlockTagsProvider {
 //        热源方块
         tag(HEAT_SOURCE).add(Blocks.CAMPFIRE,
                 Blocks.MAGMA_BLOCK);
+
+//        可以支撑方块
+        tag(CAN_SUPPORT).add(Blocks.CAMPFIRE);
     }
 }

@@ -1,7 +1,7 @@
 package mczme.lingshi.common.block.entity;
 
 import mczme.lingshi.common.recipe.ChoppingBoardRecipe;
-import mczme.lingshi.common.registry.BlockEntitys;
+import mczme.lingshi.common.registry.BlockEntityTypes;
 import mczme.lingshi.common.registry.ModRecipes;
 import mczme.lingshi.common.tag.NeoforgeTags;
 import net.minecraft.core.BlockPos;
@@ -24,11 +24,10 @@ public class ChoppingBoardBlockEntity extends BlockEntity implements ContainerSi
     private ItemStack item = ItemStack.EMPTY;
 
     public ChoppingBoardBlockEntity( BlockPos pPos, BlockState pBlockState) {
-        super(BlockEntitys.CHOPPING_BOARD_BLOCKENTITY.get(), pPos, pBlockState);
+        super(BlockEntityTypes.CHOPPING_BOARD_BLOCKENTITY.get(), pPos, pBlockState);
     }
 
-
-
+    @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
