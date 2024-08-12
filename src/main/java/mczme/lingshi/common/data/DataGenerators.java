@@ -31,7 +31,7 @@ public class DataGenerators {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-//        block loot
+//        block loot datagen
         event.getGenerator().addProvider(
                 event.includeServer(),
                 new LootTableProvider(output, Set.of(),
@@ -47,8 +47,14 @@ public class DataGenerators {
 
 //        state datagen
         event.getGenerator().addProvider(
-                event.includeServer(),
+                event.includeClient(),
                 new BlockStates(output, existingFileHelper)
+        );
+
+        //        Item Model datagen
+        event.getGenerator().addProvider(
+                event.includeClient(),
+                new ItemModels(output, existingFileHelper)
         );
 
 //        chopping_board recipe datagen
