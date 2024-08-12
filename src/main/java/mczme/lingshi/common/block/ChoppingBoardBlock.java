@@ -9,6 +9,7 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -62,27 +63,30 @@ public class ChoppingBoardBlock extends BaseEntityBlock {
             ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult
     ) {
         if (pLevel.getBlockEntity(pPos) instanceof ChoppingBoardBlockEntity blockEntity) {
-            ItemStack left_stack = pPlayer.getItemInHand(InteractionHand.OFF_HAND);
-                if (blockEntity.getTheItem().isEmpty() && !pStack.isEmpty() && left_stack.isEmpty()) {
-                    blockEntity.setTheItem(pStack.consumeAndReturn(1,pPlayer));
-                    blockEntity.setChanged();
-                    return ItemInteractionResult.SUCCESS;
-                } else if(blockEntity.getTheItem().isEmpty() && pStack.is(NeoforgeTags.KNIFE) && !left_stack.isEmpty()){
-                    blockEntity.setTheItem(left_stack.consumeAndReturn(1,pPlayer));
-                    blockEntity.setChanged();
-                    return ItemInteractionResult.SUCCESS;
-                }else if(!blockEntity.getTheItem().isEmpty()&& !pStack.isEmpty()) {
+            if (!pStack.isEmpty()) {
+                if (pStack.is(NeoforgeTags.KNIFE) && !blockEntity.getTheItem().isEmpty()) {
                     List<ItemStack> stacks = blockEntity.getRecipeAndResult(pPlayer.getMainHandItem());
-                    if(stacks == null||stacks.isEmpty()) {
+                    if (stacks == null || stacks.isEmpty()) {
                         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
                     }
                     stacks.forEach(itemStack -> Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY(), pPos.getZ(), itemStack));
                     blockEntity.setTheItem(ItemStack.EMPTY);
+                    if(!pLevel.isClientSide()){
+                        pStack.hurtAndBreak(1,  pPlayer, EquipmentSlot.MAINHAND);
+                    }
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;
-                }else {
-                    return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+                } else if (pStack.is(NeoforgeTags.KNIFE) && blockEntity.getTheItem().isEmpty() && !pPlayer.getItemInHand(InteractionHand.OFF_HAND).isEmpty()) {
+                    blockEntity.setTheItem(pPlayer.getItemInHand(InteractionHand.OFF_HAND).consumeAndReturn(1, pPlayer));
+                    blockEntity.setChanged();
+                    return ItemInteractionResult.SUCCESS;
+                } else if (blockEntity.getTheItem().isEmpty()) {
+                    blockEntity.setTheItem(pStack.consumeAndReturn(1, pPlayer));
+                    blockEntity.setChanged();
+                    return ItemInteractionResult.SUCCESS;
                 }
+            }
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
         return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
 
@@ -91,13 +95,13 @@ public class ChoppingBoardBlock extends BaseEntityBlock {
     @Override
     protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
         if (pLevel.getBlockEntity(pPos) instanceof ChoppingBoardBlockEntity blockentity) {
-                ItemStack stack = blockentity.getTheItem();
-                if (!stack.isEmpty()) {
-                    Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY(), pPos.getZ(), stack);
-                    blockentity.setTheItem(ItemStack.EMPTY);
-                    blockentity.setChanged();
-                    return InteractionResult.SUCCESS;
-                }
+            ItemStack stack = blockentity.getTheItem();
+            if (!stack.isEmpty()) {
+                Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY(), pPos.getZ(), stack);
+                blockentity.setTheItem(ItemStack.EMPTY);
+                blockentity.setChanged();
+                return InteractionResult.SUCCESS;
+            }
         }
         return InteractionResult.PASS;
     }
