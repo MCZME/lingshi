@@ -14,7 +14,7 @@
               "condition": "minecraft:block_state_property",
               "block": "lingshi:rice",
               "properties": {
-                "age": "7"
+                "age": "3"
               }
             }
           ]
@@ -36,7 +36,7 @@
             "condition": "minecraft:block_state_property",
             "block": "lingshi:rice",
             "properties": {
-              "age": "7"
+              "age": "3"
             }
           }
         }

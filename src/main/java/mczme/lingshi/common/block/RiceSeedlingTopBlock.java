@@ -3,6 +3,8 @@ package mczme.lingshi.common.block;
 import mczme.lingshi.common.registry.ModBlocks;
 import mczme.lingshi.common.registry.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.LevelAccessor;
@@ -10,14 +12,14 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+
+import static mczme.lingshi.common.block.RiceSeedlingBlock.WATERLOGGED;
 
 public class RiceSeedlingTopBlock extends CropBlock {
 
@@ -39,6 +41,19 @@ public class RiceSeedlingTopBlock extends CropBlock {
     public void destroy(LevelAccessor pLevel, BlockPos pPos, BlockState pState) {
         if (pLevel.getBlockState(pPos.below()).getBlock() instanceof RiceSeedlingBlock) {
             pLevel.setBlock(pPos.below(), Blocks.AIR.defaultBlockState(), 2);
+        }
+    }
+
+    @Override
+    public void performBonemeal(ServerLevel pLevel, RandomSource pRandom, BlockPos pPos, BlockState pState) {
+        int i = this.getAge(pState) + this.getBonemealAgeIncrease(pLevel);
+        int j = this.getMaxAge();
+        if (i > j) {
+            i = j;
+        }
+        pLevel.setBlock(pPos, this.getStateForAge(i), 2);
+        if (i == 4) {
+            pLevel.setBlockAndUpdate(pPos.below(), pLevel.getBlockState(pPos.below()).setValue(WATERLOGGED, false));
         }
     }
 
