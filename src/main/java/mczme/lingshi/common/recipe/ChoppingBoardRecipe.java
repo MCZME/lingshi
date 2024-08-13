@@ -54,7 +54,7 @@ public class ChoppingBoardRecipe implements Recipe<SingleRecipeInput> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return ModSerializer.CHOPPING_BOARD__SERIALIZER.get();
+        return ModSerializer.CHOPPING_BOARD_SERIALIZER.get();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package mczme.lingshi.common.registry;
 
 import mczme.lingshi.common.recipe.ChoppingBoardRecipe;
+import mczme.lingshi.common.recipe.SkilletRecipe;
 import mczme.lingshi.lingshi;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -19,7 +20,11 @@ public class ModRecipes {
                     "chopping_board_recipe",
                     () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(lingshi.MODID, "chopping_board"))
             );
-
+    public static final Supplier<RecipeType<SkilletRecipe>> SKILLET_RECIPE =
+            RECIPE_TYPES.register(
+                    "skillet_recipe",
+                    () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(lingshi.MODID, "right_click_block"))
+            );
 
     public static void register(IEventBus modEventBus) {
         RECIPE_TYPES.register(modEventBus);

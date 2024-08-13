@@ -23,19 +23,19 @@ public class CookingFoodDataGen extends DataMapProvider {
 
     @Override
     protected void gather() {
-        addCookingFood(Items.APPLE,5);
-        addCookingFood(ModItems.RICE,15);
+        addCookingFood(Items.APPLE,5,20);
+        addCookingFood(ModItems.RICE,15,25);
     }
 
-    protected void addCookingFood(Item item , float time){
-        builder(COOKING_FOOD).add(ResourceLocation.parse(item.toString()),new CookingFoodData(time),false);
+    protected void addCookingFood(Item item , float cookedTime,float burntTime){
+        builder(COOKING_FOOD).add(ResourceLocation.parse(item.toString()),new CookingFoodData(cookedTime,burntTime),false);
     }
 
-    protected void addCookingFood(Supplier<Item> item , float time){
-        builder(COOKING_FOOD).add(ResourceLocation.parse(item.get().toString()),new CookingFoodData(time),false);
+    protected void addCookingFood(Supplier<Item> item , float cookedTime,float burntTime){
+        builder(COOKING_FOOD).add(ResourceLocation.parse(item.get().toString()),new CookingFoodData(cookedTime,burntTime),false);
     }
 
-    protected void addCookingFood(TagKey<Item> tag, float time){
-        builder(COOKING_FOOD).add(tag,new CookingFoodData(time),false);
+    protected void addCookingFood(TagKey<Item> tag, float cookedTime,float burntTime){
+        builder(COOKING_FOOD).add(tag,new CookingFoodData(cookedTime,burntTime),false);
     }
 }

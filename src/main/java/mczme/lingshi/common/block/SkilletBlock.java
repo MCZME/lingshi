@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import mczme.lingshi.common.block.entity.SkilletBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
@@ -25,6 +26,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -37,7 +39,9 @@ public class SkilletBlock extends BaseEntityBlock {
 
     public static final BooleanProperty HAS_SUPPORT = BooleanProperty.create("has_support");
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 3, 15);
+    public static final VoxelShape SHAPE = Shapes.join(Block.box(1, 0, 1, 15, 3, 15),
+            Block.box(2,1,2,14,3,14),
+            BooleanOp.ONLY_FIRST);
 
     public SkilletBlock(Properties pProperties) {
         super(pProperties);
@@ -50,12 +54,20 @@ public class SkilletBlock extends BaseEntityBlock {
     }
 
     public ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if(pLevel.getBlockEntity(pPos) instanceof SkilletBlockEntity blockEntity){
+        }
+
+        return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override
     protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
-        return InteractionResult.PASS;
+        if(pLevel.getBlockEntity(pPos) instanceof SkilletBlockEntity blockEntity){
+            if(pPlayer.isShiftKeyDown() && !pLevel.isClientSide() && pPlayer instanceof ServerPlayer){
+//                pPlayer.openMenu()
+            }
+        }
+        return InteractionResult.sidedSuccess(pLevel.isClientSide);
     }
 
     @Nullable

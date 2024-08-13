@@ -2,7 +2,7 @@ package mczme.lingshi.common.data;
 
 import mczme.lingshi.common.data.lang.ChineseLanguageProvider;
 import mczme.lingshi.common.data.loot.BlockLoot;
-import mczme.lingshi.common.data.recipe.ChoppingBoardRecipeDatagen;
+import mczme.lingshi.common.data.recipe.Recipes;
 import mczme.lingshi.common.data.tag.BlockTags;
 import mczme.lingshi.common.data.tag.ItemTags;
 import mczme.lingshi.lingshi;
@@ -51,17 +51,18 @@ public class DataGenerators {
                 new BlockStates(output, existingFileHelper)
         );
 
-        //        Item Model datagen
+//                Item Model datagen
         event.getGenerator().addProvider(
                 event.includeClient(),
                 new ItemModels(output, existingFileHelper)
         );
 
-//        chopping_board recipe datagen
+//        recipe datagen
         event.getGenerator().addProvider(
                 event.includeServer(),
-                new ChoppingBoardRecipeDatagen(output, lookupProvider)
+                new Recipes(output, lookupProvider)
         );
+
 
 //        block tag datagen
         BlockTags pBlockTags = new BlockTags(output, lookupProvider, existingFileHelper);
