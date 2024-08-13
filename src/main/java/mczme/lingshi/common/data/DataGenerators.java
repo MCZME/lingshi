@@ -41,7 +41,7 @@ public class DataGenerators {
 
 //        lang datagen
         event.getGenerator().addProvider(
-                event.includeServer(),
+                event.includeClient(),
                 new ChineseLanguageProvider(output)
         );
 
@@ -74,6 +74,12 @@ public class DataGenerators {
         event.getGenerator().addProvider(
                 event.includeServer(),
                 new ItemTags(output, lookupProvider, pBlockTags.contentsGetter(), existingFileHelper)
+        );
+
+//        Cooking Food datagen
+        event.getGenerator().addProvider(
+                event.includeServer(),
+                new CookingFoodDataGen(output, lookupProvider)
         );
     }
 }

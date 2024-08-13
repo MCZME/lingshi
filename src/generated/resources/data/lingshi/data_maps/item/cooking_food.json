@@ -1,0 +1,10 @@
+{
+  "values": {
+    "lingshi:rice": {
+      "time": 15.0
+    },
+    "minecraft:apple": {
+      "time": 5.0
+    }
+  }
+}
