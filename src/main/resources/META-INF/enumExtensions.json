@@ -1,0 +1,64 @@
+{
+  "entries": [
+    {
+      "enum": "net/minecraft/world/inventory/RecipeBookType",
+      "name": "lingshi_SKILLET",
+      "constructor": "()V",
+      "parameters": []
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "lingshi_SKILLET_SEARCH",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "mczme/lingshi/ModEnumParams",
+        "field": "SKILLET_SEARCH_ENUM_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "lingshi_SKILLET_HEAT",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "mczme/lingshi/ModEnumParams",
+        "field": "SKILLET_HEAT_ENUM_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "lingshi_PAN_FRY",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "mczme/lingshi/ModEnumParams",
+        "field": "PAN_FRY_ENUM_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "lingshi_STIR_FRY",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "mczme/lingshi/ModEnumParams",
+        "field": "STIR_FRY_ENUM_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "lingshi_BOIL",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "mczme/lingshi/ModEnumParams",
+        "field": "BOIL_ENUM_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "lingshi_MISC",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "mczme/lingshi/ModEnumParams",
+        "field": "MISC_ENUM_PROXY"
+      }
+    }
+  ]
+}

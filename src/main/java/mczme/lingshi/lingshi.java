@@ -27,7 +27,7 @@ public class lingshi
         BlockEntityTypes.register(modEventBus);
         ModRecipes.register(modEventBus);
         ModSerializer.register(modEventBus);
-
+        ModMenuTypes.register(modEventBus);
     }
 
 

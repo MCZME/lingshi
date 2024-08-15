@@ -23,7 +23,7 @@ public class ModRecipes {
     public static final Supplier<RecipeType<SkilletRecipe>> SKILLET_RECIPE =
             RECIPE_TYPES.register(
                     "skillet_recipe",
-                    () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(lingshi.MODID, "right_click_block"))
+                    () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(lingshi.MODID, "skillet_recipe"))
             );
 
     public static void register(IEventBus modEventBus) {

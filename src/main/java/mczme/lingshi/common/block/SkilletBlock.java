@@ -4,10 +4,7 @@ import com.mojang.serialization.MapCodec;
 import mczme.lingshi.common.block.entity.SkilletBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -55,16 +52,27 @@ public class SkilletBlock extends BaseEntityBlock {
 
     public ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
         if(pLevel.getBlockEntity(pPos) instanceof SkilletBlockEntity blockEntity){
+            if(!blockEntity.isFull() && !pStack.isEmpty()){
+                blockEntity.setItem(pStack);
+                pStack.consume(pStack.getCount(),pPlayer);
+                blockEntity.setChanged();
+                return ItemInteractionResult.SUCCESS;
+            }
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
-
         return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override
     protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
         if(pLevel.getBlockEntity(pPos) instanceof SkilletBlockEntity blockEntity){
-            if(pPlayer.isShiftKeyDown() && !pLevel.isClientSide() && pPlayer instanceof ServerPlayer){
-//                pPlayer.openMenu()
+            if(pPlayer.isShiftKeyDown() ){
+                if(!pLevel.isClientSide()){
+                    pPlayer.openMenu(blockEntity,pPos);
+                }
+            }else if(!blockEntity.getItemStacks().isEmpty()) {
+                Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY()+0.2, pPos.getZ(), blockEntity.dropItem());
+                blockEntity.setChanged();
             }
         }
         return InteractionResult.sidedSuccess(pLevel.isClientSide);
@@ -114,5 +122,4 @@ public class SkilletBlock extends BaseEntityBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(FACING, HAS_SUPPORT);
     }
-
 }

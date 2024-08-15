@@ -1,5 +1,6 @@
 package mczme.lingshi.common.data.builder;
 
+import mczme.lingshi.client.recipebook.CookingFoodRecipeLabel;
 import mczme.lingshi.common.recipe.SkilletRecipe;
 import mczme.lingshi.lingshi;
 import net.minecraft.advancements.Advancement;
@@ -19,6 +20,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+
+import static mczme.lingshi.client.recipebook.CookingFoodRecipeLabel.MISC;
 
 public class SkilletRecipeBuilder implements RecipeBuilder {
 
@@ -29,6 +33,7 @@ public class SkilletRecipeBuilder implements RecipeBuilder {
     protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
     @Nullable
     protected String group;
+    protected CookingFoodRecipeLabel label;
 
     public SkilletRecipeBuilder(List<Ingredient> items, List<FluidStack> fluids, ItemStack result) {
         this.items = items;
@@ -37,14 +42,19 @@ public class SkilletRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public RecipeBuilder unlockedBy(String pName, Criterion<?> pCriterion) {
+    public SkilletRecipeBuilder unlockedBy(String pName, Criterion<?> pCriterion) {
         this.criteria.put(pName, pCriterion);
         return this;
     }
 
     @Override
-    public RecipeBuilder group(@Nullable String pGroupName) {
+    public SkilletRecipeBuilder group(@Nullable String pGroupName) {
         this.group = pGroupName;
+        return this;
+    }
+
+    public SkilletRecipeBuilder setLabel(@Nullable CookingFoodRecipeLabel pLabelName) {
+        this.label=pLabelName;
         return this;
     }
 
@@ -61,7 +71,7 @@ public class SkilletRecipeBuilder implements RecipeBuilder {
                 .rewards(AdvancementRewards.Builder.recipe(id))
                 .requirements(AdvancementRequirements.Strategy.OR);
         this.criteria.forEach(advancement::addCriterion);
-        SkilletRecipe recipe = new SkilletRecipe(this.items, this.fluids, this.result);
+        SkilletRecipe recipe = new SkilletRecipe(this.items, this.fluids, this.result, Objects.requireNonNullElse(this.group, ""),Objects.requireNonNullElse(this.label,MISC));
         pRecipeOutput.accept(id, recipe, advancement.build(id.withPrefix("recipes/")));
     }
 }

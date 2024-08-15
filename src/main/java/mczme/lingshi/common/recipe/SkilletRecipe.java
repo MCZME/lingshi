@@ -1,5 +1,6 @@
 package mczme.lingshi.common.recipe;
 
+import mczme.lingshi.client.recipebook.CookingFoodRecipeLabel;
 import mczme.lingshi.common.recipe.input.SkilletRecipeInput;
 import mczme.lingshi.common.registry.ModRecipes;
 import mczme.lingshi.common.registry.ModSerializer;
@@ -12,13 +13,14 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static net.neoforged.neoforge.common.util.RecipeMatcher.findMatches;
 
-public class SkilletRecipe implements Recipe<SkilletRecipeInput> {
+public class SkilletRecipe extends CookingFoodRecipe implements Recipe<SkilletRecipeInput>{
 
     public static final int MAX_SLOT = 5;
 
@@ -26,10 +28,14 @@ public class SkilletRecipe implements Recipe<SkilletRecipeInput> {
     private final List<FluidStack> fluids;
     private final ItemStack result;
 
-    public SkilletRecipe(List<Ingredient> items, List<FluidStack> fluids, ItemStack result) {
+    final String group;
+
+    public SkilletRecipe(List<Ingredient> items, List<FluidStack> fluids, ItemStack result, String group, CookingFoodRecipeLabel label) {
+        super(label);
         this.items = items;
         this.fluids = fluids;
         this.result = result;
+        this.group = group;
     }
 
     @Override
@@ -88,5 +94,10 @@ public class SkilletRecipe implements Recipe<SkilletRecipeInput> {
 
     public List<Ingredient> getItems() {
         return items;
+    }
+
+    @Override
+    public @NotNull String getGroup() {
+        return this.group;
     }
 }

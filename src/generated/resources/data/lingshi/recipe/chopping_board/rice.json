@@ -1,5 +1,5 @@
 {
-  "type": "lingshi:chopping_board_serializer",
+  "type": "lingshi:chopping_board",
   "input": {
     "item": "lingshi:rice_of_ear"
   },
