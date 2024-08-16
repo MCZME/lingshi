@@ -1,8 +1,8 @@
-// 1.21	2024-08-16T05:17:35.2742695	Recipes
-5bebf6a89fdd6614d0e0b2b0908f76f48afe8ad3 data/lingshi/advancement/recipes/skillet/test00.json
-82ba2633d02b797c4ed89708055c8aab59a9cc39 data/lingshi/advancement/recipes/skillet/test01.json
-b055e56217dec23b58a0c5f454e5dd060e0ed81a data/lingshi/advancement/recipes/skillet/test02.json
+// 1.21	2024-08-16T22:31:06.6934004	Recipes
+30317ddefa8c34feeae2fb9b47b40dae9a2c1335 data/lingshi/advancement/recipes/skillet/rice_apple.json
+60b5c5b8536660e2fc3758499991b48002d68196 data/lingshi/advancement/recipes/skillet/test01.json
+24367c601743c0d2f9df76c4a1e59f6650f0de4a data/lingshi/advancement/recipes/skillet/test02.json
 3e41620c4ec5b19f87046dad7fe5c7ed6ede21c2 data/lingshi/recipe/chopping_board/rice.json
-9622697bc2a3e83291b218d768aa2c1026c1d38f data/lingshi/recipe/skillet/test00.json
-43b74387359bb0f936238fc99d5dce19aa60859a data/lingshi/recipe/skillet/test01.json
-49673e41d352c946039d76d4a55b406153e7cc00 data/lingshi/recipe/skillet/test02.json
+c3a004889c418afc4a46152a5ff63cff2d17ad4a data/lingshi/recipe/skillet/rice_apple.json
+c80602ecff2ea09399aff222a6d36c7b28d0164f data/lingshi/recipe/skillet/test01.json
+89bc0e33a11e930f7b69c4d726d92b4f9446b3d3 data/lingshi/recipe/skillet/test02.json

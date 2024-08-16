@@ -29,10 +29,16 @@ public class ModItems {
 
     public static final Supplier<Item> IRON_KNIFE = registerWithCreateTab("iron_knife", () -> new KnifeItem(Tiers.IRON,new Item.Properties().attributes(SwordItem.createAttributes(Tiers.IRON, 3, -2.4F))));
 
+    public static final Supplier<Item> EMPTY_BOWL = register("empty_bowl",()-> new Item(new Item.Properties()));
+
     private static Supplier<Item> registerWithCreateTab(String item_name, Supplier<Item> itemSupplier) {
         Supplier<Item> item = ITEMS.register(item_name, itemSupplier);
         ITEMS_LIST.add(item);
         return item;
+    }
+
+    private static Supplier<Item> register(String item_name, Supplier<Item> itemSupplier) {
+        return ITEMS.register(item_name, itemSupplier);
     }
 
     public static void register(IEventBus modEventBus) {

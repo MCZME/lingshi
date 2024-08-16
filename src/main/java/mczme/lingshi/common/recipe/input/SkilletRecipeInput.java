@@ -9,11 +9,13 @@ import java.util.List;
 public class SkilletRecipeInput implements RecipeInput {
 
     private final List<ItemStack> items;
-    private final List<FluidStack> fluids;
+    private final FluidStack fluids;
+    private final ItemStack container;
 
-    public SkilletRecipeInput(List<ItemStack> items, List<FluidStack> fluids) {
+    public SkilletRecipeInput(List<ItemStack> items, FluidStack fluid, ItemStack container) {
         this.items = items;
-        this.fluids = fluids;
+        this.fluids = fluid;
+        this.container = container;
     }
 
     @Override
@@ -21,13 +23,18 @@ public class SkilletRecipeInput implements RecipeInput {
         return this.items.get(pIndex);
     }
 
-    public FluidStack getFluid(int pIndex) {
-        return this.fluids.get(pIndex);
+    public FluidStack getFluid() {
+        return this.fluids;
+    }
+
+    public ItemStack getContainer() {
+        return container;
     }
 
     @Override
     public int size() {
-        return items.size()+fluids.size();
+        int i = fluids.isEmpty()?0:1;
+        return items.size()+i;
     }
 
     @Override
