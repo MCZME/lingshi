@@ -25,15 +25,17 @@ public class SkilletRecipe extends CookingFoodRecipe implements Recipe<SkilletRe
     public static final int MAX_SLOT = 5;
 
     private final List<Ingredient> items;
-    private final List<FluidStack> fluids;
+    private final FluidStack fluids;
+    private final ItemStack container;
     private final ItemStack result;
 
     final String group;
 
-    public SkilletRecipe(List<Ingredient> items, List<FluidStack> fluids, ItemStack result, String group, CookingFoodRecipeLabel label) {
+    public SkilletRecipe(List<Ingredient> items, FluidStack fluids,ItemStack container, ItemStack result, String group, CookingFoodRecipeLabel label) {
         super(label);
         this.items = items;
         this.fluids = fluids;
+        this.container = container;
         this.result = result;
         this.group = group;
     }
@@ -88,12 +90,16 @@ public class SkilletRecipe extends CookingFoodRecipe implements Recipe<SkilletRe
         return result;
     }
 
-    public List<FluidStack> getFluids() {
+    public FluidStack getFluid() {
         return fluids;
     }
 
     public List<Ingredient> getItems() {
         return items;
+    }
+
+    public ItemStack getContainer() {
+        return container;
     }
 
     @Override

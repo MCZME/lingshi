@@ -17,15 +17,16 @@ public class SkilletRecipeDatagen {
     }
 
     protected void buildRecipes(RecipeOutput output) {
-        build(List.of(Ingredient.of(Items.DIAMOND),Ingredient.of(Items.IRON_BLOCK)), List.of(),
-                new ItemStack(Items.APPLE.asItem()), output,"test00", CookingFoodRecipeLabel.PAN_FRY);
-        build(List.of(Ingredient.of(Items.GOLD_BLOCK),Ingredient.of(Items.IRON_BLOCK)), List.of(),
-                new ItemStack(Items.DIAMOND.asItem()), output,"test01",CookingFoodRecipeLabel.BOIL);
-        build(List.of(Ingredient.of(Items.DIAMOND_BLOCK),Ingredient.of(Items.MILK_BUCKET)), List.of(),
-                new ItemStack(Items.WHEAT.asItem()), output,"test02", CookingFoodRecipeLabel.HEAT);
+        build(List.of(Ingredient.of(ModItems.RICE.get())), null, new ItemStack(Items.APPLE.asItem()))
+                .setLabel(CookingFoodRecipeLabel.PAN_FRY)
+                .setContainer(new ItemStack(Items.BOWL)).save(output,"rice_apple");
+        build(List.of(Ingredient.of(Items.GOLD_BLOCK),Ingredient.of(Items.IRON_BLOCK)), null, new ItemStack(Items.DIAMOND.asItem()))
+                .setLabel(CookingFoodRecipeLabel.BOIL).save(output,"test01");
+        build(List.of(Ingredient.of(Items.DIAMOND_BLOCK),Ingredient.of(Items.MILK_BUCKET)), null, new ItemStack(Items.WHEAT.asItem()))
+                .setLabel(CookingFoodRecipeLabel.HEAT).save(output,"test02");
     }
 
-    private void build(List<Ingredient> items, List<FluidStack> fluids, ItemStack result, RecipeOutput output, String pid, CookingFoodRecipeLabel label){
-        new SkilletRecipeBuilder(items, fluids, result).setLabel(label).group("Skillet").setLabel(label).unlockedBy(result.toString(),Recipes.has(ModItems.SKILLET.get())).save(output,pid);
+    private SkilletRecipeBuilder build(List<Ingredient> items, FluidStack fluid, ItemStack result){
+       return new SkilletRecipeBuilder(items, fluid, result).group("Skillet");
     }
 }

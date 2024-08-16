@@ -20,27 +20,23 @@ public class SkilletRecipeSerializer implements RecipeSerializer<SkilletRecipe> 
 
     public static final MapCodec<SkilletRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             Ingredient.CODEC.listOf().fieldOf("ingredients").forGetter(SkilletRecipe::getItems),
-            FluidStack.CODEC.listOf().fieldOf("fluids").forGetter(SkilletRecipe::getFluids),
+            FluidStack.OPTIONAL_CODEC.optionalFieldOf("fluid",null).forGetter(SkilletRecipe::getFluid),
+            ItemStack.OPTIONAL_CODEC.optionalFieldOf("container", null).forGetter(SkilletRecipe::getContainer),
             ItemStack.CODEC.fieldOf("result").forGetter(SkilletRecipe::getResult),
             Codec.STRING.fieldOf("group").forGetter(SkilletRecipe::getGroup),
             CookingFoodRecipeLabel.CODEC.fieldOf("label").forGetter(SkilletRecipe::getLabel)
     ).apply(inst, SkilletRecipe::new));
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, List<FluidStack>> FLUIDSTACK_STREAM_CODEC =
-            FluidStack.STREAM_CODEC.apply(
-                    ByteBufCodecs.list(SkilletRecipe.MAX_SLOT)
-            );
     public static final StreamCodec<RegistryFriendlyByteBuf, List<Ingredient>> INGREDIENT_STREAM_CODEC =
-            Ingredient.CONTENTS_STREAM_CODEC.apply(
-                    ByteBufCodecs.list(SkilletRecipe.MAX_SLOT)
-            );
+            Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list(SkilletRecipe.MAX_SLOT));
     public static final StreamCodec<RegistryFriendlyByteBuf, CookingFoodRecipeLabel>  CookingFoodLabel_STREAM_CODEC =
             StreamCodec.of(SkilletRecipeSerializer::encode,SkilletRecipeSerializer::decode);
 
     public static final StreamCodec<RegistryFriendlyByteBuf, SkilletRecipe> STREAM_CODEC =
             StreamCodec.composite(
                     INGREDIENT_STREAM_CODEC,SkilletRecipe::getItems,
-                    FLUIDSTACK_STREAM_CODEC,SkilletRecipe::getFluids,
+                    FluidStack.OPTIONAL_STREAM_CODEC,SkilletRecipe::getFluid,
+                    ItemStack.OPTIONAL_STREAM_CODEC,SkilletRecipe::getContainer,
                     ItemStack.STREAM_CODEC,SkilletRecipe::getResult,
                     ByteBufCodecs.STRING_UTF8,SkilletRecipe::getGroup,
                     CookingFoodLabel_STREAM_CODEC,SkilletRecipe::getLabel,

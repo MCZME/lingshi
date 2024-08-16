@@ -27,7 +27,8 @@ import static mczme.lingshi.client.recipebook.CookingFoodRecipeLabel.MISC;
 public class SkilletRecipeBuilder implements RecipeBuilder {
 
     private final List<Ingredient> items;
-    private final List<FluidStack> fluids;
+    private final FluidStack fluid;
+    private  ItemStack container;
     private final ItemStack result;
 
     protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
@@ -35,9 +36,9 @@ public class SkilletRecipeBuilder implements RecipeBuilder {
     protected String group;
     protected CookingFoodRecipeLabel label;
 
-    public SkilletRecipeBuilder(List<Ingredient> items, List<FluidStack> fluids, ItemStack result) {
+    public SkilletRecipeBuilder(List<Ingredient> items, FluidStack fluids, ItemStack result) {
         this.items = items;
-        this.fluids = fluids;
+        this.fluid = fluids;
         this.result = result;
     }
 
@@ -54,7 +55,12 @@ public class SkilletRecipeBuilder implements RecipeBuilder {
     }
 
     public SkilletRecipeBuilder setLabel(@Nullable CookingFoodRecipeLabel pLabelName) {
-        this.label=pLabelName;
+        this.label = pLabelName;
+        return this;
+    }
+
+    public SkilletRecipeBuilder setContainer(ItemStack container) {
+        this.container = container;
         return this;
     }
 
@@ -65,13 +71,13 @@ public class SkilletRecipeBuilder implements RecipeBuilder {
 
     @Override
     public void save(RecipeOutput pRecipeOutput, ResourceLocation pId) {
-        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(lingshi.MODID,"skillet/"+pId.getPath());
+        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(lingshi.MODID, "skillet/" + pId.getPath());
         Advancement.Builder advancement = pRecipeOutput.advancement()
                 .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
                 .rewards(AdvancementRewards.Builder.recipe(id))
                 .requirements(AdvancementRequirements.Strategy.OR);
         this.criteria.forEach(advancement::addCriterion);
-        SkilletRecipe recipe = new SkilletRecipe(this.items, this.fluids, this.result, Objects.requireNonNullElse(this.group, ""),Objects.requireNonNullElse(this.label,MISC));
+        SkilletRecipe recipe = new SkilletRecipe(this.items, this.fluid, this.container, this.result, Objects.requireNonNullElse(this.group, ""), Objects.requireNonNullElse(this.label, MISC));
         pRecipeOutput.accept(id, recipe, advancement.build(id.withPrefix("recipes/")));
     }
 }
