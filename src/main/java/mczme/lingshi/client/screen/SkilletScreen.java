@@ -26,14 +26,15 @@ public class SkilletScreen extends AbstractContainerScreen<SkilletMenu> implemen
 
     @Override
     public void init(){
-        super.init();
+        this.leftPos = (this.width - this.imageWidth) / 2;
+        this.topPos = (this.height - this.imageHeight) / 2;
         this.widthTooNarrow = this.width < 379;
         this.recipeBookComponent.init(this.width, this.height, this.minecraft, this.widthTooNarrow, this.menu);
         this.leftPos = this.recipeBookComponent.updateScreenPosition(this.width, this.imageWidth);
-        this.addRenderableWidget(new ImageButton(this.leftPos + 20, this.height / 2 - 49, 20, 18, RecipeBookComponent.RECIPE_BUTTON_SPRITES, p_313431_ -> {
+        this.addRenderableWidget(new ImageButton(this.leftPos+6, this.height / 2 - 49, 20, 18, RecipeBookComponent.RECIPE_BUTTON_SPRITES, p_313431_ -> {
             this.recipeBookComponent.toggleVisibility();
             this.leftPos = this.recipeBookComponent.updateScreenPosition(this.width, this.imageWidth);
-            p_313431_.setPosition(this.leftPos + 20, this.height / 2 - 49);
+            p_313431_.setPosition(this.leftPos + 6, this.height / 2 - 49);
         }));
         this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
     }
@@ -57,7 +58,7 @@ public class SkilletScreen extends AbstractContainerScreen<SkilletMenu> implemen
 
         this.renderTooltip(pGuiGraphics, pMouseX, pMouseY);
         this.recipeBookComponent.renderTooltip(pGuiGraphics, this.leftPos, this.topPos, pMouseX, pMouseY);
-        super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+//        super.render(pGuiGraphics,pMouseX,pMouseY,pPartialTick);
     }
 
     @Override

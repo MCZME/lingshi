@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static mczme.lingshi.client.recipebook.ModRecipeBookType.SKILLET;
@@ -46,7 +47,7 @@ public class SkilletMenu extends RecipeBookMenu<SkilletRecipeInput, SkilletRecip
             for (int i = itemStacks.size(); i < blockEntity.getMAX(); i++)
                 itemStacks.add(ItemStack.EMPTY);
         }
-        int[] X = {42, 60, 33, 51, 69, 98, 127};
+        int[] X = {42, 60, 33, 51, 69, 93, 127};
         int[] Y = {29, 29, 47, 47, 47, 29, 47};
         for (int i = 0; i < blockEntity.getMAX(); i++) {
             SlotItemHandler slot = new SlotItemHandler(inventory, i, X[i], Y[i]);
@@ -123,18 +124,24 @@ public class SkilletMenu extends RecipeBookMenu<SkilletRecipeInput, SkilletRecip
 
     @Override
     public void fillCraftSlotsStackedContents(StackedContents pItemHelper) {
-
+        for (ItemStack itemstack : blockEntity.getItemStacks()) {
+            pItemHelper.accountSimpleStack(itemstack);
+        }
     }
 
     @Override
     public void clearCraftingContent() {
         this.getSlot(0).set(ItemStack.EMPTY);
+        this.getSlot(1).set(ItemStack.EMPTY);
         this.getSlot(2).set(ItemStack.EMPTY);
+        this.getSlot(3).set(ItemStack.EMPTY);
+        this.getSlot(4).set(ItemStack.EMPTY);
+        this.getSlot(5).set(ItemStack.EMPTY);
     }
 
     @Override
     public boolean recipeMatches(RecipeHolder<SkilletRecipe> pRecipe) {
-        return true;
+        return pRecipe.value().matches(new SkilletRecipeInput(getInputSlotItem(),blockEntity.getFluid(),null), this.level);
     }
 
     @Override
@@ -144,12 +151,12 @@ public class SkilletMenu extends RecipeBookMenu<SkilletRecipeInput, SkilletRecip
 
     @Override
     public int getGridWidth() {
-        return 1;
+        return 5;
     }
 
     @Override
     public int getGridHeight() {
-        return 7;
+        return 1;
     }
 
     @Override
@@ -164,6 +171,14 @@ public class SkilletMenu extends RecipeBookMenu<SkilletRecipeInput, SkilletRecip
 
     @Override
     public boolean shouldMoveToInventory(int pSlotIndex) {
-        return pSlotIndex != 1;
+        return pSlotIndex != this.getResultSlotIndex();
+    }
+
+    public List<ItemStack>getInputSlotItem(){
+        List<ItemStack> inputSlotItem = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            inputSlotItem.add(this.getSlot(i).getItem());
+        }
+        return inputSlotItem;
     }
 }

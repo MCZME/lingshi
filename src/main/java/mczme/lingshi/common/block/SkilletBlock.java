@@ -53,8 +53,7 @@ public class SkilletBlock extends BaseEntityBlock {
     public ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
         if(pLevel.getBlockEntity(pPos) instanceof SkilletBlockEntity blockEntity){
             if(!blockEntity.isFull() && !pStack.isEmpty()){
-                blockEntity.setItem(pStack);
-                pStack.consume(pStack.getCount(),pPlayer);
+                blockEntity.setItem(pStack.consumeAndReturn(1, pPlayer));
                 blockEntity.setChanged();
                 return ItemInteractionResult.SUCCESS;
             }
@@ -83,6 +82,12 @@ public class SkilletBlock extends BaseEntityBlock {
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return new SkilletBlockEntity(pPos, pState);
     }
+
+//    @Nullable
+//    @Override
+//    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+//        return type == BlockEntityTypes.SKILLET_BLOCKENTITY ? SkilletBlockEntity::tick : null;
+//    }
 
     @Override
     protected VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {

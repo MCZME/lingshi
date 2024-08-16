@@ -16,9 +16,9 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
@@ -29,7 +29,7 @@ import java.util.List;
 public class SkilletBlockEntity extends BlockEntity implements MenuProvider {
 
     private List<ItemStack> itemStacks = new ArrayList<>();
-    private FluidStack fluidStacks = new FluidStack(Fluids.WATER, 1000);
+    private FluidStack fluidStacks = FluidStack.EMPTY;
 
     private final int MAX_SLOT = 5;
 
@@ -163,5 +163,9 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider {
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
         return new SkilletMenu(pContainerId, pPlayerInventory, this);
+    }
+
+    public static void tick(Level level, BlockPos pos, BlockState state, SkilletBlockEntity blockEntity) {
+
     }
 }

@@ -51,14 +51,17 @@ public class SkilletRecipe extends CookingFoodRecipe implements Recipe<SkilletRe
     public boolean matches(SkilletRecipeInput pInput, Level pLevel) {
         List<ItemStack> inputs = new ArrayList<>();
         int i = 0;
-        for (int j = 0; j < MAX_SLOT; ++j) {
-            ItemStack itemstack = pInput.getItem(j);
-            if (!itemstack.isEmpty()) {
-                ++i;
-                inputs.add(itemstack);
+        if(!pInput.isEmpty()){
+            for (int j = 0; j < pInput.size(); ++j) {
+                ItemStack itemstack = pInput.getItem(j);
+                if (!itemstack.isEmpty()) {
+                    ++i;
+                    inputs.add(itemstack);
+                }
             }
         }
-        return i == this.items.size() && findMatches(inputs, this.items) != null;
+
+        return i == this.items.size() && findMatches(inputs, this.items) != null && pInput.getFluid()==FluidStack.EMPTY;
     }
 
     @Override
