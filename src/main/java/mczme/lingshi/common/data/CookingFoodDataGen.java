@@ -13,7 +13,7 @@ import net.neoforged.neoforge.common.data.DataMapProvider;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
-import static mczme.lingshi.common.datamap.DataMapTypes.COOKING_FOOD;
+import static mczme.lingshi.common.datamap.DataMapTypes.COOKING_FOOD_ITEM;
 
 public class CookingFoodDataGen extends DataMapProvider {
 
@@ -27,15 +27,15 @@ public class CookingFoodDataGen extends DataMapProvider {
         addCookingFood(ModItems.RICE,15,25);
     }
 
-    protected void addCookingFood(Item item , float cookedTime,float burntTime){
-        builder(COOKING_FOOD).add(ResourceLocation.parse(item.toString()),new CookingFoodData(cookedTime,burntTime),false);
+    protected void addCookingFood(Item item , int cookedTime,int burntTime){
+        builder(COOKING_FOOD_ITEM).add(ResourceLocation.parse(item.toString()),new CookingFoodData(cookedTime,burntTime),false);
     }
 
-    protected void addCookingFood(Supplier<Item> item , float cookedTime,float burntTime){
-        builder(COOKING_FOOD).add(ResourceLocation.parse(item.get().toString()),new CookingFoodData(cookedTime,burntTime),false);
+    protected void addCookingFood(Supplier<Item> item , int cookedTime,int burntTime){
+        builder(COOKING_FOOD_ITEM).add(ResourceLocation.parse(item.get().toString()),new CookingFoodData(cookedTime,burntTime),false);
     }
 
-    protected void addCookingFood(TagKey<Item> tag, float cookedTime,float burntTime){
-        builder(COOKING_FOOD).add(tag,new CookingFoodData(cookedTime,burntTime),false);
+    protected void addCookingFood(TagKey<Item> tag, int cookedTime,int burntTime){
+        builder(COOKING_FOOD_ITEM).add(tag,new CookingFoodData(cookedTime,burntTime),false);
     }
 }

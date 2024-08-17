@@ -10,12 +10,10 @@ public class SkilletRecipeInput implements RecipeInput {
 
     private final List<ItemStack> items;
     private final FluidStack fluids;
-    private final ItemStack container;
 
-    public SkilletRecipeInput(List<ItemStack> items, FluidStack fluid, ItemStack container) {
+    public SkilletRecipeInput(List<ItemStack> items, FluidStack fluid) {
         this.items = items;
         this.fluids = fluid;
-        this.container = container;
     }
 
     @Override
@@ -25,10 +23,6 @@ public class SkilletRecipeInput implements RecipeInput {
 
     public FluidStack getFluid() {
         return this.fluids;
-    }
-
-    public ItemStack getContainer() {
-        return container;
     }
 
     @Override

@@ -19,13 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static mczme.lingshi.client.recipebook.ModRecipeBookType.SKILLET;
-import static mczme.lingshi.common.utility.ListUtility.copy;
 
 public class SkilletMenu extends RecipeBookMenu<SkilletRecipeInput, SkilletRecipe> {
 
-    SkilletBlockEntity blockEntity;
-    public final ItemStackHandler inventory;
+    public SkilletBlockEntity blockEntity;
     protected final Level level;
+    private final ItemStackHandler itemStackHandler;
 
     public SkilletMenu(int pContainerId, Inventory pPlayerInventory, FriendlyByteBuf pContext) {
         this(pContainerId, pPlayerInventory, (SkilletBlockEntity) pPlayerInventory.player.level().getBlockEntity(pContext.readBlockPos()));
@@ -36,26 +35,22 @@ public class SkilletMenu extends RecipeBookMenu<SkilletRecipeInput, SkilletRecip
         super(ModMenuTypes.SKILLET_MENU.get(), pContainerId);
         checkContainerSize(pPlayerInventory, 1);
         this.blockEntity = blockEntity;
-        this.inventory = blockEntity.getInventory();
         this.level = pPlayerInventory.player.level();
-        this.addWorkSlot(copy(blockEntity.getItemStacks()));
+        this.itemStackHandler = blockEntity.getItemStacks();
+        this.addWorkSlot(itemStackHandler);
         layoutPlayerInventorySlots(pPlayerInventory);
     }
 
-    private void addWorkSlot(List<ItemStack> itemStacks) {
-        if (itemStacks.size() < blockEntity.getMAX()) {
-            for (int i = itemStacks.size(); i < blockEntity.getMAX(); i++)
-                itemStacks.add(ItemStack.EMPTY);
-        }
+    private void addWorkSlot(ItemStackHandler itemStacks) {
         int[] X = {42, 60, 33, 51, 69, 93, 127};
         int[] Y = {29, 29, 47, 47, 47, 29, 47};
         for (int i = 0; i < blockEntity.getMAX(); i++) {
-            SlotItemHandler slot = new SlotItemHandler(inventory, i, X[i], Y[i]);
-            slot.set(itemStacks.get(i));
+            SlotItemHandler slot = new SlotItemHandler(itemStackHandler, i, X[i], Y[i]);
+            slot.set(itemStacks.getStackInSlot(i));
             this.addSlot(slot);
         }
-        this.addSlot(new SlotItemHandler(inventory, 5, X[5], Y[5]));
-        this.addSlot(new SlotItemHandler(inventory, 6, X[6], Y[6]));
+        this.addSlot(new SlotItemHandler(itemStackHandler, 5, X[5], Y[5]));
+        this.addSlot(new SlotItemHandler(itemStackHandler, 6, X[6], Y[6]));
     }
 
     private void layoutPlayerInventorySlots(Inventory playerInventory) {
@@ -69,18 +64,6 @@ public class SkilletMenu extends RecipeBookMenu<SkilletRecipeInput, SkilletRecip
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
-    }
-
-    @Override
-    public void removed(Player pPlayer) {
-        blockEntity.getItemStacks().clear();
-        for (int i = 0; i < blockEntity.getMAX(); i++) {
-            if (!this.getSlot(i).getItem().isEmpty()) {
-                blockEntity.setItem(this.getSlot(i).getItem());
-            }
-        }
-        blockEntity.setChanged();
-        super.removed(pPlayer);
     }
 
     @Override
@@ -124,8 +107,8 @@ public class SkilletMenu extends RecipeBookMenu<SkilletRecipeInput, SkilletRecip
 
     @Override
     public void fillCraftSlotsStackedContents(StackedContents pItemHelper) {
-        for (ItemStack itemstack : blockEntity.getItemStacks()) {
-            pItemHelper.accountSimpleStack(itemstack);
+        for (int i = 0; i < blockEntity.getMAX(); i++) {
+            pItemHelper.accountSimpleStack(itemStackHandler.getStackInSlot(i));
         }
     }
 
@@ -141,7 +124,7 @@ public class SkilletMenu extends RecipeBookMenu<SkilletRecipeInput, SkilletRecip
 
     @Override
     public boolean recipeMatches(RecipeHolder<SkilletRecipe> pRecipe) {
-        return pRecipe.value().matches(new SkilletRecipeInput(getInputSlotItem(),blockEntity.getFluid(),null), this.level);
+        return pRecipe.value().matches(new SkilletRecipeInput(getInputSlotItem(),blockEntity.getFluid()), this.level);
     }
 
     @Override

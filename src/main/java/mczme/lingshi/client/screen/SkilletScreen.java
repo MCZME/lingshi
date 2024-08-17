@@ -2,6 +2,7 @@ package mczme.lingshi.client.screen;
 
 import mczme.lingshi.client.menu.SkilletMenu;
 import mczme.lingshi.client.recipebook.SkilletRecipeBookComponent;
+import mczme.lingshi.common.block.entity.SkilletBlockEntity;
 import mczme.lingshi.lingshi;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageButton;
@@ -63,7 +64,11 @@ public class SkilletScreen extends AbstractContainerScreen<SkilletMenu> implemen
 
     @Override
     protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
+        SkilletBlockEntity blockEntity = this.menu.blockEntity;
         pGuiGraphics.blit(BACKGROUND_TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+        if(blockEntity.isHeated(blockEntity.getLevel(),blockEntity.getBlockPos())){
+            pGuiGraphics.blit(BACKGROUND_TEXTURE, this.leftPos+93, this.topPos+64, 0, 166, 14, 14);
+        }
     }
 
     @Override

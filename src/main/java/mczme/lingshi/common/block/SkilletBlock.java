@@ -17,6 +17,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -69,7 +71,7 @@ public class SkilletBlock extends BaseEntityBlock {
                 if(!pLevel.isClientSide()){
                     pPlayer.openMenu(blockEntity,pPos);
                 }
-            }else if(!blockEntity.getItemStacks().isEmpty()) {
+            }else if(!blockEntity.isEmpty()) {
                 Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY()+0.2, pPos.getZ(), blockEntity.dropItem());
                 blockEntity.setChanged();
             }
@@ -83,11 +85,11 @@ public class SkilletBlock extends BaseEntityBlock {
         return new SkilletBlockEntity(pPos, pState);
     }
 
-//    @Nullable
-//    @Override
-//    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-//        return type == BlockEntityTypes.SKILLET_BLOCKENTITY ? SkilletBlockEntity::tick : null;
-//    }
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pType) {
+        return !pLevel.isClientSide ? SkilletBlockEntity::serverTick : null;
+    }
 
     @Override
     protected VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
