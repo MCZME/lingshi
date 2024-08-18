@@ -90,7 +90,7 @@ public class SkilletRecipe extends CookingFoodRecipe implements Recipe<SkilletRe
     }
 
     public ItemStack getResult() {
-        return result;
+        return result.copy();
     }
 
     public FluidStack getFluid() {

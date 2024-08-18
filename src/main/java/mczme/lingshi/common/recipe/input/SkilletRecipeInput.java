@@ -3,22 +3,23 @@ package mczme.lingshi.common.recipe.input;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 
 public class SkilletRecipeInput implements RecipeInput {
 
-    private final List<ItemStack> items;
+    private final ItemStackHandler items;
     private final FluidStack fluids;
 
-    public SkilletRecipeInput(List<ItemStack> items, FluidStack fluid) {
+    public SkilletRecipeInput(ItemStackHandler items, FluidStack fluid) {
         this.items = items;
         this.fluids = fluid;
     }
 
     @Override
-    public ItemStack getItem(int pIndex) {
-        return this.items.get(pIndex);
+    public @NotNull ItemStack getItem(int pIndex) {
+        return this.items.getStackInSlot(pIndex);
     }
 
     public FluidStack getFluid() {
@@ -28,11 +29,16 @@ public class SkilletRecipeInput implements RecipeInput {
     @Override
     public int size() {
         int i = fluids.isEmpty()?0:1;
-        return items.size()+i;
+        return items.getSlots() + i;
     }
 
     @Override
     public boolean isEmpty() {
-        return this.items.isEmpty() && this.fluids.isEmpty();
+        for (int i = 0; i < 5; i++) {
+            if(!items.getStackInSlot(i).isEmpty()){
+                return false;
+            }
+        }
+        return this.fluids.isEmpty();
     }
 }

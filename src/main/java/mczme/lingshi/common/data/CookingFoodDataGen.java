@@ -23,8 +23,10 @@ public class CookingFoodDataGen extends DataMapProvider {
 
     @Override
     protected void gather() {
-        addCookingFood(Items.APPLE,5,20);
+        addCookingFood(Items.APPLE,5,15);
         addCookingFood(ModItems.RICE,15,25);
+        addCookingFood(Items.IRON_BLOCK,5,20);
+        addCookingFood(Items.GOLD_BLOCK,10,20);
     }
 
     protected void addCookingFood(Item item , int cookedTime,int burntTime){

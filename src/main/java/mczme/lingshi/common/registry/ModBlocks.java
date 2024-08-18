@@ -1,9 +1,11 @@
 package mczme.lingshi.common.registry;
 
 import mczme.lingshi.common.block.*;
+import mczme.lingshi.common.fluid.OilBlock;
 import mczme.lingshi.lingshi;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -12,6 +14,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
+
 
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(lingshi.MODID);
@@ -32,6 +35,8 @@ public class ModBlocks {
             BlockBehaviour.Properties.of());
     public static final Supplier<ChoppingBoardBlock> CHOPPING_BOARD = BLOCKS.registerBlock("chopping_board", ChoppingBoardBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
+
+    public static final Supplier<LiquidBlock> OIL_LIQUID_BLOCK = BLOCKS.register("oil_liquid_block",()->new OilBlock(ModFluids.OIL_SOURCE.get(),BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
 
     public static void register(IEventBus modEventBus) {
         BLOCKS.register(modEventBus);

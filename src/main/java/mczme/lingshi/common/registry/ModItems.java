@@ -2,10 +2,7 @@ package mczme.lingshi.common.registry;
 
 import mczme.lingshi.common.item.KnifeItem;
 import mczme.lingshi.lingshi;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -29,6 +26,7 @@ public class ModItems {
 
     public static final Supplier<Item> IRON_KNIFE = registerWithCreateTab("iron_knife", () -> new KnifeItem(Tiers.IRON,new Item.Properties().attributes(SwordItem.createAttributes(Tiers.IRON, 3, -2.4F))));
 
+    public static final Supplier<Item> OIL_BUCKET = registerWithCreateTab("oil_bucket",()->new BucketItem(ModFluids.OIL_SOURCE.get(),new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 
     private static Supplier<Item> registerWithCreateTab(String item_name, Supplier<Item> itemSupplier) {
         Supplier<Item> item = ITEMS.register(item_name, itemSupplier);

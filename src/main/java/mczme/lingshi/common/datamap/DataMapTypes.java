@@ -10,12 +10,12 @@ import net.neoforged.neoforge.registries.datamaps.DataMapType;
 
 public class DataMapTypes {
     public static final DataMapType<Item, CookingFoodData> COOKING_FOOD_ITEM = DataMapType.builder(
-            ResourceLocation.fromNamespaceAndPath(lingshi.MODID, "cooking_food"),
+            ResourceLocation.fromNamespaceAndPath(lingshi.MODID, "cooking_food_item"),
             Registries.ITEM, CookingFoodData.CODEC
     ).build();
 
     public static final DataMapType<Fluid, CookingFoodData> COOKING_FOOD_FLUID = DataMapType.builder(
-            ResourceLocation.fromNamespaceAndPath(lingshi.MODID, "cooking_food"),
+            ResourceLocation.fromNamespaceAndPath(lingshi.MODID, "cooking_food_fliud"),
             Registries.FLUID, CookingFoodData.CODEC
     ).build();
 

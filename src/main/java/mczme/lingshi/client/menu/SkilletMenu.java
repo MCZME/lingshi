@@ -15,9 +15,6 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static mczme.lingshi.client.recipebook.ModRecipeBookType.SKILLET;
 
 public class SkilletMenu extends RecipeBookMenu<SkilletRecipeInput, SkilletRecipe> {
@@ -124,7 +121,7 @@ public class SkilletMenu extends RecipeBookMenu<SkilletRecipeInput, SkilletRecip
 
     @Override
     public boolean recipeMatches(RecipeHolder<SkilletRecipe> pRecipe) {
-        return pRecipe.value().matches(new SkilletRecipeInput(getInputSlotItem(),blockEntity.getFluid()), this.level);
+        return pRecipe.value().matches(new SkilletRecipeInput(itemStackHandler,blockEntity.getFluid()), this.level);
     }
 
     @Override
@@ -155,13 +152,5 @@ public class SkilletMenu extends RecipeBookMenu<SkilletRecipeInput, SkilletRecip
     @Override
     public boolean shouldMoveToInventory(int pSlotIndex) {
         return pSlotIndex != this.getResultSlotIndex();
-    }
-
-    public List<ItemStack>getInputSlotItem(){
-        List<ItemStack> inputSlotItem = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            inputSlotItem.add(this.getSlot(i).getItem());
-        }
-        return inputSlotItem;
     }
 }

@@ -11,16 +11,17 @@ import static mczme.lingshi.common.datamap.DataMapTypes.*;
 @EventBusSubscriber(modid = lingshi.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class Registry {
 
-//    data map
+    //    data map
     @SubscribeEvent
     private static void registerDataMapTypes(RegisterDataMapTypesEvent event) {
         event.register(COOKING_FOOD_FLUID);
         event.register(COOKING_FOOD_ITEM);
     }
 
-//    Capabilities
+    //    Capabilities
     @SubscribeEvent
     private static void registerCapabilities(RegisterCapabilitiesEvent event) {
 
     }
+
 }

@@ -28,6 +28,7 @@ public class lingshi
         ModRecipes.register(modEventBus);
         ModSerializer.register(modEventBus);
         ModMenuTypes.register(modEventBus);
+        ModFluids.register(modEventBus);
     }
 
 
