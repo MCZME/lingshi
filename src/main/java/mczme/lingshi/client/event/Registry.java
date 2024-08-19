@@ -6,6 +6,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import mczme.lingshi.client.BlockEntityRenderer.ChoppingBoardBER;
 import mczme.lingshi.client.BlockEntityRenderer.SkilletBER;
 import mczme.lingshi.client.recipebook.CookingFoodRecipeLabel;
+import mczme.lingshi.client.screen.CookingHud;
 import mczme.lingshi.client.screen.SkilletScreen;
 import mczme.lingshi.common.recipe.SkilletRecipe;
 import mczme.lingshi.common.registry.BlockEntityTypes;
@@ -24,6 +25,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
@@ -118,4 +120,9 @@ public class Registry {
         }, ModFluids.MOD_FLUID_TYPE.get());
     }
 
+    //HUD
+    @SubscribeEvent
+    public static void registerGuiLayersEvent(RegisterGuiLayersEvent event) {
+        event.registerAboveAll(ResourceLocation.fromNamespaceAndPath(lingshi.MODID,"cooking_hud"), CookingHud.getInstance());
+    }
 }

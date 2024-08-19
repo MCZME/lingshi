@@ -1,11 +1,11 @@
-package mczme.lingshi.common.utility;
+package mczme.lingshi.common.util;
 
 import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListUtility {
+public class ListUtil {
 
     public static List<ItemStack> copy(List<ItemStack> list){
         List<ItemStack> newList = new ArrayList<>();

@@ -1,6 +1,7 @@
 package mczme.lingshi.common.registry;
 
 import mczme.lingshi.common.item.KnifeItem;
+import mczme.lingshi.common.item.SpatulaItem;
 import mczme.lingshi.lingshi;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
@@ -24,6 +25,7 @@ public class ModItems {
     public static final Supplier<Item> SKILLET = registerWithCreateTab("skillet", () -> new BlockItem(ModBlocks.SKILLET.get(),new Item.Properties()));
     public static final Supplier<Item> CHOPPING_BOARD = registerWithCreateTab("chopping_board", () -> new BlockItem(ModBlocks.CHOPPING_BOARD.get(), new Item.Properties()));
 
+    public static final Supplier<Item> SPATULA = registerWithCreateTab("spatula",()->new SpatulaItem(new Item.Properties()));
     public static final Supplier<Item> IRON_KNIFE = registerWithCreateTab("iron_knife", () -> new KnifeItem(Tiers.IRON,new Item.Properties().attributes(SwordItem.createAttributes(Tiers.IRON, 3, -2.4F))));
 
     public static final Supplier<Item> OIL_BUCKET = registerWithCreateTab("oil_bucket",()->new BucketItem(ModFluids.OIL_SOURCE.get(),new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));

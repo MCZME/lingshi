@@ -28,7 +28,7 @@ public class SkilletRecipeBuilder implements RecipeBuilder {
 
     private final List<Ingredient> items;
     private final FluidStack fluid;
-    private  ItemStack container;
+    private SkilletRecipe.SkilletCookingContainer container;
     private final ItemStack result;
 
     protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
@@ -59,7 +59,7 @@ public class SkilletRecipeBuilder implements RecipeBuilder {
         return this;
     }
 
-    public SkilletRecipeBuilder setContainer(ItemStack container) {
+    public SkilletRecipeBuilder setContainer(SkilletRecipe.SkilletCookingContainer container) {
         this.container = container;
         return this;
     }
@@ -77,7 +77,9 @@ public class SkilletRecipeBuilder implements RecipeBuilder {
                 .rewards(AdvancementRewards.Builder.recipe(id))
                 .requirements(AdvancementRequirements.Strategy.OR);
         this.criteria.forEach(advancement::addCriterion);
-        SkilletRecipe recipe = new SkilletRecipe(this.items, this.fluid, this.container, this.result, Objects.requireNonNullElse(this.group, ""), Objects.requireNonNullElse(this.label, MISC));
+        SkilletRecipe recipe = new SkilletRecipe(this.items, this.fluid, this.container, this.result
+                , Objects.requireNonNullElse(this.group, "")
+                , Objects.requireNonNullElse(this.label, MISC));
         pRecipeOutput.accept(id, recipe, advancement.build(id.withPrefix("recipes/")));
     }
 }

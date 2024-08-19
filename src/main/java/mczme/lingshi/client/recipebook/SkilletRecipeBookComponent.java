@@ -19,8 +19,8 @@ public class SkilletRecipeBookComponent extends RecipeBookComponent {
         ItemStack resultitem = pRecipe.value().getResultItem(this.minecraft.level.registryAccess());
         this.ghostRecipe.setRecipe(pRecipe);
         this.ghostRecipe.addIngredient(Ingredient.of(resultitem), pSlots.get(6).x, pSlots.get(6).y);
-        if(skilletRecipe.getContainer() != ItemStack.EMPTY){
-            this.ghostRecipe.addIngredient(Ingredient.of(skilletRecipe.getContainer()), pSlots.get(5).x, pSlots.get(5).y);
+        if(skilletRecipe.getContainer().container() != ItemStack.EMPTY){
+            this.ghostRecipe.addIngredient(Ingredient.of(skilletRecipe.getContainer().container()), pSlots.get(5).x, pSlots.get(5).y);
         }
 
         NonNullList<Ingredient> nonnulllist = pRecipe.value().getIngredients();

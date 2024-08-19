@@ -21,7 +21,7 @@ public class SkilletMenu extends RecipeBookMenu<SkilletRecipeInput, SkilletRecip
 
     public SkilletBlockEntity blockEntity;
     protected final Level level;
-    private final ItemStackHandler itemStackHandler;
+    private final CookingItemStackHandler itemStackHandler;
 
     public SkilletMenu(int pContainerId, Inventory pPlayerInventory, FriendlyByteBuf pContext) {
         this(pContainerId, pPlayerInventory, (SkilletBlockEntity) pPlayerInventory.player.level().getBlockEntity(pContext.readBlockPos()));

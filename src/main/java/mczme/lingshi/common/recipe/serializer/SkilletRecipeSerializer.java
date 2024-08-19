@@ -13,17 +13,18 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.neoforged.neoforge.fluids.FluidStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static mczme.lingshi.common.utility.ModCodec.ModoptionalField;
+import static mczme.lingshi.common.util.ModCodec.ModoptionalField;
 
 public class SkilletRecipeSerializer implements RecipeSerializer<SkilletRecipe> {
 
     public static final MapCodec<SkilletRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             Ingredient.CODEC.listOf().fieldOf("ingredients").forGetter(SkilletRecipe::getItems),
             ModoptionalField("fluid",FluidStack.OPTIONAL_CODEC,FluidStack.EMPTY).forGetter(SkilletRecipe::getFluid),
-            ModoptionalField("container", ItemStack.OPTIONAL_CODEC,ItemStack.EMPTY).forGetter(SkilletRecipe::getContainer),
+            ModoptionalField("container", SkilletRecipe.SkilletCookingContainer.CODEC,SkilletRecipe.SkilletCookingContainer.EMPTY).forGetter(SkilletRecipe::getContainer),
             ItemStack.CODEC.fieldOf("result").forGetter(SkilletRecipe::getResult),
             Codec.STRING.fieldOf("group").forGetter(SkilletRecipe::getGroup),
             CookingFoodRecipeLabel.CODEC.fieldOf("label").forGetter(SkilletRecipe::getLabel)
@@ -38,7 +39,7 @@ public class SkilletRecipeSerializer implements RecipeSerializer<SkilletRecipe> 
             StreamCodec.composite(
                     INGREDIENT_STREAM_CODEC, SkilletRecipe::getItems,
                     StreamCodec.of(SkilletRecipeSerializer::FluidStack_encode, SkilletRecipeSerializer::FluidStack_decode), SkilletRecipe::getFluid,
-                    StreamCodec.of(SkilletRecipeSerializer::ItemStack_encode, SkilletRecipeSerializer::ItemStack_decode), SkilletRecipe::getContainer,
+                    SkilletRecipe.SkilletCookingContainer.STREAM_CODEC, SkilletRecipe::getContainer,
                     ItemStack.STREAM_CODEC, SkilletRecipe::getResult,
                     ByteBufCodecs.STRING_UTF8, SkilletRecipe::getGroup,
                     CookingFoodLabel_STREAM_CODEC, SkilletRecipe::getLabel,
@@ -46,12 +47,12 @@ public class SkilletRecipeSerializer implements RecipeSerializer<SkilletRecipe> 
             );
 
     @Override
-    public MapCodec<SkilletRecipe> codec() {
+    public @NotNull MapCodec<SkilletRecipe> codec() {
         return CODEC;
     }
 
     @Override
-    public StreamCodec<RegistryFriendlyByteBuf, SkilletRecipe> streamCodec() {
+    public @NotNull StreamCodec<RegistryFriendlyByteBuf, SkilletRecipe> streamCodec() {
         return STREAM_CODEC;
     }
 
@@ -62,14 +63,6 @@ public class SkilletRecipeSerializer implements RecipeSerializer<SkilletRecipe> 
 
     public static void FluidStack_encode(RegistryFriendlyByteBuf pBuffer, FluidStack fluidStack) {
         FluidStack.OPTIONAL_STREAM_CODEC.encode(pBuffer, fluidStack);
-    }
-
-    public static ItemStack ItemStack_decode(RegistryFriendlyByteBuf pBuffer) {
-        return ItemStack.OPTIONAL_STREAM_CODEC.decode(pBuffer);
-    }
-
-    public static void ItemStack_encode(RegistryFriendlyByteBuf pBuffer, ItemStack itemStack) {
-        ItemStack.OPTIONAL_STREAM_CODEC.encode(pBuffer, itemStack);
     }
 
     public static CookingFoodRecipeLabel decode(FriendlyByteBuf buffer) {

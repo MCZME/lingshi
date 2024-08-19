@@ -1,5 +1,6 @@
 package mczme.lingshi.common.block.entity;
 
+import mczme.lingshi.client.menu.CookingItemStackHandler;
 import mczme.lingshi.client.menu.SkilletMenu;
 import mczme.lingshi.common.block.entity.baseblockentity.ICanBeHeated;
 import mczme.lingshi.common.datamap.DataMapTypes;
@@ -12,6 +13,8 @@ import mczme.lingshi.lingshi;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -39,13 +42,14 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
     private final int MAX_SLOT = 5;
 
     private FluidStack fluidStacks = FluidStack.EMPTY;
-    private ItemStackHandler itemStackHandler = new ItemStackHandler(MAX_SLOT + 2);
+    private final CookingItemStackHandler itemStackHandler = new CookingItemStackHandler(MAX_SLOT + 2);
 
     private final int[] cookingTime = new int[5];
 
 
     public SkilletBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(BlockEntityTypes.SKILLET_BLOCKENTITY.get(), pPos, pBlockState);
+
     }
 
     public boolean isFull() {
@@ -81,7 +85,7 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
         return fluidStacks;
     }
 
-    public ItemStackHandler getItemStacks() {
+    public CookingItemStackHandler getItemStacks() {
         return itemStackHandler;
     }
 
@@ -95,34 +99,38 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
     }
 
     public void setItem(ItemStack item, int slot) {
-        itemStackHandler.setStackInSlot(slot, item);
+        itemStackHandler.insertItem(slot, item, false);
     }
 
     public void setFluid(FluidStack fluid) {
         fluidStacks = fluid;
     }
 
-    public int size(){
+    public int size() {
         int size = 0;
         for (int i = 0; i < MAX_SLOT; i++) {
-            if(!itemStackHandler.getStackInSlot(i).isEmpty()){
+            if (!itemStackHandler.getStackInSlot(i).isEmpty()) {
                 size++;
             }
         }
         return size;
     }
 
-    public void clear(){
+    public void clear() {
         for (int i = 0; i < MAX_SLOT; i++) {
             itemStackHandler.setStackInSlot(i, ItemStack.EMPTY);
         }
     }
 
-    public void consume(){
+    public void consume() {
         for (int i = 0; i < MAX_SLOT; i++) {
             int count = itemStackHandler.getStackInSlot(i).getCount();
             itemStackHandler.getStackInSlot(i).setCount(count - 1);
         }
+    }
+
+    public int[] getCookingTime() {
+        return cookingTime;
     }
 
     public int getMAX() {
@@ -141,6 +149,7 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
         if (!fluidStacks.isEmpty()) {
             tag.put("fluid", fluidStacks.save(pRegistries));
         }
+        saveCookingTime(tag);
         return tag;
     }
 
@@ -150,6 +159,9 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
         if (pTag.get("fluid") != null) {
             fluidStacks = FluidStack.parse(pRegistries, pTag.getCompound("fluid")).orElse(FluidStack.EMPTY);
         }
+        if (pTag.get("cookingTime") != null && pTag.getInt("Size") != 0) {
+            loadCookingTime(pTag.getList("cookingTime", Tag.TAG_COMPOUND),pTag.getInt("Size"));
+        }
     }
 
     @Override
@@ -158,6 +170,24 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
         pTag.put("items", itemStackHandler.serializeNBT(pRegistries));
         if (!this.fluidStacks.isEmpty()) {
             pTag.put("fluid", fluidStacks.save(pRegistries));
+        }
+        saveCookingTime(pTag);
+    }
+
+    private void saveCookingTime(CompoundTag nbt){
+        ListTag nbtTagList = new ListTag();
+        for (int i = 0; i < MAX_SLOT; i++) {
+                CompoundTag itemTag = new CompoundTag();
+                itemTag.putInt("index", cookingTime[i]);
+                nbtTagList.add(itemTag);
+        }
+        nbt.put("cookingTime", nbtTagList);
+        nbt.putInt("Size", MAX_SLOT);
+    }
+
+    private void loadCookingTime(ListTag pTag,int size){
+        for (int i = 0; i < size; i++) {
+            cookingTime[i]= pTag.getCompound(i).getInt("index");
         }
     }
 
@@ -181,7 +211,7 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
 
         if (heat_flag) {
             if (!flag) {
-                int cookedTime=0,burntTime=0;
+                int cookedTime = 0, burntTime = 0;
                 for (int i = 0; i < MAX_SLOT; i++) {
                     ItemStack itemStack = itemStackHandler.getStackInSlot(i);
                     if (itemStack.isEmpty()) {
@@ -189,38 +219,38 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
                     }
                     CookingFoodData cookingFoodData = itemStack.getItemHolder().getData(DataMapTypes.COOKING_FOOD_ITEM);
                     if (cookingFoodData != null) {
-                        cookedTime=cookingFoodData.cookedTime();
-                        burntTime=cookingFoodData.burntTime();
+                        cookedTime = cookingFoodData.cookedTime();
+                        burntTime = cookingFoodData.burntTime();
                         blockEntity.cookingTime[i]++;
                     }
                 }
-                SkilletRecipeInput input = new SkilletRecipeInput(itemStackHandler,blockEntity.getFluid());
+                SkilletRecipeInput input = new SkilletRecipeInput(itemStackHandler, blockEntity.getFluid());
                 Optional<RecipeHolder<SkilletRecipe>> optional = pLevel.getRecipeManager().getRecipeFor(
                         ModRecipes.SKILLET_RECIPE.get(),
                         input,
                         pLevel
                 );
                 ItemStack result = optional.map(RecipeHolder::value)
-                        .map(e->e.assemble(input,pLevel.registryAccess()))
+                        .map(e -> e.assemble(input, pLevel.registryAccess()))
                         .orElse(ItemStack.EMPTY);
                 if (!result.isEmpty()) {
-                    int size=0;
+                    int size = 0;
                     for (int i = 0; i < MAX_SLOT; i++) {
-                        if(blockEntity.cookingTime[i]>cookedTime*20){
+                        if (blockEntity.cookingTime[i] > cookedTime * 20) {
                             size++;
                         }
                     }
-                    if (size==blockEntity.size()){
-                        Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY()+0.2, pPos.getZ(), result);
-                        Arrays.fill(blockEntity.cookingTime,0);
+                    if (size == blockEntity.size()) {
+                        Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY() + 0.2, pPos.getZ(), result);
+                        Arrays.fill(blockEntity.cookingTime, 0);
                         blockEntity.consume();
-                        pLevel.sendBlockUpdated(pPos, blockState, blockState, Block.UPDATE_CLIENTS);
                     }
-                }else {
-                    Arrays.fill(blockEntity.cookingTime,0);
+                } else {
+                    Arrays.fill(blockEntity.cookingTime, 0);
                 }
-                }
+                pLevel.sendBlockUpdated(pPos, blockState, blockState, Block.UPDATE_CLIENTS);
             }
-            blockEntity.setChanged();
         }
+        blockEntity.setChanged();
     }
+}
