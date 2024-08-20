@@ -1,4 +1,4 @@
-// 1.21	2024-08-18T21:30:07.1396541	Item Models: lingshi
+// 1.21	2024-08-20T17:21:47.1347182	Item Models: lingshi
 bad0cb5e093fa42331c2d4a1157d1a7b5b3fc588 assets/lingshi/models/item/chopping_board.json
 249957a6811e300efca306db358e468855851d73 assets/lingshi/models/item/iron_knife.json
 b767fc7952daf0eff3485fe4d8c06c5bba930c22 assets/lingshi/models/item/oil_bucket.json
@@ -6,3 +6,4 @@ b767fc7952daf0eff3485fe4d8c06c5bba930c22 assets/lingshi/models/item/oil_bucket.j
 abe8ae1523c26af167289fe958382b2477d96ea1 assets/lingshi/models/item/rice_of_ear.json
 57cfb1f90de649ab0f56f107cb56e1d0d2f87ae6 assets/lingshi/models/item/rice_seedling.json
 cff85c127954ba63ac8129929c0d7346bf8f305d assets/lingshi/models/item/skillet.json
+da8fb27d7e9b15fbd96ca8a49b328776550bb2b3 assets/lingshi/models/item/spatula.json

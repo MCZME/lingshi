@@ -5,7 +5,6 @@ import mczme.lingshi.common.datamap.DataMapTypes;
 import mczme.lingshi.common.datamap.ingredient.CookingFoodData;
 import mczme.lingshi.common.registry.BlockEntityTypes;
 import mczme.lingshi.common.registry.ModFluids;
-import mczme.lingshi.common.registry.ModItems;
 import mczme.lingshi.lingshi;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
@@ -52,7 +51,7 @@ public class CookingHud implements LayeredDraw.Layer {
             int j = 0;
             if (!result.isEmpty()) {
                 pGuiGraphics.renderItem(result, X - 18, Y);
-                pGuiGraphics.renderItem(new ItemStack(ModItems.SPATULA.get()), X, Y);
+                pGuiGraphics.blit(HUD_Sprite, X, Y , 16, 16, 0, 36,16,16, 64, 64);
                 pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, String.valueOf(stirFryCount), X + 24, Y + 6, 0xffffff);
                 if (!container.isEmpty()) {
                     pGuiGraphics.renderItem(container, X + 36, Y);
