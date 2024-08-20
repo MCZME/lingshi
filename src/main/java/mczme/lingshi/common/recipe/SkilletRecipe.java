@@ -67,8 +67,7 @@ public class SkilletRecipe extends CookingFoodRecipe implements Recipe<SkilletRe
                 }
             }
         }
-
-        return i == this.items.size() && findMatches(inputs, this.items) != null && pInput.getFluid() == FluidStack.EMPTY;
+        return i == this.items.size() && findMatches(inputs, this.items) != null && pInput.getFluid().is(fluids.getFluid()) ;
     }
 
     @Override

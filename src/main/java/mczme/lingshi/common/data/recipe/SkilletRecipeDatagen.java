@@ -8,6 +8,7 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 import java.util.List;
@@ -25,6 +26,8 @@ public class SkilletRecipeDatagen {
                 .setLabel(CookingFoodRecipeLabel.BOIL).save(output,"test01");
         build(List.of(Ingredient.of(Items.DIAMOND_BLOCK),Ingredient.of(Items.MILK_BUCKET)), null, new ItemStack(Items.WHEAT.asItem()))
                 .setLabel(CookingFoodRecipeLabel.HEAT).save(output,"test02");
+        build(List.of(Ingredient.of(Items.APPLE),Ingredient.of(Items.GOLD_BLOCK)), new FluidStack(Fluids.WATER,250), new ItemStack(Items.GOLDEN_APPLE))
+                .setLabel(CookingFoodRecipeLabel.PAN_FRY).setContainer(new SkilletRecipe.SkilletCookingContainer(new ItemStack(Items.BOWL),3)).save(output,"test03");
     }
 
     private SkilletRecipeBuilder build(List<Ingredient> items, FluidStack fluid, ItemStack result){

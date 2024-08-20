@@ -2,11 +2,14 @@ package mczme.lingshi.common.block;
 
 import com.mojang.serialization.MapCodec;
 import mczme.lingshi.common.block.entity.SkilletBlockEntity;
+import mczme.lingshi.common.registry.ModFluids;
+import mczme.lingshi.common.registry.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -24,11 +27,13 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,7 +44,7 @@ public class SkilletBlock extends BaseEntityBlock {
     public static final BooleanProperty HAS_SUPPORT = BooleanProperty.create("has_support");
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final VoxelShape SHAPE = Shapes.join(Block.box(1, 0, 1, 15, 3, 15),
-            Block.box(2,1,2,14,3,14),
+            Block.box(2, 1, 2, 14, 3, 14),
             BooleanOp.ONLY_FIRST);
 
     public SkilletBlock(Properties pProperties) {
@@ -53,9 +58,32 @@ public class SkilletBlock extends BaseEntityBlock {
     }
 
     public ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
-        if(pLevel.getBlockEntity(pPos) instanceof SkilletBlockEntity blockEntity){
-            if(!blockEntity.isFull() && !pStack.isEmpty()){
+        if (pLevel.getBlockEntity(pPos) instanceof SkilletBlockEntity blockEntity) {
+            if (!blockEntity.container.isEmpty() && pStack.is(blockEntity.container.getItem())) {
+                if (pPlayer.addItem(blockEntity.result)) {
+                    pStack.consume(1, pPlayer);
+                    blockEntity.clear();
+                    blockEntity.setChanged();
+                    return ItemInteractionResult.SUCCESS;
+                }
+            } else if (pStack.is(ModItems.SPATULA.get())) {
+                if (!blockEntity.isEmpty()) {
+                    blockEntity.stirFryCount++;
+                    blockEntity.setChanged();
+                    return ItemInteractionResult.SUCCESS;
+                }
+            } else if (!blockEntity.isFull() && !pStack.isEmpty()) {
+                if (pStack.is(Items.WATER_BUCKET)) {
+                    blockEntity.setFluid(new FluidStack(Fluids.WATER, 250));
+                    blockEntity.setChanged();
+                    return ItemInteractionResult.SUCCESS;
+                } else if (pStack.is(ModItems.OIL_BUCKET.get())) {
+                    blockEntity.setFluid(new FluidStack(ModFluids.OIL_SOURCE.get(), 100));
+                    blockEntity.setChanged();
+                    return ItemInteractionResult.SUCCESS;
+                }
                 blockEntity.setItem(pStack.consumeAndReturn(1, pPlayer));
+                blockEntity.stirFryCount = 0;
                 blockEntity.setChanged();
                 return ItemInteractionResult.SUCCESS;
             }
@@ -66,13 +94,13 @@ public class SkilletBlock extends BaseEntityBlock {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
-        if(pLevel.getBlockEntity(pPos) instanceof SkilletBlockEntity blockEntity){
-            if(pPlayer.isShiftKeyDown() ){
-                if(!pLevel.isClientSide()){
-                    pPlayer.openMenu(blockEntity,pPos);
+        if (pLevel.getBlockEntity(pPos) instanceof SkilletBlockEntity blockEntity) {
+            if (pPlayer.isShiftKeyDown()) {
+                if (!pLevel.isClientSide()) {
+                    pPlayer.openMenu(blockEntity, pPos);
                 }
-            }else if(!blockEntity.isEmpty()) {
-                Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY()+0.2, pPos.getZ(), blockEntity.dropItem());
+            } else if (!blockEntity.isEmpty()) {
+                Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY() + 0.2, pPos.getZ(), blockEntity.dropItem());
                 blockEntity.setChanged();
             }
         }

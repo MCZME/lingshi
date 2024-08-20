@@ -28,8 +28,7 @@ public class SkilletRecipeInput implements RecipeInput {
 
     @Override
     public int size() {
-        int i = fluids.isEmpty()?0:1;
-        return items.getSlots() + i;
+        return items.getSlots();
     }
 
     @Override

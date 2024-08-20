@@ -4,13 +4,13 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 
 public enum CookingFoodRecipeLabel {
-    HEAT("heat"),
-    PAN_FRY("pan_fry"),
-    STIR_FRY("stir_fry"),
-    BOIL("boil"),
-    STEW("stew"),
-    DEEP_FRY("deep_fly"),
-    MISC("misc");
+    HEAT("heat"), //    加热
+    PAN_FRY("pan_fry"), // 煎
+    STIR_FRY("stir_fry"), //  炒
+    BOIL("boil"),  //  煮
+    STEW("stew"),  //  炖
+    DEEP_FRY("deep_fly"),  //  油炸
+    MISC("misc");  // 其他
 
     public final String string;
     public static final Codec<CookingFoodRecipeLabel> CODEC = Codec.STRING.flatXmap(s -> {
