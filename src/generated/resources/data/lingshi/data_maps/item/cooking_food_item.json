@@ -1,0 +1,44 @@
+{
+  "values": {
+    "lingshi:rice": {
+      "burnt_time": 20,
+      "cooked_time": 10
+    },
+    "minecraft:beef": {
+      "burnt_time": 20,
+      "cooked_time": 5
+    },
+    "minecraft:chicken": {
+      "burnt_time": 20,
+      "cooked_time": 5
+    },
+    "minecraft:cod": {
+      "burnt_time": 20,
+      "cooked_time": 5
+    },
+    "minecraft:egg": {
+      "burnt_time": 15,
+      "cooked_time": 3
+    },
+    "minecraft:mutton": {
+      "burnt_time": 20,
+      "cooked_time": 5
+    },
+    "minecraft:porkchop": {
+      "burnt_time": 20,
+      "cooked_time": 5
+    },
+    "minecraft:potato": {
+      "burnt_time": 25,
+      "cooked_time": 5
+    },
+    "minecraft:rabbit": {
+      "burnt_time": 20,
+      "cooked_time": 5
+    },
+    "minecraft:salmon": {
+      "burnt_time": 20,
+      "cooked_time": 5
+    }
+  }
+}

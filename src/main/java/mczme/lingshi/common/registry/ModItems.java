@@ -3,6 +3,7 @@ package mczme.lingshi.common.registry;
 import mczme.lingshi.common.item.KnifeItem;
 import mczme.lingshi.common.item.SpatulaItem;
 import mczme.lingshi.lingshi;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -30,7 +31,7 @@ public class ModItems {
 
     public static final Supplier<Item> OIL_BUCKET = registerWithCreateTab("oil_bucket",()->new BucketItem(ModFluids.OIL_SOURCE.get(),new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final Supplier<Item> STRANGE_FOOD = registerWithCreateTab("strange_food",()->new Item(new Item.Properties()));
-
+    public static final Supplier<Item> FRIED_EGG = registerWithCreateTab("fried_egg",()->new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(3.2f).build())));
     private static Supplier<Item> registerWithCreateTab(String item_name, Supplier<Item> itemSupplier) {
         Supplier<Item> item = ITEMS.register(item_name, itemSupplier);
         ITEMS_LIST.add(item);

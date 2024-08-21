@@ -1,0 +1,14 @@
+{
+  "type": "lingshi:skillet",
+  "group": "Skillet",
+  "ingredients": [
+    {
+      "item": "minecraft:salmon"
+    }
+  ],
+  "label": "heat",
+  "result": {
+    "count": 1,
+    "id": "minecraft:cooked_salmon"
+  }
+}

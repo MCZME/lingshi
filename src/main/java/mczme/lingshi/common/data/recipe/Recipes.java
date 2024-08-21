@@ -23,6 +23,7 @@ public class Recipes extends RecipeProvider {
     protected void buildRecipes(RecipeOutput output) {
         new ChoppingBoardRecipeDatagen(output);
         new SkilletRecipeDatagen(output);
+        new CraftingRecipeDataGen(output);
     }
 
     public static Criterion<InventoryChangeTrigger.TriggerInstance> has(MinMaxBounds.Ints pCount, ItemLike pItem) {

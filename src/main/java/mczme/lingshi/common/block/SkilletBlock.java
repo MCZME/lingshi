@@ -67,7 +67,11 @@ public class SkilletBlock extends BaseEntityBlock {
                     return ItemInteractionResult.SUCCESS;
                 }
             } else if (pStack.is(ModItems.SPATULA.get())) {
-                if (!blockEntity.isEmpty()) {
+                if(blockEntity.size()==0){
+                    blockEntity.setFluid(FluidStack.EMPTY);
+                    blockEntity.setChanged();
+                    return ItemInteractionResult.SUCCESS;
+                }else if (!blockEntity.isEmpty()) {
                     blockEntity.stirFryCount++;
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;
@@ -75,10 +79,12 @@ public class SkilletBlock extends BaseEntityBlock {
             } else if (!blockEntity.isFull() && !pStack.isEmpty()) {
                 if (pStack.is(Items.WATER_BUCKET)) {
                     blockEntity.setFluid(new FluidStack(Fluids.WATER, 250));
+                    blockEntity.getCookingTime()[5] = 0;
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;
                 } else if (pStack.is(ModItems.OIL_BUCKET.get())) {
                     blockEntity.setFluid(new FluidStack(ModFluids.OIL_SOURCE.get(), 100));
+                    blockEntity.getCookingTime()[5] = 0;
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;
                 }

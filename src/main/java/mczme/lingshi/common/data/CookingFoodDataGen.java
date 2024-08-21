@@ -27,10 +27,17 @@ public class CookingFoodDataGen extends DataMapProvider {
 
     @Override
     protected void gather() {
-        addCookingFood(Items.APPLE,5,15);
-        addCookingFood(ModItems.RICE,15,25);
-        addCookingFood(Items.IRON_BLOCK,5,20);
-        addCookingFood(Items.GOLD_BLOCK,10,20);
+        addCookingFood(ModItems.RICE,10,20);
+        addCookingFood(Items.POTATO,5,25);
+        addCookingFood(Items.BEEF,5,20);
+        addCookingFood(Items.PORKCHOP,5,20);
+        addCookingFood(Items.MUTTON,5,20);
+        addCookingFood(Items.CHICKEN,5,20);
+        addCookingFood(Items.RABBIT,5,20);
+        addCookingFood(Items.COD,5,20);
+        addCookingFood(Items.SALMON,5,20);
+        addCookingFood(Items.EGG,3,15);
+
         addCookingFood(Fluids.WATER,15);
         builder(COOKING_FOOD_FLUID).add(ModFluids.OIL_SOURCE.get().builtInRegistryHolder(), new CookingFoodData(8,30),false);
 

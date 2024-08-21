@@ -1,0 +1,14 @@
+{
+  "type": "lingshi:skillet",
+  "group": "Skillet",
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    }
+  ],
+  "label": "heat",
+  "result": {
+    "count": 1,
+    "id": "minecraft:baked_potato"
+  }
+}

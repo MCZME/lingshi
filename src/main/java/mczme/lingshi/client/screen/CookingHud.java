@@ -103,7 +103,7 @@ public class CookingHud implements LayeredDraw.Layer {
 
     private void drawItemProgress(GuiGraphics pGuiGraphics, CookingFoodData cookingFoodData, int i, int j) {
         int pHeight = 8;
-        int progress = Math.min(cookingTime[i], 600);
+        int progress = Math.min(cookingTime[i], 580);
         int index = i + j;
         pGuiGraphics.blit(HUD_Sprite, X, Y + index * 18 + 7, cookingFoodData.cookedTime() * 2, pHeight, 0, 0, cookingFoodData.cookedTime() * 2 + 2, pHeight, 64, 64);
         pGuiGraphics.blit(HUD_Sprite, X + cookingFoodData.cookedTime() * 2, Y + index * 18 + 7, (cookingFoodData.burntTime() - cookingFoodData.cookedTime()) * 2, pHeight, 2, 8, (cookingFoodData.burntTime() - cookingFoodData.cookedTime()) * 2, pHeight, 64, 64);
@@ -113,7 +113,7 @@ public class CookingHud implements LayeredDraw.Layer {
 
     private void drawFluidProgress(GuiGraphics pGuiGraphics, CookingFoodData cookingFoodData, int j) {
         int pHeight = 8;
-        int progress = Math.min(cookingTime[5], 600);
+        int progress = Math.min(cookingTime[5], 580);
         ItemStack bucket = ModFluids.MOD_FLUID_TYPE.get().getBucket(fluidStack);
         if (!bucket.isEmpty()) {
             pGuiGraphics.renderItem(bucket, X - 18, Y + j * 18);

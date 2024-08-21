@@ -1,0 +1,18 @@
+{
+  "type": "lingshi:skillet",
+  "fluid": {
+    "amount": 100,
+    "id": "lingshi:oil_source"
+  },
+  "group": "Skillet",
+  "ingredients": [
+    {
+      "item": "minecraft:egg"
+    }
+  ],
+  "label": "pan_fry",
+  "result": {
+    "count": 1,
+    "id": "lingshi:fried_egg"
+  }
+}

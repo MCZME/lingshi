@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "X": {
+      "tag": "minecraft:terracotta"
+    }
+  },
+  "pattern": [
+    "XX#",
+    "XX "
+  ],
+  "result": {
+    "count": 1,
+    "id": "lingshi:skillet"
+  }
+}

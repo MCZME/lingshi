@@ -1,0 +1,14 @@
+{
+  "type": "lingshi:skillet",
+  "group": "Skillet",
+  "ingredients": [
+    {
+      "item": "minecraft:rabbit"
+    }
+  ],
+  "label": "heat",
+  "result": {
+    "count": 1,
+    "id": "minecraft:cooked_rabbit"
+  }
+}

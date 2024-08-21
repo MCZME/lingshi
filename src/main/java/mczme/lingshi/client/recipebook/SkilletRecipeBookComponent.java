@@ -1,8 +1,11 @@
 package mczme.lingshi.client.recipebook;
 
 import mczme.lingshi.common.recipe.SkilletRecipe;
+import mczme.lingshi.lingshi;
+import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
 import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -12,6 +15,13 @@ import java.util.Iterator;
 import java.util.List;
 
 public class SkilletRecipeBookComponent extends RecipeBookComponent {
+
+    private static final WidgetSprites FILTER_SPRITES = new WidgetSprites(
+            ResourceLocation.fromNamespaceAndPath(lingshi.MODID,"recipe_book/skillet_filter_enabled"),
+            ResourceLocation.fromNamespaceAndPath(lingshi.MODID,"recipe_book/skillet_filter_disabled"),
+            ResourceLocation.fromNamespaceAndPath(lingshi.MODID,"recipe_book/skillet_filter_enabled_highlighted"),
+            ResourceLocation.fromNamespaceAndPath(lingshi.MODID,"recipe_book/skillet_filter_disabled_highlighted")
+    );
 
     @Override
     public void setupGhostRecipe(RecipeHolder<?> pRecipe, List<Slot> pSlots) {
@@ -37,6 +47,11 @@ public class SkilletRecipeBookComponent extends RecipeBookComponent {
                 this.ghostRecipe.addIngredient(ingredient, slot1.x, slot1.y);
             }
         }
+    }
+
+    @Override
+    protected void initFilterButtonTextures() {
+        this.filterButton.initTextureValues(FILTER_SPRITES);
     }
 
 }

@@ -1,0 +1,12 @@
+{
+  "values": {
+    "lingshi:oil_source": {
+      "burnt_time": 30,
+      "cooked_time": 8
+    },
+    "minecraft:water": {
+      "burnt_time": 30,
+      "cooked_time": 15
+    }
+  }
+}

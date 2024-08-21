@@ -25,10 +25,13 @@ public class ChineseLanguageProvider extends LanguageProvider {
         this.add(ModItems.CHOPPING_BOARD.get(), "砧板");
         this.add(ModItems.IRON_KNIFE.get(), "铁菜刀");
 
+        this.add("gui.lingshi.skillet_menu","平底锅");
         this.add(ModItems.SKILLET.get(), "平底锅");
+        this.add(ModItems.SPATULA.get(),"锅铲");
 
         this.add(ModItems.OIL_BUCKET.get(),"油桶");
 
-        this.add("gui.lingshi.skillet_menu","平底锅");
+        this.add(ModItems.FRIED_EGG.get(),"煎鸡蛋");
+
     }
 }

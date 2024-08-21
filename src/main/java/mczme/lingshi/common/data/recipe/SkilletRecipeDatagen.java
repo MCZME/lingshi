@@ -2,16 +2,19 @@ package mczme.lingshi.common.data.recipe;
 
 import mczme.lingshi.client.recipebook.CookingFoodRecipeLabel;
 import mczme.lingshi.common.data.builder.SkilletRecipeBuilder;
-import mczme.lingshi.common.recipe.SkilletRecipe;
+import mczme.lingshi.common.registry.ModFluids;
 import mczme.lingshi.common.registry.ModItems;
+import mczme.lingshi.lingshi;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 import java.util.List;
+
+import static mczme.lingshi.common.data.recipe.Recipes.has;
 
 public class SkilletRecipeDatagen {
     public SkilletRecipeDatagen(RecipeOutput output) {
@@ -19,18 +22,36 @@ public class SkilletRecipeDatagen {
     }
 
     protected void buildRecipes(RecipeOutput output) {
-        build(List.of(Ingredient.of(ModItems.RICE.get())), null, new ItemStack(Items.APPLE.asItem()))
-                .setLabel(CookingFoodRecipeLabel.PAN_FRY)
-                .setContainer(new SkilletRecipe.SkilletCookingContainer(new ItemStack(Items.BOWL),0)).save(output,"rice_apple");
-        build(List.of(Ingredient.of(Items.GOLD_BLOCK),Ingredient.of(Items.IRON_BLOCK)), null, new ItemStack(Items.DIAMOND.asItem()))
-                .setLabel(CookingFoodRecipeLabel.BOIL).save(output,"test01");
-        build(List.of(Ingredient.of(Items.DIAMOND_BLOCK),Ingredient.of(Items.MILK_BUCKET)), null, new ItemStack(Items.WHEAT.asItem()))
-                .setLabel(CookingFoodRecipeLabel.HEAT).save(output,"test02");
-        build(List.of(Ingredient.of(Items.APPLE),Ingredient.of(Items.GOLD_BLOCK)), new FluidStack(Fluids.WATER,250), new ItemStack(Items.GOLDEN_APPLE))
-                .setLabel(CookingFoodRecipeLabel.PAN_FRY).setContainer(new SkilletRecipe.SkilletCookingContainer(new ItemStack(Items.BOWL),3)).save(output,"test03");
+//       加热
+        build(List.of(Ingredient.of(Items.POTATO)),null,new ItemStack(Items.BAKED_POTATO))
+                .setLabel(CookingFoodRecipeLabel.HEAT).save(output,create("baked_potato"));
+        build(List.of(Ingredient.of(Items.BEEF)),null,new ItemStack(Items.COOKED_BEEF))
+                .setLabel(CookingFoodRecipeLabel.HEAT).save(output,create("cooked_beef"));
+        build(List.of(Ingredient.of(Items.PORKCHOP)),null,new ItemStack(Items.COOKED_PORKCHOP))
+                .setLabel(CookingFoodRecipeLabel.HEAT).save(output,create("cooked_porkchop"));
+        build(List.of(Ingredient.of(Items.MUTTON)),null,new ItemStack(Items.COOKED_MUTTON))
+                .setLabel(CookingFoodRecipeLabel.HEAT).save(output,create("cooked_mutton"));
+        build(List.of(Ingredient.of(Items.CHICKEN)),null,new ItemStack(Items.COOKED_CHICKEN))
+                .setLabel(CookingFoodRecipeLabel.HEAT).save(output,create("cooked_chicken"));
+        build(List.of(Ingredient.of(Items.RABBIT)),null,new ItemStack(Items.COOKED_RABBIT))
+                .setLabel(CookingFoodRecipeLabel.HEAT).save(output,create("cooked_rabbit"));
+        build(List.of(Ingredient.of(Items.COD)),null,new ItemStack(Items.COOKED_COD))
+                .setLabel(CookingFoodRecipeLabel.HEAT).save(output,create("cooked_cod"));
+        build(List.of(Ingredient.of(Items.SALMON)),null,new ItemStack(Items.COOKED_SALMON))
+                .setLabel(CookingFoodRecipeLabel.HEAT).save(output,create("cooked_salmon"));
+        // 煎
+        build(List.of(Ingredient.of(Items.EGG)),new FluidStack(ModFluids.OIL_SOURCE.get(),100),new ItemStack(ModItems.FRIED_EGG.get()))
+                .setLabel(CookingFoodRecipeLabel.PAN_FRY).save(output,create("fried_egg"));
+        //  炒
+
+        //  煮
     }
 
     private SkilletRecipeBuilder build(List<Ingredient> items, FluidStack fluid, ItemStack result){
-       return new SkilletRecipeBuilder(items, fluid, result).group("Skillet");
+       return new SkilletRecipeBuilder(items, fluid, result).unlockedBy("has_skillet",has(result.getItem())).group("Skillet");
+    }
+
+    private ResourceLocation create(String s){
+        return ResourceLocation.fromNamespaceAndPath(lingshi.MODID,s);
     }
 }
