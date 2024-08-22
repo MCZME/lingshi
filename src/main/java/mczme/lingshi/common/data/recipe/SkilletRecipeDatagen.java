@@ -48,7 +48,7 @@ public class SkilletRecipeDatagen {
     }
 
     private SkilletRecipeBuilder build(List<Ingredient> items, FluidStack fluid, ItemStack result){
-       return new SkilletRecipeBuilder(items, fluid, result).unlockedBy("has_skillet",has(result.getItem())).group("Skillet");
+       return new SkilletRecipeBuilder(items, fluid, result).unlockedBy("has_skillet",has(ModItems.SKILLET.get())).group("Skillet");
     }
 
     private ResourceLocation create(String s){

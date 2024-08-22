@@ -68,27 +68,27 @@ public class Registry {
                     case PAN_FRY -> SKILLET_PAN_FRY.get();
                     case STIR_FRY -> SKILLET_STIR_FRY.get();
                     case BOIL -> SKILLET_BOIL.get();
-                    default -> MISC.get();
+                    default -> SKILLET_MISC.get();
                 };
             }
-            return MISC.get();
+            return SKILLET_MISC.get();
         });
 //        Cooking Pot
-        event.registerBookCategories(COOKING_POT, ImmutableList.of(SKILLET_SEARCH.get(), SKILLET_HEAT.get(), SKILLET_PAN_FRY.get(), SKILLET_STIR_FRY.get(), SKILLET_BOIL.get()));
-        event.registerAggregateCategory(SKILLET_SEARCH.get(), ImmutableList.of(SKILLET_HEAT.get(), SKILLET_PAN_FRY.get(), SKILLET_STIR_FRY.get(), SKILLET_BOIL.get()));
-        event.registerRecipeCategoryFinder(ModRecipes.SKILLET_RECIPE.get(), recipe ->
+        event.registerBookCategories(COOKING_POT, ImmutableList.of(COOKING_POT_SEARCH.get(), COOKING_POT_POT_BOIL.get(), COOKING_POT_STEW.get(), COOKING_POT_DEEP_FRY.get(), COOKING_POT_MISC.get()));
+        event.registerAggregateCategory(SKILLET_SEARCH.get(), ImmutableList.of(COOKING_POT_POT_BOIL.get(), COOKING_POT_STEW.get(), COOKING_POT_DEEP_FRY.get(), COOKING_POT_MISC.get()));
+        event.registerRecipeCategoryFinder(ModRecipes.COOKING_POT_RECIPE.get(), recipe ->
         {
             if (recipe.value() instanceof SkilletRecipe Recipe) {
                 CookingFoodRecipeLabel label = Recipe.getLabel();
                 return switch (label) {
-                    case HEAT -> SKILLET_HEAT.get();
-                    case PAN_FRY -> SKILLET_PAN_FRY.get();
-                    case STIR_FRY -> SKILLET_STIR_FRY.get();
-                    case BOIL -> SKILLET_BOIL.get();
-                    default -> MISC.get();
+                    case BOIL -> COOKING_POT_POT_BOIL.get();
+                    case STEW -> COOKING_POT_STEW.get();
+                    case DEEP_FRY -> COOKING_POT_DEEP_FRY.get();
+                    case MISC -> COOKING_POT_MISC.get();
+                    default -> COOKING_POT_MISC.get();
                 };
             }
-            return MISC.get();
+            return COOKING_POT_MISC.get();
         });
     }
 

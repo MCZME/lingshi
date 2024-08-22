@@ -65,6 +65,51 @@
         "class": "mczme/lingshi/ModEnumParams",
         "field": "MISC_ENUM_PROXY"
       }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "lingshi_COOKING_POT_SEARCH",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "mczme/lingshi/ModEnumParams",
+        "field": "COOKING_POT_SEARCH_ENUM_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "lingshi_COOKING_POT_BOIL",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "mczme/lingshi/ModEnumParams",
+        "field": "COOKING_POT_BOIL_ENUM_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "lingshi_STEW",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "mczme/lingshi/ModEnumParams",
+        "field": "COOKING_POT_STEW_ENUM_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "lingshi_DEEP_FRY",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "mczme/lingshi/ModEnumParams",
+        "field": "COOKING_POT_DEEP_FRY_ENUM_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "lingshi_COOKING_POT_MISC",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "mczme/lingshi/ModEnumParams",
+        "field": "COOKING_POT_MISC_ENUM_PROXY"
+      }
     }
   ]
 }
