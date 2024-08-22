@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,cover=false": {
+      "model": "lingshi:block/cooking_pot",
+      "y": 270
+    },
+    "facing=north,cover=false": {
+      "model": "lingshi:block/cooking_pot",
+      "y": 180
+    },
+    "facing=south,cover=false": {
+      "model": "lingshi:block/cooking_pot"
+    },
+    "facing=west,cover=false": {
+      "model": "lingshi:block/cooking_pot",
+      "y": 90
+    },
+    "facing=east,cover=true": {
+      "model": "lingshi:block/cooking_pot_1",
+      "y": 270
+    },
+    "facing=north,cover=true": {
+      "model": "lingshi:block/cooking_pot_1",
+      "y": 180
+    },
+    "facing=south,cover=true": {
+      "model": "lingshi:block/cooking_pot_1"
+    },
+    "facing=west,cover=true": {
+      "model": "lingshi:block/cooking_pot_1",
+      "y": 90
+    }
+  }
+}

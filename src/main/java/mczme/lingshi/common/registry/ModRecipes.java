@@ -25,6 +25,11 @@ public class ModRecipes {
                     "skillet_recipe",
                     () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(lingshi.MODID, "skillet_recipe"))
             );
+    public static final Supplier<RecipeType<SkilletRecipe>> COOKING_POT_RECIPE =
+            RECIPE_TYPES.register(
+                    "cooking_pot_recipe",
+                    () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(lingshi.MODID, "cooking_pot_recipe"))
+            );
 
     public static void register(IEventBus modEventBus) {
         RECIPE_TYPES.register(modEventBus);

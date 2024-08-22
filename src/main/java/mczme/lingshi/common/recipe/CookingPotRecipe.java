@@ -27,18 +27,18 @@ import java.util.Objects;
 import static mczme.lingshi.common.util.ModCodec.ModoptionalField;
 import static net.neoforged.neoforge.common.util.RecipeMatcher.findMatches;
 
-public class SkilletRecipe extends CookingFoodRecipe implements Recipe<CookingFoodRecipeInput> {
+public class CookingPotRecipe extends CookingFoodRecipe implements Recipe<CookingFoodRecipeInput> {
 
-    public static final int MAX_SLOT = 5;
+    public static final int MAX_SLOT = 6;
 
     private final List<Ingredient> items;
     private final FluidStack fluids;
-    private final SkilletCookingContainer container;
+    private final CookingPotContainer container;
     private final ItemStack result;
 
     final String group;
 
-    public SkilletRecipe(List<Ingredient> items, FluidStack fluids, SkilletCookingContainer container, ItemStack result, String group, CookingFoodRecipeLabel label) {
+    public CookingPotRecipe(List<Ingredient> items, FluidStack fluids, CookingPotContainer container, ItemStack result, String group,CookingFoodRecipeLabel label) {
         super(label);
         this.items = items;
         this.fluids = fluids;
@@ -55,7 +55,7 @@ public class SkilletRecipe extends CookingFoodRecipe implements Recipe<CookingFo
     }
 
     @Override
-    public boolean matches(CookingFoodRecipeInput pInput, @NotNull Level pLevel) {
+    public boolean matches(CookingFoodRecipeInput pInput, Level pLevel) {
         List<ItemStack> inputs = new ArrayList<>();
         int i = 0;
         if (!pInput.isEmpty()) {
@@ -67,11 +67,11 @@ public class SkilletRecipe extends CookingFoodRecipe implements Recipe<CookingFo
                 }
             }
         }
-        return i == this.items.size() && findMatches(inputs, this.items) != null && pInput.getFluid().is(fluids.getFluid());
+        return i == this.items.size() && findMatches(inputs, this.items) != null && pInput.getFluid().is(fluids.getFluid()) ;
     }
 
     @Override
-    public @NotNull ItemStack assemble(@NotNull CookingFoodRecipeInput pInput, HolderLookup.@NotNull Provider pRegistries) {
+    public ItemStack assemble(CookingFoodRecipeInput pInput, HolderLookup.Provider pRegistries) {
         return this.result.copy();
     }
 
@@ -81,24 +81,19 @@ public class SkilletRecipe extends CookingFoodRecipe implements Recipe<CookingFo
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(HolderLookup.@NotNull Provider pRegistries) {
+    public ItemStack getResultItem(HolderLookup.Provider pRegistries) {
         return this.result;
     }
 
     @Override
-    public @NotNull RecipeSerializer<?> getSerializer() {
-        return ModSerializer.SKILLET_SERIALIZER.get();
+    public RecipeSerializer<?> getSerializer() {
+        return ModSerializer.COOKING_POT_SERIALIZER.get();
     }
 
     @Override
-    public @NotNull RecipeType<?> getType() {
-        return ModRecipes.SKILLET_RECIPE.get();
+    public RecipeType<?> getType() {
+        return ModRecipes.COOKING_POT_RECIPE.get();
     }
-
-    public ItemStack getResult() {
-        return result.copy();
-    }
-
     public FluidStack getFluid() {
         return fluids;
     }
@@ -107,7 +102,11 @@ public class SkilletRecipe extends CookingFoodRecipe implements Recipe<CookingFo
         return items;
     }
 
-    public SkilletCookingContainer getContainer() {
+    public ItemStack getResult() {
+        return result;
+    }
+
+    public CookingPotContainer getContainer() {
         return container;
     }
 
@@ -116,20 +115,20 @@ public class SkilletRecipe extends CookingFoodRecipe implements Recipe<CookingFo
         return this.group;
     }
 
-    public record SkilletCookingContainer(ItemStack container, int stirFryCount) {
+    public record CookingPotContainer(ItemStack container, int braisingTime) {
 
-        public static final SkilletCookingContainer EMPTY = new SkilletCookingContainer(ItemStack.EMPTY, 0);
+        public static final CookingPotContainer EMPTY = new CookingPotContainer(ItemStack.EMPTY, 0);
 
-        public static final Codec<SkilletCookingContainer> CODEC = Codec.lazyInitialized(
+        public static final Codec<CookingPotContainer> CODEC = Codec.lazyInitialized(
                 () -> RecordCodecBuilder.create(inst -> inst.group(
-                        ModoptionalField("container", ItemStack.OPTIONAL_CODEC, ItemStack.EMPTY).forGetter(SkilletCookingContainer::container),
-                        ModoptionalField("stir_fry_count", Codec.INT, 0).forGetter(SkilletCookingContainer::stirFryCount)
-                ).apply(inst, SkilletCookingContainer::new)));
+                        ModoptionalField("container", ItemStack.OPTIONAL_CODEC, ItemStack.EMPTY).forGetter(CookingPotContainer::container),
+                        ModoptionalField("braising_time", Codec.INT, 0).forGetter(CookingPotContainer::braisingTime)
+                ).apply(inst, CookingPotContainer::new)));
 
-        public static final StreamCodec<RegistryFriendlyByteBuf, SkilletCookingContainer> STREAM_CODEC = StreamCodec.composite(
-                ItemStack.OPTIONAL_STREAM_CODEC, SkilletCookingContainer::container,
-                ByteBufCodecs.INT, SkilletCookingContainer::stirFryCount,
-                SkilletCookingContainer::new
+        public static final StreamCodec<RegistryFriendlyByteBuf, CookingPotContainer> STREAM_CODEC = StreamCodec.composite(
+                ItemStack.OPTIONAL_STREAM_CODEC, CookingPotContainer::container,
+                ByteBufCodecs.INT, CookingPotContainer::braisingTime,
+                CookingPotContainer::new
         );
 
         @Override
@@ -141,13 +140,13 @@ public class SkilletRecipe extends CookingFoodRecipe implements Recipe<CookingFo
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
-            SkilletCookingContainer that = (SkilletCookingContainer) o;
-            return stirFryCount == that.stirFryCount && Objects.equals(container, that.container);
+            CookingPotContainer that = (CookingPotContainer) o;
+            return braisingTime == that.braisingTime && Objects.equals(container, that.container);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(container, stirFryCount);
+            return Objects.hash(container, braisingTime);
         }
     }
 

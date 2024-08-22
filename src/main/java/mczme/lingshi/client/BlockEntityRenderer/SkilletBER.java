@@ -22,6 +22,8 @@ import static mczme.lingshi.client.util.RenderUtil.fluidRender;
 
 public class SkilletBER implements BlockEntityRenderer<SkilletBlockEntity> {
 
+    private int StirFryCount = 0;
+
     public SkilletBER(BlockEntityRendererProvider.Context pContext) {
 
     }
@@ -33,7 +35,7 @@ public class SkilletBER implements BlockEntityRenderer<SkilletBlockEntity> {
         Direction direction = pBlockEntity.getBlockState().getValue(ChoppingBoardBlock.FACING);
         double[] X = {0.5, 0.3, 0.6, 0.3, 0.6};
         double[] Z = {0.5, 0.3, 0.3, 0.6, 0.6};
-        double[] Y = {0.13, 0.125, 0.123, 0.125, 0.122};
+        double[] Y = {0.13, 0.125, 0.123, 0.124, 0.122};
 
         if (!pBlockEntity.isEmpty()) {
             if (!fluidStack.isEmpty()) {
@@ -60,13 +62,13 @@ public class SkilletBER implements BlockEntityRenderer<SkilletBlockEntity> {
 
     private float randomAngel(int stirFry) {
         Random rand = new Random();
-        int seed = switch (stirFry % 3) {
-            case 1 -> 123456;
-            case 2 -> 886549;
-            default -> 0;
-        };
-        rand.setSeed(seed);
-        return seed == 0 ? 0 : rand.nextFloat() * 180;
+        if(StirFryCount!= stirFry){
+            StirFryCount = stirFry;
+            rand.setSeed(StirFryCount);
+        }else {
+            rand.setSeed(StirFryCount* 500L);
+        }
+        return stirFry==0?0: rand.nextFloat() * 180;
     }
 
 }

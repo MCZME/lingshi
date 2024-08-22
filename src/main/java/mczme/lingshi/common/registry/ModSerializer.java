@@ -1,5 +1,7 @@
 package mczme.lingshi.common.registry;
 
+import mczme.lingshi.common.recipe.CookingPotRecipe;
+import mczme.lingshi.common.recipe.serializer.CookingPotRecipeSerializer;
 import mczme.lingshi.common.recipe.serializer.SkilletRecipeSerializer;
 import mczme.lingshi.common.recipe.ChoppingBoardRecipe;
 import mczme.lingshi.common.recipe.SkilletRecipe;
@@ -20,8 +22,10 @@ public class ModSerializer {
             RECIPE_SERIALIZERS.register("chopping_board", ChoppingBoardRecipeSerializer::new);
     public static final Supplier<RecipeSerializer<SkilletRecipe>> SKILLET_SERIALIZER =
             RECIPE_SERIALIZERS.register("skillet", SkilletRecipeSerializer::new);
+    public static final Supplier<RecipeSerializer<CookingPotRecipe>> COOKING_POT_SERIALIZER =
+            RECIPE_SERIALIZERS.register("cooking_pot", CookingPotRecipeSerializer::new);
 
-    public static void register (IEventBus modEventBus) {
+    public static void register(IEventBus modEventBus) {
         RECIPE_SERIALIZERS.register(modEventBus);
     }
 }

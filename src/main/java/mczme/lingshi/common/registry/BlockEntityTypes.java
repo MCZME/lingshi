@@ -1,6 +1,7 @@
 package mczme.lingshi.common.registry;
 
 import mczme.lingshi.common.block.entity.ChoppingBoardBlockEntity;
+import mczme.lingshi.common.block.entity.CookingPotBlockEntity;
 import mczme.lingshi.common.block.entity.SkilletBlockEntity;
 import mczme.lingshi.lingshi;
 import net.minecraft.core.registries.Registries;
@@ -23,6 +24,10 @@ public class BlockEntityTypes {
             BLOCK_ENTITIES.register("skillet_blockentity", () ->
                        BlockEntityType.Builder.of(SkilletBlockEntity::new,
                                 ModBlocks.SKILLET.get()).build(null));
+    public static final Supplier<BlockEntityType<CookingPotBlockEntity>> COOKING_POT_BLOCKENTITY =
+            BLOCK_ENTITIES.register("cooking_pot_blockentity", () ->
+                    BlockEntityType.Builder.of(CookingPotBlockEntity::new,
+                            ModBlocks.COOKING_POT.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

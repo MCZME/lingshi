@@ -1,4 +1,4 @@
-// 1.21	2024-08-21T06:32:40.2517736	Recipes
+// 1.21	2024-08-22T18:03:26.4870994	Recipes
 6a319c97da924f9ab21b5d264c18cb8ad9da8755 data/lingshi/advancement/recipes/decorations/chopping_board.json
 0a4b54bfda8aa98f1a26bbf1d8231c76ed12e770 data/lingshi/advancement/recipes/decorations/skillet.json
 90e465ef819e2007fb2b023b2970095ecce8b79a data/lingshi/advancement/recipes/skillet/baked_potato.json
@@ -15,7 +15,7 @@ e511f76246f906a279fc1ec531922d8f70dfb68c data/lingshi/advancement/recipes/tools/
 bec1047337843fdd073fe87393c3b500ae11a1de data/lingshi/recipe/chopping_board.json
 3e41620c4ec5b19f87046dad7fe5c7ed6ede21c2 data/lingshi/recipe/chopping_board/rice.json
 e6daac4cca245fc9e220e2fcb1f2b27e410ba503 data/lingshi/recipe/iron_knife.json
-6971547c4e197d1f259c4599e8bd99fa9a565095 data/lingshi/recipe/skillet.json
+a0c7fd85028ea7997689d7bc093b9d025c522ea6 data/lingshi/recipe/skillet.json
 26590681b1777b3be492a971dfc95a36af346fee data/lingshi/recipe/skillet/baked_potato.json
 91bf1f4b8acf5c536598059691981e665838ea17 data/lingshi/recipe/skillet/cooked_beef.json
 27b62cedc03d158bf611f528d405dd7cfe39b429 data/lingshi/recipe/skillet/cooked_chicken.json

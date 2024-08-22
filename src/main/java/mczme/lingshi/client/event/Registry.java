@@ -7,6 +7,7 @@ import mczme.lingshi.client.BlockEntityRenderer.ChoppingBoardBER;
 import mczme.lingshi.client.BlockEntityRenderer.SkilletBER;
 import mczme.lingshi.client.recipebook.CookingFoodRecipeLabel;
 import mczme.lingshi.client.screen.CookingHud;
+import mczme.lingshi.client.screen.CookingPotScreen;
 import mczme.lingshi.client.screen.SkilletScreen;
 import mczme.lingshi.common.recipe.SkilletRecipe;
 import mczme.lingshi.common.registry.BlockEntityTypes;
@@ -34,6 +35,7 @@ import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
 
 import static mczme.lingshi.client.recipebook.ModRecipeBookCategories.*;
+import static mczme.lingshi.client.recipebook.ModRecipeBookType.COOKING_POT;
 import static mczme.lingshi.client.recipebook.ModRecipeBookType.SKILLET;
 
 @EventBusSubscriber(modid = lingshi.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -48,12 +50,31 @@ public class Registry {
     @SubscribeEvent
     private static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(ModMenuTypes.SKILLET_MENU.get(), SkilletScreen::new);
+        event.register(ModMenuTypes.COOKING_POT_MENU.get(), CookingPotScreen::new);
     }
 
     //    recipe book
     @SubscribeEvent
     public static void registerRecipeBook(RegisterRecipeBookCategoriesEvent event) {
+//        Skillet
         event.registerBookCategories(SKILLET, ImmutableList.of(SKILLET_SEARCH.get(), SKILLET_HEAT.get(), SKILLET_PAN_FRY.get(), SKILLET_STIR_FRY.get(), SKILLET_BOIL.get()));
+        event.registerAggregateCategory(SKILLET_SEARCH.get(), ImmutableList.of(SKILLET_HEAT.get(), SKILLET_PAN_FRY.get(), SKILLET_STIR_FRY.get(), SKILLET_BOIL.get()));
+        event.registerRecipeCategoryFinder(ModRecipes.SKILLET_RECIPE.get(), recipe ->
+        {
+            if (recipe.value() instanceof SkilletRecipe Recipe) {
+                CookingFoodRecipeLabel label = Recipe.getLabel();
+                return switch (label) {
+                    case HEAT -> SKILLET_HEAT.get();
+                    case PAN_FRY -> SKILLET_PAN_FRY.get();
+                    case STIR_FRY -> SKILLET_STIR_FRY.get();
+                    case BOIL -> SKILLET_BOIL.get();
+                    default -> MISC.get();
+                };
+            }
+            return MISC.get();
+        });
+//        Cooking Pot
+        event.registerBookCategories(COOKING_POT, ImmutableList.of(SKILLET_SEARCH.get(), SKILLET_HEAT.get(), SKILLET_PAN_FRY.get(), SKILLET_STIR_FRY.get(), SKILLET_BOIL.get()));
         event.registerAggregateCategory(SKILLET_SEARCH.get(), ImmutableList.of(SKILLET_HEAT.get(), SKILLET_PAN_FRY.get(), SKILLET_STIR_FRY.get(), SKILLET_BOIL.get()));
         event.registerRecipeCategoryFinder(ModRecipes.SKILLET_RECIPE.get(), recipe ->
         {

@@ -1,8 +1,10 @@
 package mczme.lingshi.client.menu;
 
+import mczme.lingshi.client.menu.Slot.CookingItemStackHandler;
+import mczme.lingshi.client.menu.Slot.ResultSlot;
 import mczme.lingshi.common.block.entity.SkilletBlockEntity;
 import mczme.lingshi.common.recipe.SkilletRecipe;
-import mczme.lingshi.common.recipe.input.SkilletRecipeInput;
+import mczme.lingshi.common.recipe.input.CookingFoodRecipeInput;
 import mczme.lingshi.common.registry.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -17,7 +19,7 @@ import net.neoforged.neoforge.items.SlotItemHandler;
 
 import static mczme.lingshi.client.recipebook.ModRecipeBookType.SKILLET;
 
-public class SkilletMenu extends RecipeBookMenu<SkilletRecipeInput, SkilletRecipe> {
+public class SkilletMenu extends RecipeBookMenu<CookingFoodRecipeInput, SkilletRecipe> {
 
     public SkilletBlockEntity blockEntity;
     protected final Level level;
@@ -46,8 +48,10 @@ public class SkilletMenu extends RecipeBookMenu<SkilletRecipeInput, SkilletRecip
             slot.set(itemStacks.getStackInSlot(i));
             this.addSlot(slot);
         }
-        this.addSlot(new SlotItemHandler(itemStackHandler, 5, X[5], Y[5]));
-        this.addSlot(new SlotItemHandler(itemStackHandler, 6, X[6], Y[6]));
+        itemStackHandler.setStackInSlot(5,blockEntity.container);
+        this.addSlot(new ResultSlot(itemStackHandler, 5, X[5], Y[5]));
+        itemStackHandler.setStackInSlot(6,blockEntity.result);
+        this.addSlot(new ResultSlot(itemStackHandler, 6, X[6], Y[6]));
     }
 
     private void layoutPlayerInventorySlots(Inventory playerInventory) {
@@ -121,7 +125,7 @@ public class SkilletMenu extends RecipeBookMenu<SkilletRecipeInput, SkilletRecip
 
     @Override
     public boolean recipeMatches(RecipeHolder<SkilletRecipe> pRecipe) {
-        return pRecipe.value().matches(new SkilletRecipeInput(itemStackHandler,blockEntity.getFluid()), this.level);
+        return pRecipe.value().matches(new CookingFoodRecipeInput(itemStackHandler,blockEntity.getFluid()), this.level);
     }
 
     @Override

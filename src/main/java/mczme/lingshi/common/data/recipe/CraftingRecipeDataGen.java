@@ -38,10 +38,11 @@ public class CraftingRecipeDataGen {
                 .unlockedBy("has_iron_ingot", has(Items.STICK))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.SKILLET.get())
-                .pattern("XX#")
+                .pattern("AA#")
                 .pattern("XX ")
                 .define('X', ItemTags.TERRACOTTA)
                 .define('#', ItemTags.PLANKS)
+                .define('A', Items.IRON_INGOT)
                 .unlockedBy("has_iron_ingot", has(ItemTags.PLANKS))
                 .save(output);
     }

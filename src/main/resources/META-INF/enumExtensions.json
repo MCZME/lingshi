@@ -7,6 +7,12 @@
       "parameters": []
     },
     {
+      "enum": "net/minecraft/world/inventory/RecipeBookType",
+      "name": "lingshi_COOKING_POT",
+      "constructor": "()V",
+      "parameters": []
+    },
+    {
       "enum": "net/minecraft/client/RecipeBookCategories",
       "name": "lingshi_SKILLET_SEARCH",
       "constructor": "(Ljava/util/function/Supplier;)V",

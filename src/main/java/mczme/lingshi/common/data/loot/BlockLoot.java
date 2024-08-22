@@ -15,7 +15,8 @@ public class BlockLoot extends BlockLootSubProvider {
             ModBlocks.TEA_TREE.get(),
             ModBlocks.TEA_LEAF.get(),
             ModBlocks.CHOPPING_BOARD.get(),
-            ModBlocks.SKILLET.get()
+            ModBlocks.SKILLET.get(),
+            ModBlocks.COOKING_POT.get()
     );
 
     public BlockLoot(HolderLookup.Provider lookupProvider) {
@@ -29,6 +30,7 @@ public class BlockLoot extends BlockLootSubProvider {
         dropOther(ModBlocks.TEA_LEAF.get(), ModItems.TEA_LEAF.get());
         dropSelf(ModBlocks.CHOPPING_BOARD.get());
         dropSelf(ModBlocks.SKILLET.get());
+        dropSelf(ModBlocks.COOKING_POT.get());
     }
 
     @Override

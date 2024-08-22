@@ -5,12 +5,15 @@
     "#": {
       "tag": "minecraft:planks"
     },
+    "A": {
+      "item": "minecraft:iron_ingot"
+    },
     "X": {
       "tag": "minecraft:terracotta"
     }
   },
   "pattern": [
-    "XX#",
+    "AA#",
     "XX "
   ],
   "result": {

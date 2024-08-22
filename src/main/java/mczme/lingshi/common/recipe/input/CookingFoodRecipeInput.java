@@ -7,12 +7,12 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 
-public class SkilletRecipeInput implements RecipeInput {
+public class CookingFoodRecipeInput implements RecipeInput {
 
     private final ItemStackHandler items;
     private final FluidStack fluids;
 
-    public SkilletRecipeInput(ItemStackHandler items, FluidStack fluid) {
+    public CookingFoodRecipeInput(ItemStackHandler items, FluidStack fluid) {
         this.items = items;
         this.fluids = fluid;
     }
