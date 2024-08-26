@@ -1,6 +1,8 @@
 package mczme.lingshi.client.screen;
 
+import mczme.lingshi.common.block.entity.CookingPotBlockEntity;
 import mczme.lingshi.common.block.entity.SkilletBlockEntity;
+import mczme.lingshi.common.block.entity.baseblockentity.ICanBeHeated;
 import mczme.lingshi.common.datamap.DataMapTypes;
 import mczme.lingshi.common.datamap.ingredient.CookingFoodData;
 import mczme.lingshi.common.registry.BlockEntityTypes;
@@ -30,7 +32,7 @@ public class CookingHud implements LayeredDraw.Layer {
     private ItemStackHandler itemStackHandler;
     private FluidStack fluidStack = FluidStack.EMPTY;
     private ItemStack container = ItemStack.EMPTY;
-    private int stirFryCount;
+    private int Count;
     private int[] cookingTime;
     private ItemStack result = ItemStack.EMPTY;
     private int MAX_SLOT;
@@ -47,12 +49,40 @@ public class CookingHud implements LayeredDraw.Layer {
         }
         this.player = Minecraft.getInstance().player;
         if (player != null && getHitResult(BlockEntityTypes.SKILLET_BLOCKENTITY.get())) {
-            getData();
+            getData((SkilletBlockEntity)Minecraft.getInstance().level.getBlockEntity(blockPos));
             int j = 0;
             if (!result.isEmpty()) {
                 pGuiGraphics.renderItem(result, X - 18, Y);
                 pGuiGraphics.blit(HUD_Sprite, X, Y , 16, 16, 0, 36,16,16, 64, 64);
-                pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, String.valueOf(stirFryCount), X + 24, Y + 6, 0xffffff);
+                pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, String.valueOf(Count), X + 24, Y + 6, 0xffffff);
+                if (!container.isEmpty()) {
+                    pGuiGraphics.renderItem(container, X + 36, Y);
+                }
+                j++;
+            }
+            if (!fluidStack.isEmpty()) {
+                CookingFoodData cookingFoodData = fluidStack.getFluidHolder().getData(DataMapTypes.COOKING_FOOD_FLUID);
+                if (cookingFoodData != null) {
+                    drawFluidProgress(pGuiGraphics, cookingFoodData, j);
+                }
+                j++;
+            }
+            for (int i = 0; i < MAX_SLOT; i++) {
+                if (!itemStackHandler.getStackInSlot(i).isEmpty()) {
+                    pGuiGraphics.renderItem(itemStackHandler.getStackInSlot(i), X - 18, Y + (i + j) * 18);
+                    CookingFoodData cookingFoodData = itemStackHandler.getStackInSlot(i).getItemHolder().getData(DataMapTypes.COOKING_FOOD_ITEM);
+                    if (cookingFoodData != null) {
+                        drawItemProgress(pGuiGraphics, cookingFoodData, i, j);
+                    }
+                }
+            }
+        } else if (player != null && getHitResult(BlockEntityTypes.COOKING_POT_BLOCKENTITY.get())) {
+            getData((CookingPotBlockEntity)Minecraft.getInstance().level.getBlockEntity(blockPos));
+            int j = 0;
+            if (!result.isEmpty()) {
+                pGuiGraphics.renderItem(result, X - 18, Y);
+//                pGuiGraphics.blit(HUD_Sprite, X, Y , 16, 16, 0, 36,16,16, 64, 64);
+                pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, String.valueOf(Count), X + 24, Y + 6, 0xffffff);
                 if (!container.isEmpty()) {
                     pGuiGraphics.renderItem(container, X + 36, Y);
                 }
@@ -77,19 +107,19 @@ public class CookingHud implements LayeredDraw.Layer {
         }
     }
 
-    private void getData() {
-        SkilletBlockEntity blockEntity = null;
-        if (Minecraft.getInstance().level != null) {
-            blockEntity = (SkilletBlockEntity) Minecraft.getInstance().level.getBlockEntity(blockPos);
-        }
+    private <T extends ICanBeHeated> void getData(T blockEntity) {
         if (blockEntity != null) {
             this.itemStackHandler = blockEntity.getItemStacks();
             this.fluidStack = blockEntity.getFluid();
             this.cookingTime = blockEntity.getCookingTime();
             this.MAX_SLOT = blockEntity.getMAX();
-            this.result = blockEntity.result;
-            this.container = blockEntity.container;
-            this.stirFryCount = blockEntity.stirFryCount;
+            this.result = blockEntity.getResult();
+            this.container = blockEntity.getContainer();
+            if(blockEntity instanceof SkilletBlockEntity blockEntity1){
+                this.Count = blockEntity1.stirFryCount;
+            }else if (blockEntity instanceof CookingPotBlockEntity blockEntity1){
+                this.Count = blockEntity1.stewingTime;
+            }
         }
     }
 

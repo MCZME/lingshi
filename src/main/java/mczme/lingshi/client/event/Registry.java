@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
 import mczme.lingshi.client.BlockEntityRenderer.ChoppingBoardBER;
+import mczme.lingshi.client.BlockEntityRenderer.CookingPotBER;
 import mczme.lingshi.client.BlockEntityRenderer.SkilletBER;
 import mczme.lingshi.client.recipebook.CookingFoodRecipeLabel;
 import mczme.lingshi.client.screen.CookingHud;
@@ -40,10 +41,13 @@ import static mczme.lingshi.client.recipebook.ModRecipeBookType.SKILLET;
 
 @EventBusSubscriber(modid = lingshi.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class Registry {
+
+//    block render
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(BlockEntityTypes.CHOPPING_BOARD_BLOCKENTITY.get(), ChoppingBoardBER::new);
         event.registerBlockEntityRenderer(BlockEntityTypes.SKILLET_BLOCKENTITY.get(), SkilletBER::new);
+        event.registerBlockEntityRenderer(BlockEntityTypes.COOKING_POT_BLOCKENTITY.get(), CookingPotBER::new);
     }
 
     //    menu screen

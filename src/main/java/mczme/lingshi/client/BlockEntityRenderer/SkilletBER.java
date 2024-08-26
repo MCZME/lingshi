@@ -40,9 +40,9 @@ public class SkilletBER implements BlockEntityRenderer<SkilletBlockEntity> {
         if (!pBlockEntity.isEmpty()) {
             if (!fluidStack.isEmpty()) {
                 if(fluidStack.getFluid().isSame(Fluids.WATER)){
-                    fluidRender(fluidStack.getFluid(), pPoseStack, pBufferSource, pBlockEntity.getLevel(), pBlockEntity.getBlockPos(), pPackedLight, 2.5f);
+                    fluidRender(fluidStack.getFluid(), pPoseStack, pBufferSource, pBlockEntity.getLevel(), pBlockEntity.getBlockPos(), pPackedLight, new float[]{13/16.0F,13/16.0F,13/16.0F,2/16.0F,2/16.0F,2.5F});
                 }else {
-                    fluidRender(fluidStack.getFluid(), pPoseStack, pBufferSource, pBlockEntity.getLevel(), pBlockEntity.getBlockPos(), pPackedLight, 1.5f);
+                    fluidRender(fluidStack.getFluid(), pPoseStack, pBufferSource, pBlockEntity.getLevel(), pBlockEntity.getBlockPos(), pPackedLight, new float[]{13/16.0F,13/16.0F,13/16.0F,2/16.0F,2/16F,1.5F});
                 }
             }
 

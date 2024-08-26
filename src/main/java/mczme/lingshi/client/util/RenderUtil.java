@@ -15,17 +15,17 @@ import org.joml.Matrix4f;
 
 public class RenderUtil {
 
-    public static void fluidRender(Fluid fluid, PoseStack pPoseStack, MultiBufferSource pBufferSource, Level pLevel, BlockPos pPos,int pPackedLight,float height){
+    public static void fluidRender(Fluid fluid, PoseStack pPoseStack, MultiBufferSource pBufferSource, Level pLevel, BlockPos pPos,int pPackedLight,float[] size){
         pPoseStack.pushPose();
-        pPoseStack.scale(13/16F, 13/16F, 13/16F);
-        pPoseStack.translate(2/16F, 0F, 2/16F);
+        pPoseStack.scale(size[0], size[1], size[2]);
+        pPoseStack.translate(size[3], 0F, size[4]);
         TextureAtlasSprite[] atextureatlassprite = net.neoforged.neoforge.client.textures.FluidSpriteCache.getFluidSprites(pLevel, pPos, fluid.defaultFluidState());
         TextureAtlasSprite still = atextureatlassprite[0];
         int colour = fluid.isSame(Fluids.WATER)?BiomeColors.getAverageWaterColor(pLevel, pPos) : 0xA1EAD909;
         float red = (float) FastColor.ARGB32.red(colour) / 255.0F;
         float green = (float) FastColor.ARGB32.green(colour) / 255.0F;
         float blue = (float) FastColor.ARGB32.blue(colour) / 255.0F;
-        float offset = height /16;
+        float offset = size[5] /16;
         float uScale = still.getU1() - still.getU0();
         float vScale = still.getV1() - still.getV0();
         float u0 = still.getU0() + uScale * (float)0;

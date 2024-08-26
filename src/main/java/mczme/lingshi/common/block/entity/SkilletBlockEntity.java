@@ -32,6 +32,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
@@ -137,6 +138,16 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
         return cookingTime;
     }
 
+    @Override
+    public ItemStack getResult() {
+        return result;
+    }
+
+    @Override
+    public ItemStack getContainer() {
+        return container;
+    }
+
     public int getMAX() {
         return MAX_SLOT;
     }
@@ -147,7 +158,7 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
     }
 
     @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.@NotNull Provider pRegistries) {
         CompoundTag tag = new CompoundTag();
         tag.put("items", itemStackHandler.serializeNBT(pRegistries));
         if (!fluidStacks.isEmpty()) {
@@ -165,7 +176,7 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
     }
 
     @Override
-    protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
+    protected void loadAdditional(CompoundTag pTag, HolderLookup.@NotNull Provider pRegistries) {
         itemStackHandler.deserializeNBT(pRegistries, pTag.getCompound("items"));
         if (pTag.get("fluid") != null) {
             fluidStacks = FluidStack.parse(pRegistries, pTag.getCompound("fluid")).orElse(FluidStack.EMPTY);
@@ -189,7 +200,7 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
     }
 
     @Override
-    protected void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
+    protected void saveAdditional(@NotNull CompoundTag pTag, HolderLookup.@NotNull Provider pRegistries) {
         super.saveAdditional(pTag, pRegistries);
         pTag.put("items", itemStackHandler.serializeNBT(pRegistries));
         if (!this.fluidStacks.isEmpty()) {
@@ -223,13 +234,13 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
     }
 
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return Component.translatable("gui." + lingshi.MODID + ".skillet_menu");
     }
 
     @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
+    public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pPlayerInventory, @NotNull Player pPlayer) {
         return new SkilletMenu(pContainerId, pPlayerInventory, this);
     }
 

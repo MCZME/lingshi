@@ -1,6 +1,7 @@
 package mczme.lingshi.common.registry;
 
 import mczme.lingshi.common.item.KnifeItem;
+import mczme.lingshi.common.item.PotLid;
 import mczme.lingshi.common.item.SpatulaItem;
 import mczme.lingshi.lingshi;
 import net.minecraft.world.food.FoodProperties;
@@ -27,7 +28,7 @@ public class ModItems {
     public static final Supplier<Item> COOKING_POT = registerWithCreateTab("cooking_pot", () -> new BlockItem(ModBlocks.COOKING_POT.get(), new Item.Properties()));
     public static final Supplier<Item> CHOPPING_BOARD = registerWithCreateTab("chopping_board", () -> new BlockItem(ModBlocks.CHOPPING_BOARD.get(), new Item.Properties()));
 
-    public static final Supplier<Item> POT_LID = registerWithCreateTab("pot_lid", () -> new Item( new Item.Properties()));
+    public static final Supplier<Item> POT_LID = registerWithCreateTab("pot_lid", () -> new PotLid(new Item.Properties()));
     public static final Supplier<Item> SPATULA = registerWithCreateTab("spatula", () -> new SpatulaItem(new Item.Properties()));
     public static final Supplier<Item> IRON_KNIFE = registerWithCreateTab("iron_knife", () -> new KnifeItem(Tiers.IRON, new Item.Properties().attributes(SwordItem.createAttributes(Tiers.IRON, 3, -2.4F))));
 

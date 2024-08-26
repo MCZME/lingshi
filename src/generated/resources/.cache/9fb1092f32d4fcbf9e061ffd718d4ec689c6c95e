@@ -1,15 +1,15 @@
-// 1.21	2024-08-22T18:03:26.4870994	Recipes
+// 1.21	2024-08-27T02:55:56.0325835	Recipes
 6a319c97da924f9ab21b5d264c18cb8ad9da8755 data/lingshi/advancement/recipes/decorations/chopping_board.json
 0a4b54bfda8aa98f1a26bbf1d8231c76ed12e770 data/lingshi/advancement/recipes/decorations/skillet.json
-90e465ef819e2007fb2b023b2970095ecce8b79a data/lingshi/advancement/recipes/skillet/baked_potato.json
-270b8d1827bb4d94559088a008f9f2b887d3cf79 data/lingshi/advancement/recipes/skillet/cooked_beef.json
-3da01b8b1fa7548e7f2b7992450356eed7c3f638 data/lingshi/advancement/recipes/skillet/cooked_chicken.json
-61c5eeeda0e4c82b459978a7ace05bac2ae3a724 data/lingshi/advancement/recipes/skillet/cooked_cod.json
-0d382e904771b12b539540f8bfe3aba5a316288b data/lingshi/advancement/recipes/skillet/cooked_mutton.json
-7dac12da1bf40c7246fff7b3f5d3ad3395ca7fee data/lingshi/advancement/recipes/skillet/cooked_porkchop.json
-dd85a62c2968cd2bfa854faa7b3251ec7f3ff3a1 data/lingshi/advancement/recipes/skillet/cooked_rabbit.json
-90acc516d2ea75e5ff8ab2117d4570b6f4f37137 data/lingshi/advancement/recipes/skillet/cooked_salmon.json
-84acc8c3c7e0177a6a39a017a2b688d9e95c7fbb data/lingshi/advancement/recipes/skillet/fried_egg.json
+e4ccb4f32d90b93ef63a3f2a17e843c6a8b2322b data/lingshi/advancement/recipes/skillet/baked_potato.json
+c9b88b929d6f4b7d68c10c6a3915182cb096d363 data/lingshi/advancement/recipes/skillet/cooked_beef.json
+0235c27183fa0a2f93fdf2a6726f2f9d1acc95b7 data/lingshi/advancement/recipes/skillet/cooked_chicken.json
+02656e018c573dab31666c441fe9674bb62060c4 data/lingshi/advancement/recipes/skillet/cooked_cod.json
+51df8caa6bb3b8352065953531aae9d75bc0c6f9 data/lingshi/advancement/recipes/skillet/cooked_mutton.json
+11c0e1c5c1fee50df7de493ee95764ca109b36f3 data/lingshi/advancement/recipes/skillet/cooked_porkchop.json
+938ed8fe297341fd3b755b1381bae2e276a00eb3 data/lingshi/advancement/recipes/skillet/cooked_rabbit.json
+de37dcaf7e9f79459492cd69ddb81d8d27406f99 data/lingshi/advancement/recipes/skillet/cooked_salmon.json
+ee50d7e3c59e644ce93e46945ff090c3c68fda04 data/lingshi/advancement/recipes/skillet/fried_egg.json
 0e940fa2ba82aed478ee367c4b998f0bc7ead5c3 data/lingshi/advancement/recipes/tools/iron_knife.json
 e511f76246f906a279fc1ec531922d8f70dfb68c data/lingshi/advancement/recipes/tools/spatula.json
 bec1047337843fdd073fe87393c3b500ae11a1de data/lingshi/recipe/chopping_board.json
