@@ -5,10 +5,9 @@ import mczme.lingshi.client.menu.CookingPotMenu;
 import mczme.lingshi.common.block.entity.baseblockentity.ICanBeHeated;
 import mczme.lingshi.common.datamap.DataMapTypes;
 import mczme.lingshi.common.datamap.ingredient.CookingFoodData;
-import mczme.lingshi.common.recipe.SkilletRecipe;
+import mczme.lingshi.common.recipe.CookingPotRecipe;
 import mczme.lingshi.common.recipe.input.CookingFoodRecipeInput;
 import mczme.lingshi.common.registry.BlockEntityTypes;
-import mczme.lingshi.common.registry.ModItems;
 import mczme.lingshi.common.registry.ModRecipes;
 import mczme.lingshi.lingshi;
 import net.minecraft.core.BlockPos;
@@ -37,6 +36,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.Optional;
 
+import static mczme.lingshi.common.block.CookingPotBlock.COVER;
+
 public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, MenuProvider {
 
     private final int MAX_SLOT = 6;
@@ -45,7 +46,6 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
     private final CookingItemStackHandler itemStackHandler = new CookingItemStackHandler(MAX_SLOT + 2,16);
 
     private final int[] cookingTime = new int[MAX_SLOT + 1];
-    public ItemStack container = ItemStack.EMPTY;
     public ItemStack result = ItemStack.EMPTY;
     public int stewingTime = 0;
 
@@ -142,9 +142,22 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
         return result;
     }
 
-    @Override
-    public ItemStack getContainer(){
-        return container;
+    public void consume(int count){
+        if (count > 0) {
+            boolean t = true;
+            for (int i = 0; i < MAX_SLOT; i++) {
+                if (!itemStackHandler.getStackInSlot(i).isEmpty()) {
+                    itemStackHandler.getStackInSlot(i).shrink(count);
+                    if(!itemStackHandler.getStackInSlot(i).isEmpty()){
+                        t=false;
+                    }
+                }
+            }
+            if(t){
+                clear();
+            }
+        }
+
     }
 
     @Override
@@ -168,9 +181,6 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
         if (!result.isEmpty()) {
             tag.put("result", result.save(pRegistries));
         }
-        if (!container.isEmpty()) {
-            tag.put("container", container.save(pRegistries));
-        }
         return tag;
     }
 
@@ -190,11 +200,6 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
         } else {
             result = ItemStack.EMPTY;
         }
-        if (pTag.get("container") != null) {
-            container = ItemStack.parse(pRegistries, pTag.getCompound("container")).orElse(ItemStack.EMPTY);
-        } else {
-            container = ItemStack.EMPTY;
-        }
     }
 
     @Override
@@ -207,9 +212,6 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
         saveCookingTime(pTag);
         if (!result.isEmpty()) {
             pTag.put("result", result.save(pRegistries));
-        }
-        if (!container.isEmpty()) {
-            pTag.put("container", container.save(pRegistries));
         }
     }
 
@@ -246,71 +248,83 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
         boolean flag = blockEntity.isEmpty();
         boolean heat_flag = blockEntity.isHeated(pLevel, pPos);
         int MAX_SLOT = blockEntity.getMAX();
-        ItemStackHandler itemStackHandler = blockEntity.getItemStacks();
-        blockEntity.container = ItemStack.EMPTY;
+        CookingItemStackHandler itemStackHandler = blockEntity.getItemStacks();
+        ItemStackHandler inputStackHandler = new ItemStackHandler(MAX_SLOT);
+        for (int i = 0; i < MAX_SLOT; i++) {
+            inputStackHandler.setStackInSlot(i, itemStackHandler.getStackInSlot(i));
+        }
         if (heat_flag) {
             if (!flag) {
-                int cookedTime = 0, burntTime = 0;
-                int cooked_size = 0, burnt_size = 0;
+                int cookedTime = 0;
+                int cooked_size = 0;
                 boolean fluid_heated= blockEntity.getFluid().isEmpty();
-//                cookProgress
-                for (int i = 0; i < MAX_SLOT + 1; i++) {
-//                  fluid
-                    if (i == MAX_SLOT) {
-                        if (!blockEntity.getFluid().isEmpty()) {
-                            CookingFoodData cookingFoodData = blockEntity.getFluid().getFluidHolder().getData(DataMapTypes.COOKING_FOOD_FLUID);
-                            if (cookingFoodData != null) {
-                                cookedTime = cookingFoodData.cookedTime();
-                                blockEntity.cookingTime[i]++;
-                            }
-                        } else {
-                            blockEntity.cookingTime[i] = 0;
-                        }
-                        if (blockEntity.cookingTime[i] > cookedTime * 20) {
-                            fluid_heated = true;
-                        }
-                        continue;
-                    }
-//                  item
-                    ItemStack itemStack = itemStackHandler.getStackInSlot(i);
-                    if (itemStack.isEmpty()) {
-                        blockEntity.cookingTime[i] = 0;
-                        continue;
-                    }
-                    CookingFoodData cookingFoodData = itemStack.getItemHolder().getData(DataMapTypes.COOKING_FOOD_ITEM);
-                    if (cookingFoodData != null) {
-                        cookedTime = cookingFoodData.cookedTime();
-                        burntTime = cookingFoodData.burntTime();
-                        blockEntity.cookingTime[i]++;
-                    }
-                    if (blockEntity.cookingTime[i] > burntTime * 20) {
-                        burnt_size++;
-                    } else if (blockEntity.cookingTime[i] > cookedTime * 20) {
-                        cooked_size++;
-                    }
-                }
 //              获取配方
-                CookingFoodRecipeInput input = new CookingFoodRecipeInput(itemStackHandler, blockEntity.getFluid());
-                Optional<RecipeHolder<SkilletRecipe>> optional = pLevel.getRecipeManager().getRecipeFor(
-                        ModRecipes.SKILLET_RECIPE.get(),
+                CookingFoodRecipeInput input = new CookingFoodRecipeInput(inputStackHandler, blockEntity.getFluid());
+                Optional<RecipeHolder<CookingPotRecipe>> optional = pLevel.getRecipeManager().getRecipeFor(
+                        ModRecipes.COOKING_POT_RECIPE.get(),
                         input,
                         pLevel
                 );
-                blockEntity.result = optional.map(RecipeHolder::value)
+                ItemStack result1 = optional.map(RecipeHolder::value)
                         .map(e -> e.assemble(input, pLevel.registryAccess()))
                         .orElse(ItemStack.EMPTY);
-                if (cooked_size == blockEntity.size()  && !blockEntity.result.isEmpty() && fluid_heated) {
-                    blockEntity.container = optional.map(RecipeHolder::value)
-                            .map(e -> e.getContainer().container())
-                            .orElse(ItemStack.EMPTY);
-                    if(blockEntity.container.isEmpty()){
-                        blockEntity.container=new ItemStack(ModItems.SPATULA.get());
+                int stewTime = optional.map(RecipeHolder::value)
+                        .map(e->e.getContainer().braisingTime())
+                        .orElse(0);
+                //cookProgress
+                if(!blockState.getValue(COVER)&&(itemStackHandler.getStackInSlot(7).isEmpty()||(itemStackHandler.getStackInSlot(7).is(result1.getItem())&&itemStackHandler.getStackInSlot(7).getCount()<64))){
+                    for (int i = 0; i < MAX_SLOT + 1; i++) {
+                        //fluid
+                        if (i == MAX_SLOT) {
+                            if (!blockEntity.getFluid().isEmpty()) {
+                                CookingFoodData cookingFoodData = blockEntity.getFluid().getFluidHolder().getData(DataMapTypes.COOKING_FOOD_FLUID);
+                                if (cookingFoodData != null) {
+                                    cookedTime = cookingFoodData.cookedTime();
+                                    blockEntity.cookingTime[i]++;
+                                }
+                            } else {
+                                blockEntity.cookingTime[i] = 0;
+                            }
+                            if (blockEntity.cookingTime[i] > cookedTime * 20) {
+                                fluid_heated = true;
+                            }
+                            continue;
+                        }
+                        //item
+                        ItemStack itemStack = itemStackHandler.getStackInSlot(i);
+                        if (itemStack.isEmpty()) {
+                            blockEntity.cookingTime[i] = 0;
+                            continue;
+                        }
+                        CookingFoodData cookingFoodData = itemStack.getItemHolder().getData(DataMapTypes.COOKING_FOOD_ITEM);
+                        if (cookingFoodData != null) {
+                            cookedTime = cookingFoodData.cookedTime();
+                            blockEntity.cookingTime[i]++;
+                        }
+                        if (blockEntity.cookingTime[i] > cookedTime * 20) {
+                            cooked_size++;
+                        }
                     }
-                } else if (burnt_size > 0) {
-                    blockEntity.result = new ItemStack(ModItems.STRANGE_FOOD.get());
-                    blockEntity.container=new ItemStack(ModItems.SPATULA.get());
+                }else{
+                    blockEntity.stewingTime++;
+                }
+//              结果判断
+                blockEntity.result=result1;
+                if (cooked_size == blockEntity.size()  && !blockEntity.result.isEmpty() && fluid_heated && itemStackHandler.getStackInSlot(7).getCount()<=64&&blockEntity.stewingTime>= stewTime) {
+                    itemStackHandler.setStackInSlot(6,optional.map(RecipeHolder::value)
+                            .map(e -> e.getContainer().container())
+                            .orElse(ItemStack.EMPTY));
+                    if(!itemStackHandler.getStackInSlot(7).isEmpty()){
+                        itemStackHandler.getStackInSlot(7).grow(blockEntity.getResult().getCount());
+                    }else {
+                        blockEntity.setItem(blockEntity.result,7);
+                    }
+                    blockEntity.consume(1);
                 }
             } else {
+                if(itemStackHandler.getStackInSlot(7).isEmpty()){
+                    itemStackHandler.setStackInSlot(6, ItemStack.EMPTY);
+                }
                 blockEntity.clearTime();
                 blockEntity.result = ItemStack.EMPTY;
             }

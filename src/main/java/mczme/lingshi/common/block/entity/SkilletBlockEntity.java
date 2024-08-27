@@ -46,7 +46,6 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
     private final CookingItemStackHandler itemStackHandler = new CookingItemStackHandler(MAX_SLOT + 2,1);
 
     private final int[] cookingTime = new int[MAX_SLOT + 1];
-    public ItemStack container = ItemStack.EMPTY;
     public int stirFryCount = 0;
     public ItemStack result = ItemStack.EMPTY;
 
@@ -143,11 +142,6 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
         return result;
     }
 
-    @Override
-    public ItemStack getContainer() {
-        return container;
-    }
-
     public int getMAX() {
         return MAX_SLOT;
     }
@@ -167,9 +161,6 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
         saveCookingTime(tag);
         if (!result.isEmpty()) {
             tag.put("result", result.save(pRegistries));
-        }
-        if (!container.isEmpty()) {
-            tag.put("container", container.save(pRegistries));
         }
         tag.putInt("count", stirFryCount);
         return tag;
@@ -191,11 +182,6 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
         } else {
             result = ItemStack.EMPTY;
         }
-        if (pTag.get("container") != null) {
-            container = ItemStack.parse(pRegistries, pTag.getCompound("container")).orElse(ItemStack.EMPTY);
-        } else {
-            container = ItemStack.EMPTY;
-        }
         stirFryCount = pTag.getInt("count");
     }
 
@@ -209,9 +195,6 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
         saveCookingTime(pTag);
         if (!result.isEmpty()) {
             pTag.put("result", result.save(pRegistries));
-        }
-        if (!container.isEmpty()) {
-            pTag.put("container", container.save(pRegistries));
         }
         pTag.putInt("count", stirFryCount);
     }
@@ -250,7 +233,6 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
         boolean heat_flag = blockEntity.isHeated(pLevel, pPos);
         int MAX_SLOT = blockEntity.getMAX();
         ItemStackHandler itemStackHandler = blockEntity.getItemStacks();
-        blockEntity.container = ItemStack.EMPTY;
         if (heat_flag) {
             if (!flag) {
                 int cookedTime = 0, burntTime = 0;
@@ -293,7 +275,11 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
                     }
                 }
 //              获取配方
-                CookingFoodRecipeInput input = new CookingFoodRecipeInput(itemStackHandler, blockEntity.getFluid());
+                ItemStackHandler inputStackHandler = new ItemStackHandler(MAX_SLOT);
+                for (int i = 0; i < MAX_SLOT; i++) {
+                    inputStackHandler.setStackInSlot(i, itemStackHandler.getStackInSlot(i));
+                }
+                CookingFoodRecipeInput input = new CookingFoodRecipeInput(inputStackHandler, blockEntity.getFluid());
                 Optional<RecipeHolder<SkilletRecipe>> optional = pLevel.getRecipeManager().getRecipeFor(
                         ModRecipes.SKILLET_RECIPE.get(),
                         input,
@@ -306,18 +292,20 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
                         .map(e -> e.getContainer().stirFryCount())
                         .orElse(0);
                 if (cooked_size == blockEntity.size() && blockEntity.stirFryCount >= stirFryCount1 && !blockEntity.result.isEmpty() && fluid_heated) {
-                    blockEntity.container = optional.map(RecipeHolder::value)
+                    itemStackHandler.setStackInSlot(5, optional.map(RecipeHolder::value)
                             .map(e -> e.getContainer().container())
-                            .orElse(ItemStack.EMPTY);
-                    if(blockEntity.container.isEmpty()){
-                        blockEntity.container=new ItemStack(ModItems.SPATULA.get());
+                            .orElse(ItemStack.EMPTY));
+                    if(itemStackHandler.getStackInSlot(5).isEmpty()){
+                        itemStackHandler.setStackInSlot(5,new ItemStack(ModItems.SPATULA.get()));
                     }
+                    itemStackHandler.setStackInSlot(6,blockEntity.result);
                 } else if (burnt_size > 0) {
                     blockEntity.result = new ItemStack(ModItems.STRANGE_FOOD.get());
-                    blockEntity.container=new ItemStack(ModItems.SPATULA.get());
+                    itemStackHandler.setStackInSlot(5,new ItemStack(ModItems.SPATULA.get()));
                 }
             } else {
                 blockEntity.clearTime();
+                itemStackHandler.setStackInSlot(5,ItemStack.EMPTY);
                 blockEntity.result = ItemStack.EMPTY;
                 blockEntity.stirFryCount = 0;
 

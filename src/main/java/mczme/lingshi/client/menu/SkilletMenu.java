@@ -48,9 +48,7 @@ public class SkilletMenu extends RecipeBookMenu<CookingFoodRecipeInput, SkilletR
             slot.set(itemStacks.getStackInSlot(i));
             this.addSlot(slot);
         }
-        itemStackHandler.setStackInSlot(5,blockEntity.container);
         this.addSlot(new ResultSlot(itemStackHandler, 5, X[5], Y[5]));
-        itemStackHandler.setStackInSlot(6,blockEntity.result);
         this.addSlot(new ResultSlot(itemStackHandler, 6, X[6], Y[6]));
     }
 

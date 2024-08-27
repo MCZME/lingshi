@@ -29,12 +29,13 @@ public class ModItems {
     public static final Supplier<Item> CHOPPING_BOARD = registerWithCreateTab("chopping_board", () -> new BlockItem(ModBlocks.CHOPPING_BOARD.get(), new Item.Properties()));
 
     public static final Supplier<Item> POT_LID = registerWithCreateTab("pot_lid", () -> new PotLid(new Item.Properties()));
-    public static final Supplier<Item> SPATULA = registerWithCreateTab("spatula", () -> new SpatulaItem(new Item.Properties()));
+    public static final Supplier<Item> SPATULA = registerWithCreateTab("spatula", () -> new SpatulaItem(new Item.Properties().stacksTo(1)));
     public static final Supplier<Item> IRON_KNIFE = registerWithCreateTab("iron_knife", () -> new KnifeItem(Tiers.IRON, new Item.Properties().attributes(SwordItem.createAttributes(Tiers.IRON, 3, -2.4F))));
 
     public static final Supplier<Item> OIL_BUCKET = registerWithCreateTab("oil_bucket", () -> new BucketItem(ModFluids.OIL_SOURCE.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final Supplier<Item> STRANGE_FOOD = registerWithCreateTab("strange_food", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> FRIED_EGG = registerWithCreateTab("fried_egg", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(3.2f).build())));
+    public static final Supplier<Item> COOKED_RICE = registerWithCreateTab("cooked_rice", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(4f).build())));
 
     private static Supplier<Item> registerWithCreateTab(String item_name, Supplier<Item> itemSupplier) {
         Supplier<Item> item = ITEMS.register(item_name, itemSupplier);

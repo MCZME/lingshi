@@ -17,8 +17,6 @@ public interface ICanBeHeated {
 
     ItemStack getResult();
 
-    ItemStack getContainer();
-
     int getMAX();
 
     default boolean isHeated(Level pLevel, BlockPos pPos){

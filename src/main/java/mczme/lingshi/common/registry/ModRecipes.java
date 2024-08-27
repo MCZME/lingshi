@@ -1,6 +1,7 @@
 package mczme.lingshi.common.registry;
 
 import mczme.lingshi.common.recipe.ChoppingBoardRecipe;
+import mczme.lingshi.common.recipe.CookingPotRecipe;
 import mczme.lingshi.common.recipe.SkilletRecipe;
 import mczme.lingshi.lingshi;
 import net.minecraft.core.registries.Registries;
@@ -25,7 +26,7 @@ public class ModRecipes {
                     "skillet_recipe",
                     () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(lingshi.MODID, "skillet_recipe"))
             );
-    public static final Supplier<RecipeType<SkilletRecipe>> COOKING_POT_RECIPE =
+    public static final Supplier<RecipeType<CookingPotRecipe>> COOKING_POT_RECIPE =
             RECIPE_TYPES.register(
                     "cooking_pot_recipe",
                     () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(lingshi.MODID, "cooking_pot_recipe"))

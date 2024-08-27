@@ -1,6 +1,6 @@
 package mczme.lingshi.client.recipebook;
 
-import mczme.lingshi.common.recipe.SkilletRecipe;
+import mczme.lingshi.common.recipe.CookingPotRecipe;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.inventory.Slot;
@@ -14,12 +14,12 @@ import java.util.List;
 public class CookingPotRecipeBookComponent extends RecipeBookComponent {
     @Override
     public void setupGhostRecipe(RecipeHolder<?> pRecipe, List<Slot> pSlots) {
-        SkilletRecipe skilletRecipe = (SkilletRecipe) pRecipe.value();
+        CookingPotRecipe Recipe = (CookingPotRecipe) pRecipe.value();
         ItemStack resultitem = pRecipe.value().getResultItem(this.minecraft.level.registryAccess());
         this.ghostRecipe.setRecipe(pRecipe);
-        this.ghostRecipe.addIngredient(Ingredient.of(resultitem), pSlots.get(6).x, pSlots.get(6).y);
-        if(skilletRecipe.getContainer().container() != ItemStack.EMPTY){
-            this.ghostRecipe.addIngredient(Ingredient.of(skilletRecipe.getContainer().container()), pSlots.get(5).x, pSlots.get(5).y);
+        this.ghostRecipe.addIngredient(Ingredient.of(resultitem), pSlots.get(7).x, pSlots.get(7).y);
+        if(Recipe.getContainer().container() != ItemStack.EMPTY){
+            this.ghostRecipe.addIngredient(Ingredient.of(Recipe.getContainer().container()), pSlots.get(6).x, pSlots.get(6).y);
         }
 
         NonNullList<Ingredient> nonnulllist = pRecipe.value().getIngredients();

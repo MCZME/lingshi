@@ -49,9 +49,7 @@ public class CookingPotMenu extends RecipeBookMenu<CookingFoodRecipeInput, Cooki
             slot.set(itemStacks.getStackInSlot(i));
             this.addSlot(slot);
         }
-        itemStackHandler.setStackInSlot(6,blockEntity.container);
         this.addSlot(new ResultSlot(itemStackHandler, 6, X[6], Y[6]));
-        itemStackHandler.setStackInSlot(7,blockEntity.result);
         this.addSlot(new ResultSlot(itemStackHandler, 7, X[7], Y[7]));
     }
 

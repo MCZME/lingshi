@@ -1,4 +1,7 @@
-// 1.21	2024-08-27T02:55:56.0325835	Recipes
+// 1.21	2024-08-27T06:08:36.0532515	Recipes
+b8cb7428b718c0ca190af49165cd25554d27fa19 data/lingshi/advancement/recipes/cooking_pot/cooked_rice.json
+7d0ef4cd02c38f4648e712a935f0ea32fb50aeff data/lingshi/advancement/recipes/cooking_pot/cooked_rice_1.json
+d918a2369d899974ffa38d6a363553af9e97fdee data/lingshi/advancement/recipes/cooking_pot/cooked_rice_2.json
 6a319c97da924f9ab21b5d264c18cb8ad9da8755 data/lingshi/advancement/recipes/decorations/chopping_board.json
 0a4b54bfda8aa98f1a26bbf1d8231c76ed12e770 data/lingshi/advancement/recipes/decorations/skillet.json
 e4ccb4f32d90b93ef63a3f2a17e843c6a8b2322b data/lingshi/advancement/recipes/skillet/baked_potato.json
@@ -14,15 +17,18 @@ ee50d7e3c59e644ce93e46945ff090c3c68fda04 data/lingshi/advancement/recipes/skille
 e511f76246f906a279fc1ec531922d8f70dfb68c data/lingshi/advancement/recipes/tools/spatula.json
 bec1047337843fdd073fe87393c3b500ae11a1de data/lingshi/recipe/chopping_board.json
 3e41620c4ec5b19f87046dad7fe5c7ed6ede21c2 data/lingshi/recipe/chopping_board/rice.json
+34ff78a571b7d344a2b31e18de2771cc505ab562 data/lingshi/recipe/cooking_pot/cooked_rice.json
+5b0d88672d868c5aff2928bd701f603643ac0dc0 data/lingshi/recipe/cooking_pot/cooked_rice_1.json
+e96b40d81c45dec0c25d57ddc8c8938c7196ec94 data/lingshi/recipe/cooking_pot/cooked_rice_2.json
 e6daac4cca245fc9e220e2fcb1f2b27e410ba503 data/lingshi/recipe/iron_knife.json
 a0c7fd85028ea7997689d7bc093b9d025c522ea6 data/lingshi/recipe/skillet.json
-26590681b1777b3be492a971dfc95a36af346fee data/lingshi/recipe/skillet/baked_potato.json
-91bf1f4b8acf5c536598059691981e665838ea17 data/lingshi/recipe/skillet/cooked_beef.json
-27b62cedc03d158bf611f528d405dd7cfe39b429 data/lingshi/recipe/skillet/cooked_chicken.json
-88368af861afa365e968533c265c89b65019b049 data/lingshi/recipe/skillet/cooked_cod.json
-93fa44daf3296aff85255b2e05a89fda9fbdc69f data/lingshi/recipe/skillet/cooked_mutton.json
-920d7c639da2cb840174d1a9c932349a0d85dee5 data/lingshi/recipe/skillet/cooked_porkchop.json
-5565fa5a338b2fefe8369d4cec4e28dd7c3481c3 data/lingshi/recipe/skillet/cooked_rabbit.json
-524f6c88e228427667c5201e43752957f7bbd649 data/lingshi/recipe/skillet/cooked_salmon.json
-1c104eed6daaa90da2777ec06f29089caf0446d3 data/lingshi/recipe/skillet/fried_egg.json
+e2328874e467cf5efdb65d0fedeac1cfe1677e98 data/lingshi/recipe/skillet/baked_potato.json
+f028991439854ef986d28feab97a637b53df876a data/lingshi/recipe/skillet/cooked_beef.json
+a7eb02ae67924077e8066c8cc2c5a05e02b5bb44 data/lingshi/recipe/skillet/cooked_chicken.json
+09adfb28e337e8cc2333380dbfc8abaef2033c06 data/lingshi/recipe/skillet/cooked_cod.json
+918165a19dfbbde26ca0397c107b3328fe0d6933 data/lingshi/recipe/skillet/cooked_mutton.json
+c3cfbc2afc0b4cec90a57fdac12ec3bc7b462b4f data/lingshi/recipe/skillet/cooked_porkchop.json
+c60918f7fafeb03f1c8244417c151ea7a5e44a31 data/lingshi/recipe/skillet/cooked_rabbit.json
+e72067c16cd3f5e2ec6a11abb0c7a9e41d3e3fd4 data/lingshi/recipe/skillet/cooked_salmon.json
+0c39fdabe7970065856b4adc9e9f3eae7690ea2d data/lingshi/recipe/skillet/fried_egg.json
 3563171190654e76637de2fa78a6c750389674d7 data/lingshi/recipe/spatula.json

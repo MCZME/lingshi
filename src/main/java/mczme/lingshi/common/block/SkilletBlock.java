@@ -59,7 +59,7 @@ public class SkilletBlock extends BaseEntityBlock {
 
     public ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
         if (pLevel.getBlockEntity(pPos) instanceof SkilletBlockEntity blockEntity) {
-            if (!blockEntity.container.isEmpty() && pStack.is(blockEntity.container.getItem())) {
+            if (!blockEntity.getItemStacks().getStackInSlot(5).isEmpty() && pStack.is(blockEntity.getItemStacks().getStackInSlot(5).getItem())) {
                 if (pPlayer.addItem(blockEntity.result)) {
                     pStack.consume(1, pPlayer);
                     blockEntity.clear();
@@ -111,6 +111,16 @@ public class SkilletBlock extends BaseEntityBlock {
             }
         }
         return InteractionResult.sidedSuccess(pLevel.isClientSide);
+    }
+
+    @Override
+    protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
+        if (pLevel.getBlockEntity(pPos) instanceof SkilletBlockEntity blockEntity) {
+            for (int i = 0; i < blockEntity.getMAX(); i++) {
+                Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY(), pPos.getZ(), blockEntity.dropItem());
+            }
+        }
+        super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
     }
 
     @Nullable

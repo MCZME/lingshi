@@ -1,0 +1,40 @@
+{
+  "type": "lingshi:cooking_pot",
+  "container": {
+    "braising_time": 0,
+    "container": {
+      "count": 1,
+      "id": "minecraft:bowl"
+    }
+  },
+  "fluid": {
+    "amount": 1000,
+    "id": "minecraft:water"
+  },
+  "group": "",
+  "ingredients": [
+    {
+      "item": "lingshi:rice"
+    },
+    {
+      "item": "lingshi:rice"
+    },
+    {
+      "item": "lingshi:rice"
+    },
+    {
+      "item": "lingshi:rice"
+    },
+    {
+      "item": "lingshi:rice"
+    },
+    {
+      "item": "lingshi:rice"
+    }
+  ],
+  "label": "boil",
+  "result": {
+    "count": 12,
+    "id": "lingshi:cooked_rice"
+  }
+}

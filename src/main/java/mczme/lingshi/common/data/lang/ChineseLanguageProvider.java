@@ -35,6 +35,7 @@ public class ChineseLanguageProvider extends LanguageProvider {
         this.add(ModItems.OIL_BUCKET.get(),"油桶");
 
         this.add(ModItems.FRIED_EGG.get(),"煎鸡蛋");
+        this.add(ModItems.COOKED_RICE.get(),"米饭");
 
     }
 }

@@ -79,7 +79,7 @@ public class Registry {
         });
 //        Cooking Pot
         event.registerBookCategories(COOKING_POT, ImmutableList.of(COOKING_POT_SEARCH.get(), COOKING_POT_POT_BOIL.get(), COOKING_POT_STEW.get(), COOKING_POT_DEEP_FRY.get(), COOKING_POT_MISC.get()));
-        event.registerAggregateCategory(SKILLET_SEARCH.get(), ImmutableList.of(COOKING_POT_POT_BOIL.get(), COOKING_POT_STEW.get(), COOKING_POT_DEEP_FRY.get(), COOKING_POT_MISC.get()));
+        event.registerAggregateCategory(COOKING_POT_SEARCH.get(), ImmutableList.of(COOKING_POT_POT_BOIL.get(), COOKING_POT_STEW.get(), COOKING_POT_DEEP_FRY.get(), COOKING_POT_MISC.get()));
         event.registerRecipeCategoryFinder(ModRecipes.COOKING_POT_RECIPE.get(), recipe ->
         {
             if (recipe.value() instanceof SkilletRecipe Recipe) {

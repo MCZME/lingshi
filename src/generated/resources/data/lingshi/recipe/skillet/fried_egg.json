@@ -4,7 +4,7 @@
     "amount": 100,
     "id": "lingshi:oil_source"
   },
-  "group": "Skillet",
+  "group": "",
   "ingredients": [
     {
       "item": "minecraft:egg"

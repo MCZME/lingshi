@@ -24,6 +24,7 @@ public class Recipes extends RecipeProvider {
         new ChoppingBoardRecipeDatagen(output);
         new SkilletRecipeDatagen(output);
         new CraftingRecipeDataGen(output);
+        new CookingPotRecipeDataGen(output);
     }
 
     public static Criterion<InventoryChangeTrigger.TriggerInstance> has(MinMaxBounds.Ints pCount, ItemLike pItem) {
