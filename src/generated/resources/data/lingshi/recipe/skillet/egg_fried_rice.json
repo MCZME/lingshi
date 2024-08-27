@@ -1,0 +1,28 @@
+{
+  "type": "lingshi:skillet",
+  "container": {
+    "container": {
+      "count": 1,
+      "id": "minecraft:bowl"
+    },
+    "stir_fry_count": 3
+  },
+  "fluid": {
+    "amount": 100,
+    "id": "lingshi:oil_source"
+  },
+  "group": "",
+  "ingredients": [
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "lingshi:rice"
+    }
+  ],
+  "label": "pan_fry",
+  "result": {
+    "count": 1,
+    "id": "lingshi:egg_fried_rice"
+  }
+}
