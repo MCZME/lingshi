@@ -1,7 +1,8 @@
-// 1.21	2024-08-28T02:16:16.4080139	Item Models: lingshi
+// 1.21	2024-08-28T02:42:11.0001379	Item Models: lingshi
 bad0cb5e093fa42331c2d4a1157d1a7b5b3fc588 assets/lingshi/models/item/chopping_board.json
 7bc27021669767547c0b0bd606195e5f80cea272 assets/lingshi/models/item/cooked_rice.json
 8106af92df770f5e2062db0b6aaed967fe386d87 assets/lingshi/models/item/cooking_pot.json
+37db2e9897cd20f19d58456cafcb898f113c1d4b assets/lingshi/models/item/egg_fried_rice.json
 014b17c43a62c41d623a0d944e434cf1ac3986be assets/lingshi/models/item/fried_egg.json
 249957a6811e300efca306db358e468855851d73 assets/lingshi/models/item/iron_knife.json
 b767fc7952daf0eff3485fe4d8c06c5bba930c22 assets/lingshi/models/item/oil_bucket.json

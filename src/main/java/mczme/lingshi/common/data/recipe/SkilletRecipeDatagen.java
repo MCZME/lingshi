@@ -2,6 +2,7 @@ package mczme.lingshi.common.data.recipe;
 
 import mczme.lingshi.client.recipebook.CookingFoodRecipeLabel;
 import mczme.lingshi.common.data.builder.SkilletRecipeBuilder;
+import mczme.lingshi.common.recipe.SkilletRecipe;
 import mczme.lingshi.common.registry.ModFluids;
 import mczme.lingshi.common.registry.ModItems;
 import mczme.lingshi.lingshi;
@@ -43,7 +44,10 @@ public class SkilletRecipeDatagen {
         build(List.of(Ingredient.of(Items.EGG)),new FluidStack(ModFluids.OIL_SOURCE.get(),100),new ItemStack(ModItems.FRIED_EGG.get()))
                 .setLabel(CookingFoodRecipeLabel.PAN_FRY).save(output,create("fried_egg"));
         //  炒
-
+        build(List.of(Ingredient.of(Items.EGG),Ingredient.of(ModItems.RICE.get())),new FluidStack(ModFluids.OIL_SOURCE.get(),100),new ItemStack(ModItems.EGG_FRIED_RICE.get()))
+                .setLabel(CookingFoodRecipeLabel.PAN_FRY)
+                .setContainer(new SkilletRecipe.SkilletCookingContainer(new ItemStack(Items.BOWL),3))
+                .save(output,create("egg_fried_rice"));
         //  煮
     }
 

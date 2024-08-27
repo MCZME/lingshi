@@ -24,10 +24,11 @@ public class BlockTags extends BlockTagsProvider {
     protected void addTags(HolderLookup.@NotNull Provider pProvider) {
 //        斧 可挖掘
         tag(MINEABLE_WITH_AXE).add(ModBlocks.CHOPPING_BOARD.get());
-
+//        镐 可挖掘
+        tag(MINEABLE_WITH_PICKAXE).add(ModBlocks.COOKING_POT.get());
+        tag(MINEABLE_WITH_PICKAXE).add(ModBlocks.SKILLET.get());
 //        热源方块
-        tag(HEAT_SOURCE).add(Blocks.CAMPFIRE,
-                Blocks.MAGMA_BLOCK);
+        tag(HEAT_SOURCE).add(Blocks.CAMPFIRE, Blocks.MAGMA_BLOCK);
 
 //        可以支撑方块
         tag(CAN_SUPPORT).add(Blocks.CAMPFIRE);

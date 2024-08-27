@@ -32,9 +32,9 @@ public class ModBlocks {
             BlockBehaviour.Properties.of().randomTicks().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY));
 
     public static final Supplier<SkilletBlock> SKILLET = BLOCKS.registerBlock("skillet", SkilletBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_ORE));
+            BlockBehaviour.Properties.of().destroyTime(1.5F));
     public static final Supplier<CookingPotBlock> COOKING_POT = BLOCKS.registerBlock("cooking_pot", CookingPotBlock::new,
-    BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_ORE));
+    BlockBehaviour.Properties.of().destroyTime(1.5F));
     public static final Supplier<ChoppingBoardBlock> CHOPPING_BOARD = BLOCKS.registerBlock("chopping_board", ChoppingBoardBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
 

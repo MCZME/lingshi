@@ -45,6 +45,21 @@ public class CraftingRecipeDataGen {
                 .define('A', Items.IRON_INGOT)
                 .unlockedBy("has_iron_ingot", has(ItemTags.PLANKS))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.COOKING_POT.get())
+                .pattern("A A")
+                .pattern("X X")
+                .pattern("XXX")
+                .define('X', ItemTags.TERRACOTTA)
+                .define('A', Items.IRON_INGOT)
+                .unlockedBy("has_iron_ingot", has(ItemTags.TERRACOTTA))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.POT_LID.get())
+                .pattern(" A ")
+                .pattern("XXX")
+                .define('X', ItemTags.TERRACOTTA)
+                .define('A', Items.IRON_INGOT)
+                .unlockedBy("has_iron_ingot", has(ItemTags.TERRACOTTA))
+                .save(output);
     }
 
 }

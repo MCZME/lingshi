@@ -53,9 +53,15 @@ public class CookingPotBlock extends BaseEntityBlock {
     public ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
         if (pLevel.getBlockEntity(pPos) instanceof CookingPotBlockEntity blockEntity) {
             if (!blockEntity.getItemStacks().getStackInSlot(6).isEmpty() && pStack.is(blockEntity.getItemStacks().getStackInSlot(6).getItem())) {
-                if(pPlayer.addItem(new ItemStack(blockEntity.getItemStacks().getStackInSlot(7).getItem(),1))){
+                if (pPlayer.addItem(new ItemStack(blockEntity.getItemStacks().getStackInSlot(7).getItem(), 1))) {
                     blockEntity.getItemStacks().getStackInSlot(7).shrink(1);
                     pStack.consume(1, pPlayer);
+                    blockEntity.setChanged();
+                    return ItemInteractionResult.SUCCESS;
+                }
+            } else if (pStack.is(ModItems.SPATULA.get())) {
+                if (blockEntity.size() == 0) {
+                    blockEntity.setFluid(FluidStack.EMPTY);
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;
                 }
@@ -71,9 +77,9 @@ public class CookingPotBlock extends BaseEntityBlock {
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;
                 }
-                if(pStack.getCount()<=16) {
+                if (pStack.getCount() <= 16) {
                     blockEntity.setItem(pStack.consumeAndReturn(pStack.getCount(), pPlayer));
-                }else {
+                } else {
                     blockEntity.setItem(pStack.consumeAndReturn(16, pPlayer));
                 }
                 blockEntity.setChanged();
@@ -91,7 +97,7 @@ public class CookingPotBlock extends BaseEntityBlock {
             if (pState.getValue(COVER)) {
                 pLevel.setBlockAndUpdate(pPos, pState.setValue(COVER, false));
                 Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY() + 0.7, pPos.getZ(), new ItemStack(ModItems.POT_LID.get()));
-                blockEntity.stewingTime=0;
+                blockEntity.stewingTime = 0;
                 return InteractionResult.SUCCESS;
             } else if (pPlayer.isShiftKeyDown()) {
                 pPlayer.openMenu(blockEntity, pPos);
@@ -109,7 +115,7 @@ public class CookingPotBlock extends BaseEntityBlock {
     @Override
     protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         if (pLevel.getBlockEntity(pPos) instanceof CookingPotBlockEntity blockEntity) {
-            if(!pNewState.is(ModBlocks.COOKING_POT.get())) {
+            if (!pNewState.is(ModBlocks.COOKING_POT.get())) {
                 for (int i = 0; i < blockEntity.getMAX(); i++) {
                     Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY(), pPos.getZ(), blockEntity.dropItem());
                 }
