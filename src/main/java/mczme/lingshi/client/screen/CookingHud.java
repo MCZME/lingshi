@@ -81,15 +81,15 @@ public class CookingHud implements LayeredDraw.Layer {
             int j = 0;
             if (!result.isEmpty()||!itemStackHandler.getStackInSlot(7).isEmpty()) {
                 if(!result.isEmpty()){
-                    pGuiGraphics.renderItem(result, X - 18, Y);
+                    pGuiGraphics.renderItem(result, X+18, Y);
                 } else if (!itemStackHandler.getStackInSlot(7).isEmpty()) {
-                    pGuiGraphics.renderItem(itemStackHandler.getStackInSlot(7), X - 18, Y);
+                    pGuiGraphics.renderItem(itemStackHandler.getStackInSlot(7), X + 18, Y);
                 }
-                pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, String.valueOf(itemStackHandler.getStackInSlot(7).getCount()), X + 24, Y + 6, 0xffffff);
-                pGuiGraphics.blit(HUD_Sprite, X, Y , 16, 16, 0, 36,16,16, 64, 64);
-                pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, String.valueOf(itemStackHandler.getStackInSlot(7).getCount()), X + 24, Y + 6, 0xffffff);
+                pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, String.valueOf(itemStackHandler.getStackInSlot(7).getCount()), X + 42, Y + 6, 0xffffff);
+                pGuiGraphics.blit(HUD_Sprite, X-18, Y , 16, 16, 16, 36,16,16, 64, 64);
+                pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, String.valueOf(Count/20), X + 6, Y + 6, 0xffffff);
                 if (!container.isEmpty()) {
-                    pGuiGraphics.renderItem(container, X + 36, Y);
+                    pGuiGraphics.renderItem(container, X + 48, Y);
                 }
                 j++;
             }

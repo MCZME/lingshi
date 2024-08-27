@@ -31,6 +31,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
@@ -126,6 +127,7 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
         }
         fluidStacks = FluidStack.EMPTY;
         clearTime();
+        stewingTime=0;
     }
 
     public void clearTime() {
@@ -181,6 +183,7 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
         if (!result.isEmpty()) {
             tag.put("result", result.save(pRegistries));
         }
+        tag.putInt("count", stewingTime);
         return tag;
     }
 
@@ -200,6 +203,7 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
         } else {
             result = ItemStack.EMPTY;
         }
+        stewingTime = pTag.getInt("count");
     }
 
     @Override
@@ -213,6 +217,7 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
         if (!result.isEmpty()) {
             pTag.put("result", result.save(pRegistries));
         }
+        pTag.putInt("count", stewingTime);
     }
 
     private void saveCookingTime(CompoundTag nbt) {
@@ -233,7 +238,7 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
     }
 
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return Component.translatable("gui." + lingshi.MODID + ".cooking_pot_menu");
     }
 
@@ -305,12 +310,12 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
                             cooked_size++;
                         }
                     }
-                }else{
+                }else {
                     blockEntity.stewingTime++;
                 }
 //              结果判断
                 blockEntity.result=result1;
-                if (cooked_size == blockEntity.size()  && !blockEntity.result.isEmpty() && fluid_heated && itemStackHandler.getStackInSlot(7).getCount()<=64&&blockEntity.stewingTime>= stewTime) {
+                if (cooked_size == blockEntity.size()  && !blockEntity.result.isEmpty() && fluid_heated && itemStackHandler.getStackInSlot(7).getCount()<=64&&blockEntity.stewingTime/20>= stewTime) {
                     itemStackHandler.setStackInSlot(6,optional.map(RecipeHolder::value)
                             .map(e -> e.getContainer().container())
                             .orElse(ItemStack.EMPTY));

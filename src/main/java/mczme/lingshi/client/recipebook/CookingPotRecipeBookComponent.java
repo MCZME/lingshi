@@ -1,8 +1,11 @@
 package mczme.lingshi.client.recipebook;
 
 import mczme.lingshi.common.recipe.CookingPotRecipe;
+import mczme.lingshi.lingshi;
+import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
 import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -12,6 +15,14 @@ import java.util.Iterator;
 import java.util.List;
 
 public class CookingPotRecipeBookComponent extends RecipeBookComponent {
+
+    private static final WidgetSprites FILTER_SPRITES = new WidgetSprites(
+            ResourceLocation.fromNamespaceAndPath(lingshi.MODID,"recipe_book/pot_enabled"),
+            ResourceLocation.fromNamespaceAndPath(lingshi.MODID,"recipe_book/pot_disabled"),
+            ResourceLocation.fromNamespaceAndPath(lingshi.MODID,"recipe_book/pot_enabled_highlighted"),
+            ResourceLocation.fromNamespaceAndPath(lingshi.MODID,"recipe_book/pot_disabled_highlighted")
+    );
+
     @Override
     public void setupGhostRecipe(RecipeHolder<?> pRecipe, List<Slot> pSlots) {
         CookingPotRecipe Recipe = (CookingPotRecipe) pRecipe.value();
@@ -38,8 +49,8 @@ public class CookingPotRecipeBookComponent extends RecipeBookComponent {
         }
     }
 
-//    @Override
-//    protected void initFilterButtonTextures() {
-//        this.filterButton.initTextureValues(FILTER_SPRITES);
-//    }
+    @Override
+    protected void initFilterButtonTextures() {
+        this.filterButton.initTextureValues(FILTER_SPRITES);
+    }
 }

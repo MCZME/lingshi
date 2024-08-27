@@ -2,6 +2,7 @@ package mczme.lingshi.common.block;
 
 import com.mojang.serialization.MapCodec;
 import mczme.lingshi.common.block.entity.CookingPotBlockEntity;
+import mczme.lingshi.common.registry.ModBlocks;
 import mczme.lingshi.common.registry.ModFluids;
 import mczme.lingshi.common.registry.ModItems;
 import net.minecraft.core.BlockPos;
@@ -90,6 +91,7 @@ public class CookingPotBlock extends BaseEntityBlock {
             if (pState.getValue(COVER)) {
                 pLevel.setBlockAndUpdate(pPos, pState.setValue(COVER, false));
                 Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY() + 0.7, pPos.getZ(), new ItemStack(ModItems.POT_LID.get()));
+                blockEntity.stewingTime=0;
                 return InteractionResult.SUCCESS;
             } else if (pPlayer.isShiftKeyDown()) {
                 pPlayer.openMenu(blockEntity, pPos);
@@ -107,8 +109,10 @@ public class CookingPotBlock extends BaseEntityBlock {
     @Override
     protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         if (pLevel.getBlockEntity(pPos) instanceof CookingPotBlockEntity blockEntity) {
-            for (int i = 0; i < blockEntity.getMAX(); i++) {
-                Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY(), pPos.getZ(), blockEntity.dropItem());
+            if(!pNewState.is(ModBlocks.COOKING_POT.get())) {
+                for (int i = 0; i < blockEntity.getMAX(); i++) {
+                    Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY(), pPos.getZ(), blockEntity.dropItem());
+                }
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
