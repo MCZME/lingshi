@@ -11,7 +11,7 @@
     "amount": 1000,
     "id": "minecraft:water"
   },
-  "group": "",
+  "group": "rice",
   "ingredients": [
     {
       "item": "lingshi:rice"

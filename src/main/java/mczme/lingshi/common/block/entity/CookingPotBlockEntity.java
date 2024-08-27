@@ -337,5 +337,4 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
             blockEntity.setChanged();
         }
     }
-
 }

@@ -24,15 +24,15 @@ public class CookingPotRecipeDataGen {
 
     protected void buildRecipes(RecipeOutput output) {
         build(List.of(Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.RICE.get())),new FluidStack(Fluids.WATER,1000),new ItemStack(ModItems.COOKED_RICE.get(),8),CookingFoodRecipeLabel.BOIL)
-                .unlockedBy("has_rice", has(ModItems.RICE.get()))
+                .unlockedBy("has_rice", has(ModItems.RICE.get())).group("rice")
                 .setContainer(new CookingPotRecipe.CookingPotContainer(new ItemStack(Items.BOWL),0))
                 .save(output,create("cooked_rice"));
         build(List.of(Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.RICE.get())),new FluidStack(Fluids.WATER,1000),new ItemStack(ModItems.COOKED_RICE.get(),10),CookingFoodRecipeLabel.BOIL)
-                .unlockedBy("has_rice", has(ModItems.RICE.get()))
+                .unlockedBy("has_rice", has(ModItems.RICE.get())).group("rice")
                 .setContainer(new CookingPotRecipe.CookingPotContainer(new ItemStack(Items.BOWL),0))
                 .save(output,create("cooked_rice_1"));
         build(List.of(Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.RICE.get())),new FluidStack(Fluids.WATER,1000),new ItemStack(ModItems.COOKED_RICE.get(),12),CookingFoodRecipeLabel.BOIL)
-                .unlockedBy("has_rice", has(ModItems.RICE.get()))
+                .unlockedBy("has_rice", has(ModItems.RICE.get())).group("rice")
                 .setContainer(new CookingPotRecipe.CookingPotContainer(new ItemStack(Items.BOWL),0))
                 .save(output,create("cooked_rice_2"));
 
