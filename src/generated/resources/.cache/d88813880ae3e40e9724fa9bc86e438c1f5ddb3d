@@ -1,5 +1,5 @@
-// 1.21	2024-08-28T02:56:53.2804386	Tags for minecraft:block mod id lingshi
+// 1.21	2024-08-28T08:40:40.9936741	Tags for minecraft:block mod id lingshi
 639716446e0ad4bc759f5d086b91d0e4a9215ab7 data/lingshi/tags/block/can_support.json
-8f3ae1f87856cf69d686ec0be92f6b700f51bd30 data/lingshi/tags/block/heat_source.json
+32c23f06ab44da6f1bd718c63c5ae376f033b411 data/lingshi/tags/block/heat_source.json
 e00d57f2828f9f55903e8c8c9f4b95dfeca4135d data/minecraft/tags/block/mineable/axe.json
 5edc606bce3187f422626ac4390c718b9b4f881b data/minecraft/tags/block/mineable/pickaxe.json

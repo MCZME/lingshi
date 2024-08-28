@@ -17,6 +17,7 @@ public class PotLid extends Item {
         if(pContext.getLevel().getBlockState(pContext.getClickedPos()).is(ModBlocks.COOKING_POT.get())){
             if(!pContext.getLevel().getBlockState(pContext.getClickedPos()).getValue(COVER)) {
                 pContext.getLevel().setBlockAndUpdate(pContext.getClickedPos(), pContext.getLevel().getBlockState(pContext.getClickedPos()).setValue(COVER, true));
+                pContext.getItemInHand().consume(1, pContext.getPlayer());
             }
             return InteractionResult.SUCCESS;
         }

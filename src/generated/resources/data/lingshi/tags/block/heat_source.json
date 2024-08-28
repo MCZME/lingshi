@@ -1,6 +1,7 @@
 {
   "values": [
     "minecraft:campfire",
-    "minecraft:magma_block"
+    "minecraft:magma_block",
+    "lingshi:stove"
   ]
 }

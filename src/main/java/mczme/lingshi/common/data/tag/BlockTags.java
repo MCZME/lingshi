@@ -28,7 +28,7 @@ public class BlockTags extends BlockTagsProvider {
         tag(MINEABLE_WITH_PICKAXE).add(ModBlocks.COOKING_POT.get());
         tag(MINEABLE_WITH_PICKAXE).add(ModBlocks.SKILLET.get());
 //        热源方块
-        tag(HEAT_SOURCE).add(Blocks.CAMPFIRE, Blocks.MAGMA_BLOCK);
+        tag(HEAT_SOURCE).add(Blocks.CAMPFIRE, Blocks.MAGMA_BLOCK,ModBlocks.STOVE.get());
 
 //        可以支撑方块
         tag(CAN_SUPPORT).add(Blocks.CAMPFIRE);

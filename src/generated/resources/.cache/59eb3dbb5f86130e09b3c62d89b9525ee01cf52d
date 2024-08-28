@@ -1,6 +1,7 @@
-// 1.21	2024-08-22T18:03:26.4830973	Loot Tables
+// 1.21	2024-08-28T08:40:40.9916727	Loot Tables
 032b2242788b8411178136ca48214246ef2af8a9 data/lingshi/loot_table/blocks/chopping_board.json
 63e60d75a79e0a64eb6338f6bc98dddd6a8d6a0b data/lingshi/loot_table/blocks/cooking_pot.json
 67cc122cf5e7e5865ff9bc81fec6e8371225b0d6 data/lingshi/loot_table/blocks/skillet.json
+ac9b000c0cff0859a940afc1f40de52b939a1c68 data/lingshi/loot_table/blocks/stove.json
 c843630bb0739aad37078f0119c9cc31f5316c3a data/lingshi/loot_table/blocks/tea_leaf.json
 3cd0ced47f090fec162cddcb8b2f75284fa134cb data/lingshi/loot_table/blocks/tea_tree.json

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:campfire"
+    },
+    "X": {
+      "item": "minecraft:mud_bricks"
+    }
+  },
+  "pattern": [
+    "X X",
+    "XAX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "lingshi:stove"
+  }
+}

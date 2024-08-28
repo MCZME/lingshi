@@ -23,6 +23,7 @@ public class ItemModels extends ItemModelProvider {
 
         basicItem(ModItems.OIL_BUCKET.get());
 
+        withExistingParent(String.valueOf(ModItems.STOVE.get()), modLoc("block/stove"));
         withExistingParent(String.valueOf(ModItems.COOKING_POT.get()), modLoc("block/cooking_pot"));
         withExistingParent(String.valueOf(ModItems.CHOPPING_BOARD.get()), modLoc("block/chopping_board"));
         withExistingParent(String.valueOf(ModItems.SKILLET.get()), modLoc("block/skillet"));

@@ -60,6 +60,13 @@ public class CraftingRecipeDataGen {
                 .define('A', Items.IRON_INGOT)
                 .unlockedBy("has_iron_ingot", has(ItemTags.TERRACOTTA))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.STOVE.get())
+                .pattern("X X")
+                .pattern("XAX")
+                .define('X', Items.MUD_BRICKS)
+                .define('A', Items.CAMPFIRE)
+                .unlockedBy("has_iron_ingot", has(Items.MUD_BRICKS))
+                .save(output);
     }
 
 }

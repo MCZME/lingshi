@@ -39,6 +39,7 @@ public class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
 
     public static final Supplier<LiquidBlock> OIL_LIQUID_BLOCK = BLOCKS.register("oil_liquid_block",()->new OilBlock(ModFluids.OIL_SOURCE.get(),BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
+    public static final Supplier<StoveBlock> STOVE = BLOCKS.register("stove", ()->new StoveBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FURNACE)));
 
     public static void register(IEventBus modEventBus) {
         BLOCKS.register(modEventBus);

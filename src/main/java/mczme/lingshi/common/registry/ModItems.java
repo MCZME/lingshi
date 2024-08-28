@@ -32,6 +32,7 @@ public class ModItems {
     public static final Supplier<Item> SPATULA = registerWithCreateTab("spatula", () -> new SpatulaItem(new Item.Properties().stacksTo(1)));
     public static final Supplier<Item> IRON_KNIFE = registerWithCreateTab("iron_knife", () -> new KnifeItem(Tiers.IRON, new Item.Properties().attributes(SwordItem.createAttributes(Tiers.IRON, 3, -2.4F))));
 
+    public static final Supplier<Item> STOVE = registerWithCreateTab("stove", () -> new BlockItem(ModBlocks.STOVE.get(), new Item.Properties()));
     public static final Supplier<Item> OIL_BUCKET = registerWithCreateTab("oil_bucket", () -> new BucketItem(ModFluids.OIL_SOURCE.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 
     public static final Supplier<Item> STRANGE_FOOD = registerWithCreateTab("strange_food", () -> new Item(new Item.Properties()));
