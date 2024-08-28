@@ -34,10 +34,13 @@ public class ChineseLanguageProvider extends LanguageProvider {
 
         this.add(ModItems.STOVE.get(), "炉灶");
         this.add(ModItems.OIL_BUCKET.get(),"油桶");
-
+//      食物
         this.add(ModItems.FRIED_EGG.get(),"煎鸡蛋");
         this.add(ModItems.COOKED_RICE.get(),"米饭");
         this.add(ModItems.EGG_FRIED_RICE.get(), "蛋炒饭");
+        this.add(ModItems.FLOUR.get(), "面粉");
+        this.add(ModItems.DOUGH.get(), "面团");
+        this.add(ModItems.NOODLES.get(), "面条");
 
     }
 }

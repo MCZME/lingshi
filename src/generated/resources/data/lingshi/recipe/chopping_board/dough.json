@@ -1,0 +1,15 @@
+{
+  "type": "lingshi:chopping_board",
+  "input": {
+    "item": "lingshi:flour"
+  },
+  "result": [
+    {
+      "count": 1,
+      "id": "lingshi:dough"
+    }
+  ],
+  "tool": {
+    "item": "minecraft:water_bucket"
+  }
+}

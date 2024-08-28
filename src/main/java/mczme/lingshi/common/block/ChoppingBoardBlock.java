@@ -2,7 +2,7 @@ package mczme.lingshi.common.block;
 
 import com.mojang.serialization.MapCodec;
 import mczme.lingshi.common.block.entity.ChoppingBoardBlockEntity;
-import mczme.lingshi.common.tag.NeoforgeTags;
+import mczme.lingshi.common.tag.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.Containers;
@@ -62,7 +62,7 @@ public class ChoppingBoardBlock extends BaseEntityBlock {
     public ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
         if (pLevel.getBlockEntity(pPos) instanceof ChoppingBoardBlockEntity blockEntity) {
             if (!pStack.isEmpty()) {
-                if (pStack.is(NeoforgeTags.KNIFE) && !blockEntity.getTheItem().isEmpty()) {
+                if (pStack.is(ModTags.ChoppingBoard_TOOL) && !blockEntity.getTheItem().isEmpty()) {
                     List<ItemStack> stacks = blockEntity.getRecipeAndResult(pPlayer.getMainHandItem());
                     if (stacks == null || stacks.isEmpty()) {
                         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
@@ -74,7 +74,7 @@ public class ChoppingBoardBlock extends BaseEntityBlock {
                     }
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;
-                } else if (pStack.is(NeoforgeTags.KNIFE) && blockEntity.getTheItem().isEmpty() && !pPlayer.getItemInHand(InteractionHand.OFF_HAND).isEmpty()) {
+                } else if (pStack.is(ModTags.ChoppingBoard_TOOL) && blockEntity.getTheItem().isEmpty() && !pPlayer.getItemInHand(InteractionHand.OFF_HAND).isEmpty()) {
                     blockEntity.setTheItem(pPlayer.getItemInHand(InteractionHand.OFF_HAND).consumeAndReturn(1, pPlayer));
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;

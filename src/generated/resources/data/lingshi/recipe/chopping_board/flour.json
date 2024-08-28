@@ -1,0 +1,15 @@
+{
+  "type": "lingshi:chopping_board",
+  "input": {
+    "item": "minecraft:wheat"
+  },
+  "result": [
+    {
+      "count": 1,
+      "id": "lingshi:flour"
+    }
+  ],
+  "tool": {
+    "tag": "neoforge:knife"
+  }
+}

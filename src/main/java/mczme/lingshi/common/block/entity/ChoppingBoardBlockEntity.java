@@ -3,7 +3,7 @@ package mczme.lingshi.common.block.entity;
 import mczme.lingshi.common.recipe.ChoppingBoardRecipe;
 import mczme.lingshi.common.registry.BlockEntityTypes;
 import mczme.lingshi.common.registry.ModRecipes;
-import mczme.lingshi.common.tag.NeoforgeTags;
+import mczme.lingshi.common.tag.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -69,7 +69,7 @@ public class ChoppingBoardBlockEntity extends BlockEntity implements ContainerSi
         if (level.isClientSide()) {
             return null;
         }
-        if(tool.is(NeoforgeTags.KNIFE)) {
+        if(tool.is(ModTags.ChoppingBoard_TOOL)) {
             RecipeManager recipes = level.getRecipeManager();
             Optional<RecipeHolder<ChoppingBoardRecipe>> optional = recipes.getRecipeFor(
                     ModRecipes.CHOPPING_BOARD_RECIPE.get(),
