@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import static mczme.lingshi.common.block.RiceSeedlingBlock.EMERGE;
 import static mczme.lingshi.common.block.RiceSeedlingBlock.WATERLOGGED;
 
 public class RiceSeedlingTopBlock extends CropBlock {
@@ -53,7 +54,7 @@ public class RiceSeedlingTopBlock extends CropBlock {
         }
         pLevel.setBlock(pPos, this.getStateForAge(i), 2);
         if (i == 4) {
-            pLevel.setBlockAndUpdate(pPos.below(), pLevel.getBlockState(pPos.below()).setValue(WATERLOGGED, false));
+            pLevel.setBlockAndUpdate(pPos.below(), pLevel.getBlockState(pPos.below()).setValue(WATERLOGGED, false).setValue(EMERGE,true));
         }
     }
 

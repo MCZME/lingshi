@@ -42,6 +42,7 @@ public class ModItems {
     public static final Supplier<Item> FLOUR = registerWithCreateTab("flour", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> DOUGH = registerWithCreateTab("dough", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> NOODLES = registerWithCreateTab("noodles", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(1f).build())));
+    public static final Supplier<Item> PIG_FEET = registerWithCreateTab("pig_feet", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(3f).build())));
 
     private static Supplier<Item> registerWithCreateTab(String item_name, Supplier<Item> itemSupplier) {
         Supplier<Item> item = ITEMS.register(item_name, itemSupplier);
