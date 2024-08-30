@@ -13,7 +13,7 @@ public class ChineseLanguageProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        this.add("lingshi.lingshi_tab", "灵食");
+        this.add("lingshi.lingshi_tab", "零食");
 
         this.add(ModItems.RICE.get(), "稻米");
         this.add(ModItems.RICE_SEEDLING.get(), "稻苗");
@@ -45,6 +45,7 @@ public class ChineseLanguageProvider extends LanguageProvider {
         this.add(ModItems.DOUGH.get(), "面团");
         this.add(ModItems.NOODLES.get(), "面条");
         this.add(ModItems.PIG_FEET.get(), "猪蹄");
+        this.add(ModItems.PORK_FEET_RICE.get(), "猪脚饭");
 
     }
 }

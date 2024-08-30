@@ -55,16 +55,17 @@ public class CookingPotBlock extends BaseEntityBlock {
             if (!blockEntity.getItemStacks().getStackInSlot(6).isEmpty() && pStack.is(blockEntity.getItemStacks().getStackInSlot(6).getItem())) {
                 if (pPlayer.addItem(new ItemStack(blockEntity.getItemStacks().getStackInSlot(7).getItem(), 1))) {
                     blockEntity.getItemStacks().getStackInSlot(7).shrink(1);
-                    pStack.consume(1, pPlayer);
+                    if(!pStack.is(ModItems.SPATULA.get())){
+                        pStack.consume(1, pPlayer);
+                    }
+                    blockEntity.stewingTime = 0;
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;
                 }
             } else if (pStack.is(ModItems.SPATULA.get())) {
-                if (blockEntity.size() == 0) {
-                    blockEntity.setFluid(FluidStack.EMPTY);
-                    blockEntity.setChanged();
-                    return ItemInteractionResult.SUCCESS;
-                }
+                blockEntity.clearDrop(pLevel,pPos);
+                blockEntity.setChanged();
+                return ItemInteractionResult.SUCCESS;
             } else if (!blockEntity.isFull() && !pStack.isEmpty() && !pStack.is(ModItems.POT_LID.get()) && !pState.getValue(COVER)) {
                 if (pStack.is(Items.WATER_BUCKET)) {
                     blockEntity.setFluid(new FluidStack(Fluids.WATER, 1000));
@@ -97,7 +98,6 @@ public class CookingPotBlock extends BaseEntityBlock {
             if (pState.getValue(COVER)) {
                 pLevel.setBlockAndUpdate(pPos, pState.setValue(COVER, false));
                 Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY() + 0.7, pPos.getZ(), new ItemStack(ModItems.POT_LID.get()));
-                blockEntity.stewingTime = 0;
                 return InteractionResult.SUCCESS;
             } else if (pPlayer.isShiftKeyDown()) {
                 pPlayer.openMenu(blockEntity, pPos);

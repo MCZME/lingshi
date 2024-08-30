@@ -61,7 +61,9 @@ public class SkilletBlock extends BaseEntityBlock {
         if (pLevel.getBlockEntity(pPos) instanceof SkilletBlockEntity blockEntity) {
             if (!blockEntity.getItemStacks().getStackInSlot(5).isEmpty() && pStack.is(blockEntity.getItemStacks().getStackInSlot(5).getItem())) {
                 if (pPlayer.addItem(blockEntity.result)) {
-                    pStack.consume(1, pPlayer);
+                    if(!pStack.is(ModItems.SPATULA.get())){
+                        pStack.consume(1, pPlayer);
+                    }
                     blockEntity.clear();
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;

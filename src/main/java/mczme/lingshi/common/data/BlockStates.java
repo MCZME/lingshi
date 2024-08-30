@@ -23,6 +23,7 @@ public class BlockStates extends BlockStateProvider {
     protected void registerStatesAndModels() {
 
         horizontalBlock(ModBlocks.CHOPPING_BOARD.get(), "block/chopping_board");
+//        horizontalBlock(ModBlocks.PORK_FEET_RICE.get(), "block/cooking_pot");
     }
 
     private void horizontalBlock(Block block, String modelLocation) {

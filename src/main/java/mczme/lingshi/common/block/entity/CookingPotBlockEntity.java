@@ -8,6 +8,7 @@ import mczme.lingshi.common.datamap.ingredient.CookingFoodData;
 import mczme.lingshi.common.recipe.CookingPotRecipe;
 import mczme.lingshi.common.recipe.input.CookingFoodRecipeInput;
 import mczme.lingshi.common.registry.BlockEntityTypes;
+import mczme.lingshi.common.registry.ModItems;
 import mczme.lingshi.common.registry.ModRecipes;
 import mczme.lingshi.lingshi;
 import net.minecraft.core.BlockPos;
@@ -19,6 +20,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -44,7 +46,7 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
     private final int MAX_SLOT = 6;
 
     private FluidStack fluidStacks = FluidStack.EMPTY;
-    private final CookingItemStackHandler itemStackHandler = new CookingItemStackHandler(MAX_SLOT + 2,16);
+    private final CookingItemStackHandler itemStackHandler = new CookingItemStackHandler(MAX_SLOT + 2, 16);
 
     private final int[] cookingTime = new int[MAX_SLOT + 1];
     public ItemStack result = ItemStack.EMPTY;
@@ -120,6 +122,19 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
         return size;
     }
 
+    public void clearDrop(Level pLevel, BlockPos pPos) {
+        result = ItemStack.EMPTY;
+        for (int i = 0; i < MAX_SLOT; i++) {
+            if (!itemStackHandler.getStackInSlot(i).isEmpty()) {
+                Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY() + 0.5, pPos.getZ(), dropItem());
+                itemStackHandler.setStackInSlot(i, ItemStack.EMPTY);
+            }
+        }
+        fluidStacks = FluidStack.EMPTY;
+        clearTime();
+        stewingTime = 0;
+    }
+
     public void clear() {
         result = ItemStack.EMPTY;
         for (int i = 0; i < MAX_SLOT; i++) {
@@ -127,7 +142,7 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
         }
         fluidStacks = FluidStack.EMPTY;
         clearTime();
-        stewingTime=0;
+        stewingTime = 0;
     }
 
     public void clearTime() {
@@ -140,22 +155,22 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
     }
 
     @Override
-    public ItemStack getResult(){
+    public ItemStack getResult() {
         return result;
     }
 
-    public void consume(int count){
+    public void consume(int count) {
         if (count > 0) {
             boolean t = true;
             for (int i = 0; i < MAX_SLOT; i++) {
                 if (!itemStackHandler.getStackInSlot(i).isEmpty()) {
                     itemStackHandler.getStackInSlot(i).shrink(count);
-                    if(!itemStackHandler.getStackInSlot(i).isEmpty()){
-                        t=false;
+                    if (!itemStackHandler.getStackInSlot(i).isEmpty()) {
+                        t = false;
                     }
                 }
             }
-            if(t){
+            if (t) {
                 clear();
             }
         }
@@ -260,9 +275,9 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
         }
         if (heat_flag) {
             if (!flag) {
-                int cookedTime = 0;
-                int cooked_size = 0;
-                boolean fluid_heated= blockEntity.getFluid().isEmpty();
+                int cookedTime = 0, burntTime = 0;
+                int cooked_size = 0, burnt_size = 0;
+                boolean fluid_heated = blockEntity.getFluid().isEmpty();
 //              获取配方
                 CookingFoodRecipeInput input = new CookingFoodRecipeInput(inputStackHandler, blockEntity.getFluid());
                 Optional<RecipeHolder<CookingPotRecipe>> optional = pLevel.getRecipeManager().getRecipeFor(
@@ -274,10 +289,10 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
                         .map(e -> e.assemble(input, pLevel.registryAccess()))
                         .orElse(ItemStack.EMPTY);
                 int stewTime = optional.map(RecipeHolder::value)
-                        .map(e->e.getContainer().braisingTime())
+                        .map(e -> e.getContainer().braisingTime())
                         .orElse(0);
                 //cookProgress
-                if(!blockState.getValue(COVER)&&(itemStackHandler.getStackInSlot(7).isEmpty()||(itemStackHandler.getStackInSlot(7).is(result1.getItem())&&itemStackHandler.getStackInSlot(7).getCount()<64))){
+                if (!blockState.getValue(COVER) && (itemStackHandler.getStackInSlot(7).isEmpty() || (itemStackHandler.getStackInSlot(7).is(result1.getItem()) && itemStackHandler.getStackInSlot(7).getCount() < 64))) {
                     for (int i = 0; i < MAX_SLOT + 1; i++) {
                         //fluid
                         if (i == MAX_SLOT) {
@@ -304,32 +319,40 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
                         CookingFoodData cookingFoodData = itemStack.getItemHolder().getData(DataMapTypes.COOKING_FOOD_ITEM);
                         if (cookingFoodData != null) {
                             cookedTime = cookingFoodData.cookedTime();
+                            burntTime = cookingFoodData.burntTime();
                             blockEntity.cookingTime[i]++;
                         }
-                        if (blockEntity.cookingTime[i] > cookedTime * 20) {
+                        if (blockEntity.cookingTime[i] > burntTime * 20 && burntTime != 0) {
+                            burnt_size++;
+                        } else if (blockEntity.cookingTime[i] > cookedTime * 20 && cookedTime != 0) {
                             cooked_size++;
                         }
                     }
-                }else {
+                } else if (blockState.getValue(COVER)) {
                     blockEntity.stewingTime++;
                 }
 //              结果判断
-                blockEntity.result=result1;
-                if (cooked_size == blockEntity.size()  && !blockEntity.result.isEmpty() && fluid_heated && itemStackHandler.getStackInSlot(7).getCount()<=64&&blockEntity.stewingTime/20>= stewTime) {
-                    itemStackHandler.setStackInSlot(6,optional.map(RecipeHolder::value)
+                blockEntity.result = result1;
+                if (cooked_size == blockEntity.size() && !blockEntity.result.isEmpty() && fluid_heated && itemStackHandler.getStackInSlot(7).getCount() <= 64 && blockEntity.stewingTime / 20 >= stewTime) {
+                    itemStackHandler.setStackInSlot(6, optional.map(RecipeHolder::value)
                             .map(e -> e.getContainer().container())
                             .orElse(ItemStack.EMPTY));
-                    if(!itemStackHandler.getStackInSlot(7).isEmpty()){
+                    if (!itemStackHandler.getStackInSlot(7).isEmpty()) {
                         itemStackHandler.getStackInSlot(7).grow(blockEntity.getResult().getCount());
-                    }else {
-                        blockEntity.setItem(blockEntity.result,7);
+                    } else {
+                        blockEntity.setItem(blockEntity.result, 7);
                     }
                     blockEntity.consume(1);
+                } else if (burnt_size == blockEntity.size() && burnt_size != 0) {
+                    blockEntity.setItem(new ItemStack(ModItems.STRANGE_FOOD.get()), 7);
+                    blockEntity.setItem(new ItemStack(ModItems.SPATULA.get()),6);
+                    blockEntity.clear();
                 }
             } else {
-                if(itemStackHandler.getStackInSlot(7).isEmpty()){
+                if (itemStackHandler.getStackInSlot(7).isEmpty()) {
                     itemStackHandler.setStackInSlot(6, ItemStack.EMPTY);
                 }
+                blockEntity.stewingTime = 0;
                 blockEntity.clearTime();
                 blockEntity.result = ItemStack.EMPTY;
             }

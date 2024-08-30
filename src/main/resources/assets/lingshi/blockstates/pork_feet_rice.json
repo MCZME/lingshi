@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "amount=0,facing=east": {
+      "model": "lingshi:block/bowl",
+      "y": 270
+    },
+    "amount=0,facing=north": {
+      "model": "lingshi:block/bowl",
+      "y": 180
+    },
+    "amount=0,facing=south": {
+      "model": "lingshi:block/bowl"
+    },
+    "amount=0,facing=west": {
+      "model": "lingshi:block/bowl",
+      "y": 90
+    },
+    "amount=1,facing=east": {
+      "model": "lingshi:block/pork_feet_rice",
+      "y": 270
+    },
+    "amount=1,facing=north": {
+      "model": "lingshi:block/pork_feet_rice",
+      "y": 180
+    },
+    "amount=1,facing=south": {
+      "model": "lingshi:block/pork_feet_rice"
+    },
+    "amount=1,facing=west": {
+      "model": "lingshi:block/pork_feet_rice",
+      "y": 90
+    }
+  }
+}

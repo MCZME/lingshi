@@ -42,6 +42,8 @@ public class ModBlocks {
 
     public static final Supplier<LiquidBlock> OIL_LIQUID_BLOCK = BLOCKS.register("oil_liquid_block",()->new OilBlock(ModFluids.OIL_SOURCE.get(),BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
     public static final Supplier<StoveBlock> STOVE = BLOCKS.register("stove", ()->new StoveBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FURNACE)));
+//  可放置食物
+    public static final Supplier<FoodBlock> PORK_FEET_RICE = BLOCKS.register("pork_feet_rice", ()->new FoodBlock(BlockBehaviour.Properties.of().destroyTime(0.5F)));
 
     public static void register(IEventBus modEventBus) {
         BLOCKS.register(modEventBus);

@@ -19,6 +19,7 @@ public class ItemModels extends ItemModelProvider {
         basicItem(ModItems.CABBAGE_SEED.get());
         basicItem(ModItems.CABBAGE.get());
         basicItem(ModItems.CABBAGE_LEAF.get());
+        basicItem(ModItems.PORK_FEET_RICE.get());
 
         basicItem(ModItems.FRIED_EGG.get());
         basicItem(ModItems.COOKED_RICE.get());

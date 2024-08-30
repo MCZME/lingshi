@@ -1,5 +1,6 @@
 package mczme.lingshi.common.registry;
 
+import mczme.lingshi.common.item.FoodBlockItem;
 import mczme.lingshi.common.item.KnifeItem;
 import mczme.lingshi.common.item.PotLid;
 import mczme.lingshi.common.item.SpatulaItem;
@@ -46,6 +47,8 @@ public class ModItems {
     public static final Supplier<Item> DOUGH = registerWithCreateTab("dough", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> NOODLES = registerWithCreateTab("noodles", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(1f).build())));
     public static final Supplier<Item> PIG_FEET = registerWithCreateTab("pig_feet", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(3f).build())));
+//可放置食物
+    public static final Supplier<Item> PORK_FEET_RICE = registerWithCreateTab("pork_feet_rice",()-> new FoodBlockItem(ModBlocks.PORK_FEET_RICE.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationModifier(9.4f).build())));
 
     private static Supplier<Item> registerWithCreateTab(String item_name, Supplier<Item> itemSupplier) {
         Supplier<Item> item = ITEMS.register(item_name, itemSupplier);
