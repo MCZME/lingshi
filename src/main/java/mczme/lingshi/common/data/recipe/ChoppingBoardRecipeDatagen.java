@@ -20,6 +20,7 @@ public class ChoppingBoardRecipeDatagen {
         build(List.of(new ItemStack(ModItems.FLOUR.get())),Ingredient.of(NeoforgeTags.KNIFE),Ingredient.of(Items.WHEAT),output,"flour");
         build(List.of(new ItemStack(ModItems.DOUGH.get())),Ingredient.of(Items.WATER_BUCKET),Ingredient.of(ModItems.FLOUR.get()),output,"dough");
         build(List.of(new ItemStack(ModItems.NOODLES.get())),Ingredient.of(NeoforgeTags.KNIFE),Ingredient.of(ModItems.DOUGH.get()),output,"noodles");
+        build(List.of(new ItemStack(ModItems.CABBAGE_LEAF.get(),3)),Ingredient.of(NeoforgeTags.KNIFE),Ingredient.of(ModItems.CABBAGE.get()),output,"cabbage_leaf");
     }
 
     private void build(List<ItemStack> result, Ingredient tool, Ingredient inputItem,RecipeOutput output,String pid){

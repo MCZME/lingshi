@@ -1,8 +1,12 @@
 {
   "values": {
-    "lingshi:rice": {
+    "lingshi:pig_feet": {
       "burnt_time": 20,
-      "cooked_time": 10
+      "cooked_time": 8
+    },
+    "lingshi:rice": {
+      "burnt_time": 25,
+      "cooked_time": 8
     },
     "minecraft:beef": {
       "burnt_time": 20,
@@ -17,7 +21,7 @@
       "cooked_time": 5
     },
     "minecraft:egg": {
-      "burnt_time": 15,
+      "burnt_time": 12,
       "cooked_time": 3
     },
     "minecraft:mutton": {

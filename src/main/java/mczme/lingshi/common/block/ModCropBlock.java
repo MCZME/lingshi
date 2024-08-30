@@ -14,7 +14,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class RiceBlock extends CropBlock {
+public class ModCropBlock extends CropBlock {
 
     public static final int MAX_AGE = 3;
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
@@ -25,7 +25,7 @@ public class RiceBlock extends CropBlock {
             Block.box(0.0, 0.0, 0.0, 16.0, 14.0, 16.0),
     };
 
-    public RiceBlock(Properties properties) {
+    public ModCropBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(AGE, 0));
     }

@@ -19,12 +19,14 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(lingshi.MODID);
 
-    public static final Supplier<CropBlock> RICE = BLOCKS.registerBlock("rice", RiceBlock::new,
+    public static final Supplier<CropBlock> RICE = BLOCKS.registerBlock("rice", ModCropBlock::new,
             BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY));
     public static final Supplier<RiceSeedlingBlock> RICE_SEEDLING = BLOCKS.registerBlock("rice_seedling", RiceSeedlingBlock::new,
             BlockBehaviour.Properties.of().noCollission().mapColor(MapColor.PLANT).instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).randomTicks());
     public static final Supplier<RiceSeedlingTopBlock> RICE_SEEDING_TOP = BLOCKS.registerBlock("rice_seedling_top", RiceSeedlingTopBlock::new,
             BlockBehaviour.Properties.of().noCollission().mapColor(MapColor.PLANT).instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).randomTicks());
+    public static final Supplier<CropBlock> CABBAGE = BLOCKS.registerBlock("cabbage", ModCropBlock::new,
+            BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY));
 
     public static final Supplier<TeaTreeBlock> TEA_TREE = BLOCKS.registerBlock("tea_tree", TeaTreeBlock::new,
             BlockBehaviour.Properties.of().randomTicks().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY));

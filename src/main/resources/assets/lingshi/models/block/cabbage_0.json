@@ -1,0 +1,7 @@
+{
+  "parent": "lingshi:block/cabbage_crop",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "crop": "lingshi:block/cabbage_0"
+  }
+}

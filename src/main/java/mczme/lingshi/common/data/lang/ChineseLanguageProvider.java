@@ -18,6 +18,9 @@ public class ChineseLanguageProvider extends LanguageProvider {
         this.add(ModItems.RICE.get(), "稻米");
         this.add(ModItems.RICE_SEEDLING.get(), "稻苗");
         this.add(ModItems.RICE_OF_EAR.get(),"稻穗");
+        this.add(ModItems.CABBAGE_SEED.get(), "白菜种子");
+        this.add(ModItems.CABBAGE.get(), "白菜");
+        this.add(ModItems.CABBAGE_LEAF.get(), "白菜叶");
 
         this.add(ModItems.TEA_TREE.get(), "茶树");
         this.add(ModItems.TEA_LEAF.get(), "茶叶");

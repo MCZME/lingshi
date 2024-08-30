@@ -1,0 +1,15 @@
+{
+  "type": "lingshi:chopping_board",
+  "input": {
+    "item": "lingshi:cabbage"
+  },
+  "result": [
+    {
+      "count": 3,
+      "id": "lingshi:cabbage_leaf"
+    }
+  ],
+  "tool": {
+    "tag": "neoforge:knife"
+  }
+}

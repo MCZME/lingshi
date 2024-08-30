@@ -20,6 +20,9 @@ public class ModItems {
     public static final Supplier<Item> RICE = registerWithCreateTab("rice", () -> new BlockItem(ModBlocks.RICE.get(), new Item.Properties()));
     public static final Supplier<Item> RICE_SEEDLING = registerWithCreateTab("rice_seedling", () -> new BlockItem(ModBlocks.RICE_SEEDLING.get(), new Item.Properties()));
     public static final Supplier<Item> RICE_OF_EAR = registerWithCreateTab("rice_of_ear", () -> new Item(new Item.Properties()));
+    public static final Supplier<Item> CABBAGE_SEED = registerWithCreateTab("cabbage_seed", () -> new BlockItem(ModBlocks.CABBAGE.get(), new Item.Properties()));
+    public static final Supplier<Item> CABBAGE = registerWithCreateTab("cabbage", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(2.4f).build())));
+    public static final Supplier<Item> CABBAGE_LEAF = registerWithCreateTab("cabbage_leaf", () -> new Item( new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.8f).build())));
 
     public static final Supplier<Item> TEA_TREE = registerWithCreateTab("tea_tree", () -> new BlockItem(ModBlocks.TEA_TREE.get(), new Item.Properties()));
     public static final Supplier<Item> TEA_LEAF = registerWithCreateTab("tea_leaf", () -> new Item(new Item.Properties()));
