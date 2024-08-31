@@ -1,10 +1,13 @@
 package mczme.lingshi.common.block;
 
+import mczme.lingshi.common.registry.ModEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -43,7 +46,14 @@ public class FoodBlock extends Block {
         }else {
             if(pPlayer.canEat(false)) {
                 pLevel.setBlock(pPos, pState.setValue(AMOUNT, 0), Block.UPDATE_CLIENTS);
-                pPlayer.eat(pLevel, new ItemStack(pState.getBlock().asItem()));
+                if(pPlayer.hasEffect(ModEffects.GRATIFICATION_EFFECT)){
+                    ItemStack itemStack = new ItemStack(pState.getBlock().asItem());
+                    FoodProperties foodData =itemStack.get(DataComponents.FOOD);
+                    pPlayer.eat(pLevel, itemStack, new FoodProperties.Builder().nutrition(foodData.nutrition()).saturationModifier(foodData.saturation()*2).build());
+                }else {
+                    pPlayer.eat(pLevel, new ItemStack(pState.getBlock().asItem()));
+                }
+
                 return ItemInteractionResult.SUCCESS;
             }
         }

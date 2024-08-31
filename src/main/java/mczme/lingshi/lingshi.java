@@ -1,6 +1,7 @@
 package mczme.lingshi;
 
 import mczme.lingshi.common.createtab.CreateTabs;
+import mczme.lingshi.common.event.IndependentEvent;
 import mczme.lingshi.common.registry.*;
 import org.slf4j.Logger;
 
@@ -29,6 +30,10 @@ public class lingshi
         ModSerializer.register(modEventBus);
         ModMenuTypes.register(modEventBus);
         ModFluids.register(modEventBus);
+        ModEffects.register(modEventBus);
+
+        IndependentEvent.register();
+
     }
 
 

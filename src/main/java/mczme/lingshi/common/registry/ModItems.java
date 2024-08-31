@@ -5,6 +5,7 @@ import mczme.lingshi.common.item.KnifeItem;
 import mczme.lingshi.common.item.PotLid;
 import mczme.lingshi.common.item.SpatulaItem;
 import mczme.lingshi.lingshi;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
@@ -22,8 +23,10 @@ public class ModItems {
     public static final Supplier<Item> RICE_SEEDLING = registerWithCreateTab("rice_seedling", () -> new BlockItem(ModBlocks.RICE_SEEDLING.get(), new Item.Properties()));
     public static final Supplier<Item> RICE_OF_EAR = registerWithCreateTab("rice_of_ear", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> CABBAGE_SEED = registerWithCreateTab("cabbage_seed", () -> new BlockItem(ModBlocks.CABBAGE.get(), new Item.Properties()));
-    public static final Supplier<Item> CABBAGE = registerWithCreateTab("cabbage", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(2.4f).build())));
-    public static final Supplier<Item> CABBAGE_LEAF = registerWithCreateTab("cabbage_leaf", () -> new Item( new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.8f).build())));
+    public static final Supplier<Item> CABBAGE = registerWithCreateTab("cabbage", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
+            .nutrition(3).saturationModifier(2.4f).build())));
+    public static final Supplier<Item> CABBAGE_LEAF = registerWithCreateTab("cabbage_leaf", () -> new Item( new Item.Properties().food(new FoodProperties.Builder()
+            .nutrition(1).saturationModifier(0.8f).build())));
 
     public static final Supplier<Item> TEA_TREE = registerWithCreateTab("tea_tree", () -> new BlockItem(ModBlocks.TEA_TREE.get(), new Item.Properties()));
     public static final Supplier<Item> TEA_LEAF = registerWithCreateTab("tea_leaf", () -> new Item(new Item.Properties()));
@@ -34,21 +37,30 @@ public class ModItems {
     public static final Supplier<Item> CHOPPING_BOARD = registerWithCreateTab("chopping_board", () -> new BlockItem(ModBlocks.CHOPPING_BOARD.get(), new Item.Properties()));
 
     public static final Supplier<Item> SPATULA = registerWithCreateTab("spatula", () -> new SpatulaItem(new Item.Properties().stacksTo(1)));
-    public static final Supplier<Item> IRON_KNIFE = registerWithCreateTab("iron_knife", () -> new KnifeItem(Tiers.IRON, new Item.Properties().attributes(SwordItem.createAttributes(Tiers.IRON, 3, -2.4F))));
+    public static final Supplier<Item> IRON_KNIFE = registerWithCreateTab("iron_knife", () -> new KnifeItem(Tiers.IRON, new Item.Properties()
+            .attributes(SwordItem.createAttributes(Tiers.IRON, 3, -2.4F))));
 
     public static final Supplier<Item> STOVE = registerWithCreateTab("stove", () -> new BlockItem(ModBlocks.STOVE.get(), new Item.Properties()));
-    public static final Supplier<Item> OIL_BUCKET = registerWithCreateTab("oil_bucket", () -> new BucketItem(ModFluids.OIL_SOURCE.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final Supplier<Item> OIL_BUCKET = registerWithCreateTab("oil_bucket", () -> new BucketItem(ModFluids.OIL_SOURCE.get(), new Item.Properties()
+            .craftRemainder(Items.BUCKET).stacksTo(1)));
 //食物
     public static final Supplier<Item> STRANGE_FOOD = registerWithCreateTab("strange_food", () -> new Item(new Item.Properties()));
-    public static final Supplier<Item> FRIED_EGG = registerWithCreateTab("fried_egg", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(3.2f).build())));
-    public static final Supplier<Item> COOKED_RICE = registerWithCreateTab("cooked_rice", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).usingConvertsTo(Items.BOWL).saturationModifier(4f).build())));
-    public static final Supplier<Item> EGG_FRIED_RICE = registerWithCreateTab("egg_fried_rice", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).usingConvertsTo(Items.BOWL).saturationModifier(7.2f).build())));
+    public static final Supplier<Item> FRIED_EGG = registerWithCreateTab("fried_egg", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
+            .nutrition(4).saturationModifier(3.2f).build())));
+    public static final Supplier<Item> COOKED_RICE = registerWithCreateTab("cooked_rice", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
+            .nutrition(4).usingConvertsTo(Items.BOWL).saturationModifier(4f).build())));
+    public static final Supplier<Item> EGG_FRIED_RICE = registerWithCreateTab("egg_fried_rice", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
+            .nutrition(8).usingConvertsTo(Items.BOWL).saturationModifier(7.2f).build())));
     public static final Supplier<Item> FLOUR = registerWithCreateTab("flour", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> DOUGH = registerWithCreateTab("dough", () -> new Item(new Item.Properties()));
-    public static final Supplier<Item> NOODLES = registerWithCreateTab("noodles", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(1f).build())));
-    public static final Supplier<Item> PIG_FEET = registerWithCreateTab("pig_feet", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(3f).build())));
+    public static final Supplier<Item> NOODLES = registerWithCreateTab("noodles", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
+            .nutrition(2).saturationModifier(1f).build())));
+    public static final Supplier<Item> PIG_FEET = registerWithCreateTab("pig_feet", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
+            .nutrition(5).saturationModifier(3f).build())));
 //可放置食物
-    public static final Supplier<Item> PORK_FEET_RICE = registerWithCreateTab("pork_feet_rice",()-> new FoodBlockItem(ModBlocks.PORK_FEET_RICE.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationModifier(9.4f).build())));
+    public static final Supplier<Item> PORK_FEET_RICE = registerWithCreateTab("pork_feet_rice",()-> new FoodBlockItem(ModBlocks.PORK_FEET_RICE.get(), new Item.Properties()
+        .food(new FoodProperties.Builder().usingConvertsTo(Items.BOWL).nutrition(12).saturationModifier(9.4f)
+        .effect(()-> new MobEffectInstance(ModEffects.GRATIFICATION_EFFECT,5*60*20),1.0F).build())));
 
     private static Supplier<Item> registerWithCreateTab(String item_name, Supplier<Item> itemSupplier) {
         Supplier<Item> item = ITEMS.register(item_name, itemSupplier);

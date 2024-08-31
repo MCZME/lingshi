@@ -35,7 +35,7 @@ public class CookingPotRecipeDataGen {
                 .unlockedBy("has_rice", has(ModItems.RICE.get())).group("rice")
                 .setContainer(new CookingPotRecipe.CookingPotContainer(new ItemStack(Items.BOWL),0))
                 .save(output,create("cooked_rice_2"));
-        build(List.of(Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.CABBAGE_LEAF.get()),Ingredient.of(ModItems.PIG_FEET.get())),new FluidStack(Fluids.WATER,1000),new ItemStack(ModItems.PORK_FEET_RICE.get(),2),CookingFoodRecipeLabel.BOIL)
+        build(List.of(Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.CABBAGE_LEAF.get()),Ingredient.of(ModItems.PIG_FEET.get())),new FluidStack(Fluids.WATER,1000),new ItemStack(ModItems.PORK_FEET_RICE.get(),2),CookingFoodRecipeLabel.STEW)
                 .unlockedBy("has_pig_feet", has(ModItems.PIG_FEET.get()))
                 .setContainer(new CookingPotRecipe.CookingPotContainer(new ItemStack(Items.BOWL),5))
                 .save(output,create("pork_feet_rice"));

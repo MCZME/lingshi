@@ -37,7 +37,8 @@ public class ModFluids {
 
     public static final Supplier<FlowingFluid> OIL_SOURCE = FLUIDS.register("oil_source", ()-> new OilFluid.Source(ModFluids.properties));
     public static final Supplier<FlowingFluid> OIL_FLOWING = FLUIDS.register("oil_flowing",()-> new OilFluid.Flowing(ModFluids.properties));
-    public static final BaseFlowingFluid.Properties properties = new BaseFlowingFluid.Properties(MOD_FLUID_TYPE,ModFluids.OIL_SOURCE,ModFluids.OIL_FLOWING).bucket(ModItems.OIL_BUCKET).slopeFindDistance(2).levelDecreasePerBlock(2).block(ModBlocks.OIL_LIQUID_BLOCK);
+    public static final BaseFlowingFluid.Properties properties = new BaseFlowingFluid.Properties(MOD_FLUID_TYPE,ModFluids.OIL_SOURCE,ModFluids.OIL_FLOWING)
+            .bucket(ModItems.OIL_BUCKET).slopeFindDistance(2).levelDecreasePerBlock(2).block(ModBlocks.OIL_LIQUID_BLOCK);
 
     public static void register(IEventBus modEventBus) {
         FLUID_TYPES.register(modEventBus);
