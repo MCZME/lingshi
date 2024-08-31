@@ -5,6 +5,7 @@
   "block.lingshi.pork_feet_rice": "猪脚饭",
   "block.lingshi.rice": "稻米",
   "block.lingshi.rice_seedling": "稻苗",
+  "block.lingshi.sauteed_seasonal_vegetable": "炒时蔬",
   "block.lingshi.skillet": "平底锅",
   "block.lingshi.stove": "炉灶",
   "block.lingshi.tea_tree": "茶树",
@@ -25,5 +26,5 @@
   "item.lingshi.rice_of_ear": "稻穗",
   "item.lingshi.spatula": "锅铲",
   "item.lingshi.tea_leaf": "茶叶",
-  "lingshi.lingshi_tab": "灵食"
+  "lingshi.lingshi_tab": "零食"
 }

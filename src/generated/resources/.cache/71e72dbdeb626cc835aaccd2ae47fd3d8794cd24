@@ -1,4 +1,4 @@
-// 1.21	2024-08-31T02:52:29.9900421	Item Models: lingshi
+// 1.21	2024-09-01T04:55:30.2853394	Item Models: lingshi
 14f86299910462582d98bcf699b35e34c615ee8e assets/lingshi/models/item/cabbage.json
 0e18f939d46f6a164584f621fa97b024122785d9 assets/lingshi/models/item/cabbage_leaf.json
 0bcbbc8c3377f7b20a37790cc33d36690c2044c7 assets/lingshi/models/item/cabbage_seed.json
@@ -17,6 +17,7 @@ b767fc7952daf0eff3485fe4d8c06c5bba930c22 assets/lingshi/models/item/oil_bucket.j
 496d711c2d4af0f851d40f859b102da69188089d assets/lingshi/models/item/rice.json
 abe8ae1523c26af167289fe958382b2477d96ea1 assets/lingshi/models/item/rice_of_ear.json
 57cfb1f90de649ab0f56f107cb56e1d0d2f87ae6 assets/lingshi/models/item/rice_seedling.json
+9150fce945d22c3c76b946d1aa13a9b16e50dbc3 assets/lingshi/models/item/sauteed_seasonal_vegetable.json
 cff85c127954ba63ac8129929c0d7346bf8f305d assets/lingshi/models/item/skillet.json
 da8fb27d7e9b15fbd96ca8a49b328776550bb2b3 assets/lingshi/models/item/spatula.json
 24a37cc616a84374e2aa09a4eaee7d756a35fa10 assets/lingshi/models/item/stove.json

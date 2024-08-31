@@ -12,6 +12,8 @@ public class NeoforgeTags {
     public static final TagKey<Item> DOUGH = neoforgeTag(Registries.ITEM, "dough");
     public static final TagKey<Item> NOODLES = neoforgeTag(Registries.ITEM, "noodles");
 
+    public static final TagKey<Item> CROPS_CABBAGE = neoforgeTag(Registries.ITEM, "crops/cabbage");
+
     private static <T> TagKey<T> neoforgeTag(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>> pRegistry, String name) {
         return TagKey.create(pRegistry, ResourceLocation.fromNamespaceAndPath("neoforge", name));
     }

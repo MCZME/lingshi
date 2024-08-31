@@ -33,24 +33,24 @@ public class FoodBlock extends Block {
     public static final IntegerProperty AMOUNT = IntegerProperty.create("amount", 0, 1);
     public static final VoxelShape SHAPE = Shapes.or(Block.box(6, 0, 6, 10, 1, 10),
             Block.box(5, 1, 5, 9, 2, 9),
-            Block.box(2, 2, 2, 14, 6, 14)) ;
+            Block.box(2, 2, 2, 14, 6, 14));
 
     public FoodBlock(Properties properties) {
         super(properties);
     }
 
     public ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
-        if(pState.getValue(AMOUNT) == 0) {
+        if (pState.getValue(AMOUNT) == 0) {
             pLevel.destroyBlock(pPos, true);
             return ItemInteractionResult.SUCCESS;
-        }else {
-            if(pPlayer.canEat(false)) {
+        } else {
+            if (pPlayer.canEat(false)) {
                 pLevel.setBlock(pPos, pState.setValue(AMOUNT, 0), Block.UPDATE_CLIENTS);
-                if(pPlayer.hasEffect(ModEffects.GRATIFICATION_EFFECT)){
+                if (pPlayer.hasEffect(ModEffects.GRATIFICATION_EFFECT)) {
                     ItemStack itemStack = new ItemStack(pState.getBlock().asItem());
-                    FoodProperties foodData =itemStack.get(DataComponents.FOOD);
-                    pPlayer.eat(pLevel, itemStack, new FoodProperties.Builder().nutrition(foodData.nutrition()).saturationModifier(foodData.saturation()*2).build());
-                }else {
+                    FoodProperties foodData = itemStack.get(DataComponents.FOOD);
+                    pPlayer.eat(pLevel, itemStack, new FoodProperties.Builder().nutrition(foodData.nutrition()).saturationModifier(foodData.saturation() * 2).build());
+                } else {
                     pPlayer.eat(pLevel, new ItemStack(pState.getBlock().asItem()));
                 }
 

@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "amount=0,facing=east": {
+      "model": "lingshi:block/plate",
+      "y": 270
+    },
+    "amount=0,facing=north": {
+      "model": "lingshi:block/plate",
+      "y": 180
+    },
+    "amount=0,facing=south": {
+      "model": "lingshi:block/plate"
+    },
+    "amount=0,facing=west": {
+      "model": "lingshi:block/plate",
+      "y": 90
+    },
+    "amount=1,facing=east": {
+      "model": "lingshi:block/sauteed_seasonal_vegetable",
+      "y": 270
+    },
+    "amount=1,facing=north": {
+      "model": "lingshi:block/sauteed_seasonal_vegetable",
+      "y": 180
+    },
+    "amount=1,facing=south": {
+      "model": "lingshi:block/sauteed_seasonal_vegetable"
+    },
+    "amount=1,facing=west": {
+      "model": "lingshi:block/sauteed_seasonal_vegetable",
+      "y": 90
+    }
+  }
+}

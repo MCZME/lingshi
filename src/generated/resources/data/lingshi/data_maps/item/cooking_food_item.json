@@ -16,6 +16,18 @@
       "burnt_time": 20,
       "cooked_time": 5
     },
+    "minecraft:beetroot": {
+      "burnt_time": 12,
+      "cooked_time": 3
+    },
+    "minecraft:brown_mushroom": {
+      "burnt_time": 12,
+      "cooked_time": 3
+    },
+    "minecraft:carrot": {
+      "burnt_time": 12,
+      "cooked_time": 3
+    },
     "minecraft:chicken": {
       "burnt_time": 20,
       "cooked_time": 5
@@ -43,6 +55,10 @@
     "minecraft:rabbit": {
       "burnt_time": 20,
       "cooked_time": 5
+    },
+    "minecraft:red_mushroom": {
+      "burnt_time": 12,
+      "cooked_time": 3
     },
     "minecraft:salmon": {
       "burnt_time": 20,

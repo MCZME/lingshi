@@ -12,6 +12,8 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.client.model.generators.VariantBlockStateBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
+import static mczme.lingshi.common.block.FoodBlock.AMOUNT;
+
 public class BlockStates extends BlockStateProvider {
 
 
@@ -23,7 +25,7 @@ public class BlockStates extends BlockStateProvider {
     protected void registerStatesAndModels() {
 
         horizontalBlock(ModBlocks.CHOPPING_BOARD.get(), "block/chopping_board");
-//        horizontalBlock(ModBlocks.PORK_FEET_RICE.get(), "block/cooking_pot");
+        horizontalBlock(ModBlocks.SAUTEED_SEASONAL_VEGETABLE.get(),"block/plate","block/sauteed_seasonal_vegetable");
     }
 
     private void horizontalBlock(Block block, String modelLocation) {
@@ -33,6 +35,18 @@ public class BlockStates extends BlockStateProvider {
                 .modelFile(modelFile(modelLocation))
                 .rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot())
                 .build());
+    }
+
+    private void horizontalBlock(Block block, String modelLocation_0 ,String modelLocation_1 ) {
+        VariantBlockStateBuilder variantBuilder = getVariantBuilder(block);
+
+        variantBuilder.forAllStates(state -> {
+            String modelLocation = state.getValue(AMOUNT)==1?modelLocation_1:modelLocation_0;
+            return ConfiguredModel.builder()
+                    .modelFile(modelFile(modelLocation))
+                    .rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot())
+                    .build();
+        });
     }
 
     private ModelFile modelFile(String location) {

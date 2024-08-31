@@ -18,7 +18,6 @@ import static mczme.lingshi.common.tag.NeoforgeTags.*;
 
 public class ItemTags extends ItemTagsProvider {
 
-
     public ItemTags(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pLookupProvider, CompletableFuture<TagLookup<Block>> pBlockTags, @Nullable ExistingFileHelper existingFileHelper) {
         super(pOutput, pLookupProvider, pBlockTags, lingshi.MODID, existingFileHelper);
     }
@@ -31,5 +30,7 @@ public class ItemTags extends ItemTagsProvider {
         this.tag(FLOUR).add(ModItems.FLOUR.get());
         this.tag(DOUGH).add(ModItems.DOUGH.get());
         this.tag(NOODLES).add(ModItems.NOODLES.get());
+
+        this.tag(CROPS_CABBAGE).add(ModItems.CABBAGE_LEAF.get(),ModItems.CABBAGE.get());
     }
 }

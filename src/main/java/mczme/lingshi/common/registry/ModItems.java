@@ -6,6 +6,7 @@ import mczme.lingshi.common.item.PotLid;
 import mczme.lingshi.common.item.SpatulaItem;
 import mczme.lingshi.lingshi;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
@@ -61,6 +62,9 @@ public class ModItems {
     public static final Supplier<Item> PORK_FEET_RICE = registerWithCreateTab("pork_feet_rice",()-> new FoodBlockItem(ModBlocks.PORK_FEET_RICE.get(), new Item.Properties()
         .food(new FoodProperties.Builder().usingConvertsTo(Items.BOWL).nutrition(12).saturationModifier(9.4f)
         .effect(()-> new MobEffectInstance(ModEffects.GRATIFICATION_EFFECT,5*60*20),1.0F).build())));
+    public static final Supplier<Item> SAUTEED_SEASONAL_VEGETABLE = registerWithCreateTab("sauteed_seasonal_vegetable",()-> new FoodBlockItem(ModBlocks.SAUTEED_SEASONAL_VEGETABLE.get(), new Item.Properties()
+            .food(new FoodProperties.Builder().usingConvertsTo(Items.BOWL).nutrition(6).saturationModifier(7.2f)
+                    .effect(()-> new MobEffectInstance(MobEffects.DAMAGE_BOOST,60*20,0),1.0F).build())));
 
     private static Supplier<Item> registerWithCreateTab(String item_name, Supplier<Item> itemSupplier) {
         Supplier<Item> item = ITEMS.register(item_name, itemSupplier);

@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "lingshi:sauteed_seasonal_vegetable",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "lingshi:sauteed_seasonal_vegetable",
+              "properties": {
+                "amount": "1"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bowl",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "lingshi:sauteed_seasonal_vegetable",
+              "properties": {
+                "amount": "0"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -11,11 +11,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 import java.util.List;
 
 import static mczme.lingshi.common.data.recipe.Recipes.has;
+import static mczme.lingshi.common.tag.NeoforgeTags.CROPS_CABBAGE;
 
 public class SkilletRecipeDatagen {
     public SkilletRecipeDatagen(RecipeOutput output) {
@@ -48,6 +50,10 @@ public class SkilletRecipeDatagen {
                 .setLabel(CookingFoodRecipeLabel.PAN_FRY)
                 .setContainer(new SkilletRecipe.SkilletCookingContainer(new ItemStack(Items.BOWL),3))
                 .save(output,create("egg_fried_rice"));
+        build(List.of(Ingredient.of(CROPS_CABBAGE),Ingredient.of(Items.CARROT),Ingredient.of(Items.BEETROOT),Ingredient.of(Tags.Items.MUSHROOMS)),new FluidStack(ModFluids.OIL_SOURCE.get(),100),new ItemStack(ModItems.SAUTEED_SEASONAL_VEGETABLE.get()))
+                .setLabel(CookingFoodRecipeLabel.PAN_FRY)
+                .setContainer(new SkilletRecipe.SkilletCookingContainer(new ItemStack(Items.BOWL),2))
+                .save(output,create("sauteed_seasonal_vegetable"));
         //  煮
     }
 

@@ -1,0 +1,34 @@
+{
+  "type": "lingshi:skillet",
+  "container": {
+    "container": {
+      "count": 1,
+      "id": "minecraft:bowl"
+    },
+    "stir_fry_count": 2
+  },
+  "fluid": {
+    "amount": 100,
+    "id": "lingshi:oil_source"
+  },
+  "group": "",
+  "ingredients": [
+    {
+      "tag": "neoforge:crops/cabbage"
+    },
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "minecraft:beetroot"
+    },
+    {
+      "tag": "c:mushrooms"
+    }
+  ],
+  "label": "pan_fry",
+  "result": {
+    "count": 1,
+    "id": "lingshi:sauteed_seasonal_vegetable"
+  }
+}
