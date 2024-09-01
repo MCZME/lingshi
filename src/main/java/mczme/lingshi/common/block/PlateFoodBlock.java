@@ -11,7 +11,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class PlateFoodBlock extends FoodBlock {
 
     public static final VoxelShape SHAPE = Shapes.or(Block.box(2, 0, 2, 14, 3, 14),
-            Block.box(1,1,1,15,1,15)
+            Block.box(1,1,1,15,1,16)
     );
 
     public PlateFoodBlock(Properties properties) {
