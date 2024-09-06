@@ -47,6 +47,7 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
 
     private final int[] cookingTime = new int[MAX_SLOT + 1];
     public int stirFryCount = 0;
+    public int stirFry =0;
     public ItemStack result = ItemStack.EMPTY;
 
 
@@ -288,10 +289,10 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
                 blockEntity.result = optional.map(RecipeHolder::value)
                         .map(e -> e.assemble(input, pLevel.registryAccess()))
                         .orElse(ItemStack.EMPTY);
-                int stirFryCount1 = optional.map(RecipeHolder::value)
+                blockEntity.stirFry = optional.map(RecipeHolder::value)
                         .map(e -> e.getContainer().stirFryCount())
                         .orElse(0);
-                if (cooked_size == blockEntity.size() && blockEntity.stirFryCount >= stirFryCount1 && !blockEntity.result.isEmpty() && fluid_heated) {
+                if (cooked_size == blockEntity.size() && blockEntity.stirFryCount >= blockEntity.stirFry && !blockEntity.result.isEmpty() && fluid_heated) {
                     itemStackHandler.setStackInSlot(5, optional.map(RecipeHolder::value)
                             .map(e -> e.getContainer().container())
                             .orElse(ItemStack.EMPTY));

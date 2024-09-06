@@ -4,6 +4,10 @@
       "burnt_time": 12,
       "cooked_time": 3
     },
+    "lingshi:noodles": {
+      "burnt_time": 20,
+      "cooked_time": 5
+    },
     "lingshi:pig_feet": {
       "burnt_time": 20,
       "cooked_time": 8

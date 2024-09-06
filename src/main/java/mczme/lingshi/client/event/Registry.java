@@ -10,6 +10,7 @@ import mczme.lingshi.client.recipebook.CookingFoodRecipeLabel;
 import mczme.lingshi.client.screen.CookingHud;
 import mczme.lingshi.client.screen.CookingPotScreen;
 import mczme.lingshi.client.screen.SkilletScreen;
+import mczme.lingshi.common.recipe.CookingPotRecipe;
 import mczme.lingshi.common.recipe.SkilletRecipe;
 import mczme.lingshi.common.registry.BlockEntityTypes;
 import mczme.lingshi.common.registry.ModFluids;
@@ -82,7 +83,7 @@ public class Registry {
         event.registerAggregateCategory(COOKING_POT_SEARCH.get(), ImmutableList.of(COOKING_POT_POT_BOIL.get(), COOKING_POT_STEW.get(), COOKING_POT_DEEP_FRY.get(), COOKING_POT_MISC.get()));
         event.registerRecipeCategoryFinder(ModRecipes.COOKING_POT_RECIPE.get(), recipe ->
         {
-            if (recipe.value() instanceof SkilletRecipe Recipe) {
+            if (recipe.value() instanceof CookingPotRecipe Recipe) {
                 CookingFoodRecipeLabel label = Recipe.getLabel();
                 return switch (label) {
                     case BOIL -> COOKING_POT_POT_BOIL.get();

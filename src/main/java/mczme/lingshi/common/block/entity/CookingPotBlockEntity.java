@@ -51,6 +51,7 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
     private final int[] cookingTime = new int[MAX_SLOT + 1];
     public ItemStack result = ItemStack.EMPTY;
     public int stewingTime = 0;
+    public int stewTime=0;
 
     public CookingPotBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(BlockEntityTypes.COOKING_POT_BLOCKENTITY.get(), pPos, pBlockState);
@@ -288,7 +289,7 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
                 ItemStack result1 = optional.map(RecipeHolder::value)
                         .map(e -> e.assemble(input, pLevel.registryAccess()))
                         .orElse(ItemStack.EMPTY);
-                int stewTime = optional.map(RecipeHolder::value)
+                blockEntity.stewTime = optional.map(RecipeHolder::value)
                         .map(e -> e.getContainer().braisingTime())
                         .orElse(0);
                 //cookProgress
@@ -333,7 +334,7 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
                 }
 //              结果判断
                 blockEntity.result = result1;
-                if (cooked_size == blockEntity.size() && !blockEntity.result.isEmpty() && fluid_heated && itemStackHandler.getStackInSlot(7).getCount() <= 64 && blockEntity.stewingTime / 20 >= stewTime) {
+                if (cooked_size == blockEntity.size() && !blockEntity.result.isEmpty() && fluid_heated && itemStackHandler.getStackInSlot(7).getCount() <= 64 && blockEntity.stewingTime / 20 >= blockEntity.stewTime) {
                     itemStackHandler.setStackInSlot(6, optional.map(RecipeHolder::value)
                             .map(e -> e.getContainer().container())
                             .orElse(ItemStack.EMPTY));

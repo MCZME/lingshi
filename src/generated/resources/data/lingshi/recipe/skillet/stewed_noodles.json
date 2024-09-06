@@ -5,24 +5,21 @@
       "count": 1,
       "id": "minecraft:bowl"
     },
-    "stir_fry_count": 3
+    "stir_fry_count": 0
   },
   "fluid": {
-    "amount": 100,
-    "id": "lingshi:oil_source"
+    "amount": 250,
+    "id": "minecraft:water"
   },
   "group": "",
   "ingredients": [
     {
-      "item": "minecraft:egg"
-    },
-    {
-      "item": "lingshi:rice"
+      "item": "lingshi:noodles"
     }
   ],
-  "label": "stir_fry",
+  "label": "boil",
   "result": {
     "count": 1,
-    "id": "lingshi:egg_fried_rice"
+    "id": "lingshi:stewed_noodles"
   }
 }

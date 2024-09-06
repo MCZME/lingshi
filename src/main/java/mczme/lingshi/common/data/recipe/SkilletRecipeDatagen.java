@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidStack;
 
@@ -47,14 +48,22 @@ public class SkilletRecipeDatagen {
                 .setLabel(CookingFoodRecipeLabel.PAN_FRY).save(output,create("fried_egg"));
         //  炒
         build(List.of(Ingredient.of(Items.EGG),Ingredient.of(ModItems.RICE.get())),new FluidStack(ModFluids.OIL_SOURCE.get(),100),new ItemStack(ModItems.EGG_FRIED_RICE.get()))
-                .setLabel(CookingFoodRecipeLabel.PAN_FRY)
+                .setLabel(CookingFoodRecipeLabel.STIR_FRY)
                 .setContainer(new SkilletRecipe.SkilletCookingContainer(new ItemStack(Items.BOWL),3))
                 .save(output,create("egg_fried_rice"));
         build(List.of(Ingredient.of(CROPS_CABBAGE),Ingredient.of(Items.CARROT),Ingredient.of(Items.BEETROOT),Ingredient.of(Tags.Items.MUSHROOMS)),new FluidStack(ModFluids.OIL_SOURCE.get(),100),new ItemStack(ModItems.SAUTEED_SEASONAL_VEGETABLE.get()))
-                .setLabel(CookingFoodRecipeLabel.PAN_FRY)
+                .setLabel(CookingFoodRecipeLabel.STIR_FRY)
                 .setContainer(new SkilletRecipe.SkilletCookingContainer(new ItemStack(Items.BOWL),2))
                 .save(output,create("sauteed_seasonal_vegetable"));
         //  煮
+        build(List.of(Ingredient.of(ModItems.NOODLES.get())),new FluidStack(Fluids.WATER,250),new ItemStack(ModItems.STEWED_NOODLES.get()))
+                .setLabel(CookingFoodRecipeLabel.BOIL)
+                .setContainer(new SkilletRecipe.SkilletCookingContainer(new ItemStack(Items.BOWL),0))
+                .save(output,create("stewed_noodles"));
+        build(List.of(Ingredient.of(ModItems.NOODLES.get()),Ingredient.of(Items.EGG)),new FluidStack(Fluids.WATER,250),new ItemStack(ModItems.EGG_ADDED_STEWED_NOODLES.get()))
+                .setLabel(CookingFoodRecipeLabel.BOIL)
+                .setContainer(new SkilletRecipe.SkilletCookingContainer(new ItemStack(Items.BOWL),0))
+                .save(output,create("egg_added_stewed_noodles"));
     }
 
     private SkilletRecipeBuilder build(List<Ingredient> items, FluidStack fluid, ItemStack result){

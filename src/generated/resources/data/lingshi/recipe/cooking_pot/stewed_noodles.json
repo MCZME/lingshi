@@ -1,0 +1,31 @@
+{
+  "type": "lingshi:cooking_pot",
+  "container": {
+    "braising_time": 0,
+    "container": {
+      "count": 1,
+      "id": "minecraft:bowl"
+    }
+  },
+  "fluid": {
+    "amount": 1000,
+    "id": "minecraft:water"
+  },
+  "group": "",
+  "ingredients": [
+    {
+      "item": "lingshi:noodles"
+    },
+    {
+      "item": "lingshi:noodles"
+    },
+    {
+      "item": "lingshi:noodles"
+    }
+  ],
+  "label": "boil",
+  "result": {
+    "count": 6,
+    "id": "lingshi:stewed_noodles"
+  }
+}

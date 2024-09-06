@@ -26,6 +26,7 @@ public class BlockStates extends BlockStateProvider {
 
         horizontalBlock(ModBlocks.CHOPPING_BOARD.get(), "block/chopping_board");
         horizontalBlock(ModBlocks.SAUTEED_SEASONAL_VEGETABLE.get(),"block/plate","block/sauteed_seasonal_vegetable");
+//        horizontalBlock(ModBlocks.STEWED_NOODLES.get(),"block/bowl","block/sauteed_seasonal_vegetable");
     }
 
     private void horizontalBlock(Block block, String modelLocation) {

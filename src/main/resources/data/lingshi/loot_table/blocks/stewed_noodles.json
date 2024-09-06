@@ -1,0 +1,51 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "lingshi:stewed_noodles",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "lingshi:stewed_noodles",
+              "properties": {
+                "amount": "1",
+                "egg": "false"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "lingshi:egg_added_stewed_noodles",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "lingshi:stewed_noodles",
+              "properties": {
+                "amount": "1",
+                "egg": "true"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bowl",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "lingshi:stewed_noodles",
+              "properties": {
+                "amount": "0"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "random_sequence": "lingshi:stewed_noodles"
+}

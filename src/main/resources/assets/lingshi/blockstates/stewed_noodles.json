@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "amount=0,egg=false,facing=east": {
+      "model": "lingshi:block/bowl",
+      "y": 270
+    },
+    "amount=0,egg=false,facing=north": {
+      "model": "lingshi:block/bowl",
+      "y": 180
+    },
+    "amount=0,egg=false,facing=south": {
+      "model": "lingshi:block/bowl"
+    },
+    "amount=0,egg=false,facing=west": {
+      "model": "lingshi:block/bowl",
+      "y": 90
+    },
+    "amount=0,egg=true,facing=east": {
+      "model": "lingshi:block/bowl",
+      "y": 270
+    },
+    "amount=0,egg=true,facing=north": {
+      "model": "lingshi:block/bowl",
+      "y": 180
+    },
+    "amount=0,egg=true,facing=south": {
+      "model": "lingshi:block/bowl"
+    },
+    "amount=0,egg=true,facing=west": {
+      "model": "lingshi:block/bowl",
+      "y": 90
+    },
+    "amount=1,egg=false,facing=east": {
+      "model": "lingshi:block/stewed_noodles",
+      "y": 270
+    },
+    "amount=1,egg=false,facing=north": {
+      "model": "lingshi:block/stewed_noodles",
+      "y": 180
+    },
+    "amount=1,egg=false,facing=south": {
+      "model": "lingshi:block/stewed_noodles"
+    },
+    "amount=1,egg=false,facing=west": {
+      "model": "lingshi:block/stewed_noodles",
+      "y": 90
+    },
+    "amount=1,egg=true,facing=east": {
+      "model": "lingshi:block/egg_added_stewed_noodles",
+      "y": 270
+    },
+    "amount=1,egg=true,facing=north": {
+      "model": "lingshi:block/egg_added_stewed_noodles",
+      "y": 180
+    },
+    "amount=1,egg=true,facing=south": {
+      "model": "lingshi:block/egg_added_stewed_noodles"
+    },
+    "amount=1,egg=true,facing=west": {
+      "model": "lingshi:block/egg_added_stewed_noodles",
+      "y": 90
+    }
+  }
+}

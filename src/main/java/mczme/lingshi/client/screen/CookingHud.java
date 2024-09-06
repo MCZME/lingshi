@@ -33,6 +33,7 @@ public class CookingHud implements LayeredDraw.Layer {
     private FluidStack fluidStack = FluidStack.EMPTY;
     private ItemStack container = ItemStack.EMPTY;
     private int Count;
+    private int Count_ing;
     private int[] cookingTime;
     private ItemStack result = ItemStack.EMPTY;
     private int MAX_SLOT;
@@ -49,12 +50,12 @@ public class CookingHud implements LayeredDraw.Layer {
         }
         this.player = Minecraft.getInstance().player;
         if (player != null && getHitResult(BlockEntityTypes.SKILLET_BLOCKENTITY.get())) {
-            getData((SkilletBlockEntity)Minecraft.getInstance().level.getBlockEntity(blockPos));
+            getData((SkilletBlockEntity) Minecraft.getInstance().level.getBlockEntity(blockPos));
             int j = 0;
             if (!result.isEmpty()) {
                 pGuiGraphics.renderItem(result, X - 18, Y);
-                pGuiGraphics.blit(HUD_Sprite, X, Y , 16, 16, 0, 36,16,16, 64, 64);
-                pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, String.valueOf(Count), X + 24, Y + 6, 0xffffff);
+                pGuiGraphics.blit(HUD_Sprite, X, Y, 16, 16, 0, 36, 16, 16, 64, 64);
+                pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, Count_ing + "/" + Count, X + 26, Y + 6, 0xffffff);
                 if (!container.isEmpty()) {
                     pGuiGraphics.renderItem(container, X + 36, Y);
                 }
@@ -77,17 +78,17 @@ public class CookingHud implements LayeredDraw.Layer {
                 }
             }
         } else if (player != null && getHitResult(BlockEntityTypes.COOKING_POT_BLOCKENTITY.get())) {
-            getData((CookingPotBlockEntity)Minecraft.getInstance().level.getBlockEntity(blockPos));
+            getData((CookingPotBlockEntity) Minecraft.getInstance().level.getBlockEntity(blockPos));
             int j = 0;
-            if (!result.isEmpty()||!itemStackHandler.getStackInSlot(7).isEmpty()) {
-                if(!result.isEmpty()){
-                    pGuiGraphics.renderItem(result, X+12, Y);
+            if (!result.isEmpty() || !itemStackHandler.getStackInSlot(7).isEmpty()) {
+                if (!result.isEmpty()) {
+                    pGuiGraphics.renderItem(result, X + 16, Y);
                 } else if (!itemStackHandler.getStackInSlot(7).isEmpty()) {
-                    pGuiGraphics.renderItem(itemStackHandler.getStackInSlot(7), X + 12, Y);
+                    pGuiGraphics.renderItem(itemStackHandler.getStackInSlot(7), X + 16, Y);
                 }
                 pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, String.valueOf(itemStackHandler.getStackInSlot(7).getCount()), X + 36, Y + 6, 0xffffff);
-                pGuiGraphics.blit(HUD_Sprite, X-18, Y , 16, 16, 16, 36,16,16, 64, 64);
-                pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, String.valueOf(Count/20), X + 6, Y + 6, 0xffffff);
+                pGuiGraphics.blit(HUD_Sprite, X - 18, Y, 16, 16, 16, 36, 16, 16, 64, 64);
+                pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, Count_ing / 20 + "/" + Count, X + 6, Y + 6, 0xffffff);
                 if (!container.isEmpty()) {
                     pGuiGraphics.renderItem(container, X + 48, Y);
                 }
@@ -120,10 +121,13 @@ public class CookingHud implements LayeredDraw.Layer {
             this.MAX_SLOT = blockEntity.getMAX();
             this.result = blockEntity.getResult();
             this.container = itemStackHandler.getStackInSlot(MAX_SLOT);
-            if(blockEntity instanceof SkilletBlockEntity blockEntity1){
-                this.Count = blockEntity1.stirFryCount;
-            }else if (blockEntity instanceof CookingPotBlockEntity blockEntity1){
-                this.Count = blockEntity1.stewingTime;
+            if (blockEntity instanceof SkilletBlockEntity blockEntity1) {
+                this.Count = blockEntity1.stirFry;
+                this.Count_ing = blockEntity1.stirFryCount;
+            } else if (blockEntity instanceof CookingPotBlockEntity blockEntity1) {
+                this.Count = blockEntity1.stewTime;
+                this.Count_ing = blockEntity1.stewingTime;
+
             }
         }
     }
@@ -153,8 +157,8 @@ public class CookingHud implements LayeredDraw.Layer {
         if (!bucket.isEmpty()) {
             pGuiGraphics.renderItem(bucket, X - 18, Y + j * 18);
         }
-        pGuiGraphics.blit(HUD_Sprite, X, Y + j * 18+ 7, cookingFoodData.cookedTime() * 2, pHeight, 0, 0, cookingFoodData.cookedTime() * 2 + 2, pHeight, 64, 64);
-        pGuiGraphics.blit(HUD_Sprite, X + cookingFoodData.cookedTime() * 2, Y + j * 18+ 7, 62 - cookingFoodData.cookedTime() * 2, pHeight, cookingFoodData.cookedTime() * 2 + 2, 16, 62 - cookingFoodData.cookedTime() * 2, pHeight, 64, 64);
+        pGuiGraphics.blit(HUD_Sprite, X, Y + j * 18 + 7, cookingFoodData.cookedTime() * 2, pHeight, 0, 0, cookingFoodData.cookedTime() * 2 + 2, pHeight, 64, 64);
+        pGuiGraphics.blit(HUD_Sprite, X + cookingFoodData.cookedTime() * 2, Y + j * 18 + 7, 62 - cookingFoodData.cookedTime() * 2, pHeight, cookingFoodData.cookedTime() * 2 + 2, 16, 62 - cookingFoodData.cookedTime() * 2, pHeight, 64, 64);
         pGuiGraphics.blit(HUD_Sprite, X + progress / 10, Y + j * 18 + 9, 4, 4, 0, 32, 4, 4, 64, 64);
     }
 
