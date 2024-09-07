@@ -2,6 +2,7 @@ package mczme.lingshi.client.screen;
 
 import mczme.lingshi.client.menu.CookingPotMenu;
 import mczme.lingshi.client.recipebook.CookingPotRecipeBookComponent;
+import mczme.lingshi.client.util.FluidSackRender;
 import mczme.lingshi.common.block.entity.CookingPotBlockEntity;
 import mczme.lingshi.lingshi;
 import net.minecraft.client.gui.GuiGraphics;
@@ -20,7 +21,7 @@ public class CookingPotScreen extends AbstractContainerScreen<CookingPotMenu> im
     public final CookingPotRecipeBookComponent recipeBookComponent = new CookingPotRecipeBookComponent();
     private boolean widthTooNarrow;
     private static final ResourceLocation BACKGROUND_TEXTURE = ResourceLocation.fromNamespaceAndPath(lingshi.MODID,"textures/gui/container/cooking_pot.png");
-
+    private final FluidSackRender fluidRender = new FluidSackRender(1000,20,8);
 
     public CookingPotScreen(CookingPotMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -69,6 +70,7 @@ public class CookingPotScreen extends AbstractContainerScreen<CookingPotMenu> im
         if(blockEntity.isHeated(blockEntity.getLevel(),blockEntity.getBlockPos())){
             pGuiGraphics.blit(BACKGROUND_TEXTURE, this.leftPos+93, this.topPos+64, 0, 166, 14, 14);
         }
+        this.fluidRender.render(pGuiGraphics,this.leftPos+49,this.topPos+68,menu.blockEntity.getFluid());
     }
 
     @Override
