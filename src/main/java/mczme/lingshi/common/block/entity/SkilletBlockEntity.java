@@ -52,7 +52,7 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
 
 
     public SkilletBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(BlockEntityTypes.SKILLET_BLOCKENTITY.get(), pPos, pBlockState);
+        super(BlockEntityTypes.SKILLET_BLOCK_ENTITY.get(), pPos, pBlockState);
 
     }
 

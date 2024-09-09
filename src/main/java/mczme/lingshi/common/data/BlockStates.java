@@ -27,6 +27,8 @@ public class BlockStates extends BlockStateProvider {
         horizontalBlock(ModBlocks.CHOPPING_BOARD.get(), "block/chopping_board");
         horizontalBlock(ModBlocks.SAUTEED_SEASONAL_VEGETABLE.get(),"block/plate","block/sauteed_seasonal_vegetable");
 //        horizontalBlock(ModBlocks.STEWED_NOODLES.get(),"block/bowl","block/sauteed_seasonal_vegetable");
+        
+        simpleBlock(ModBlocks.GLASS_JAR.get(),modelFile("block/glass_jar"));
     }
 
     private void horizontalBlock(Block block, String modelLocation) {
@@ -38,6 +40,7 @@ public class BlockStates extends BlockStateProvider {
                 .build());
     }
 
+//    可放置食物
     private void horizontalBlock(Block block, String modelLocation_0 ,String modelLocation_1 ) {
         VariantBlockStateBuilder variantBuilder = getVariantBuilder(block);
 

@@ -5,20 +5,20 @@ import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
 import mczme.lingshi.client.BlockEntityRenderer.ChoppingBoardBER;
 import mczme.lingshi.client.BlockEntityRenderer.CookingPotBER;
+import mczme.lingshi.client.BlockEntityRenderer.GlassJarBER;
 import mczme.lingshi.client.BlockEntityRenderer.SkilletBER;
+import mczme.lingshi.client.ItemRender.lingshiBEWLR;
 import mczme.lingshi.client.recipebook.CookingFoodRecipeLabel;
 import mczme.lingshi.client.screen.CookingHud;
 import mczme.lingshi.client.screen.CookingPotScreen;
 import mczme.lingshi.client.screen.SkilletScreen;
 import mczme.lingshi.common.recipe.CookingPotRecipe;
 import mczme.lingshi.common.recipe.SkilletRecipe;
-import mczme.lingshi.common.registry.BlockEntityTypes;
-import mczme.lingshi.common.registry.ModFluids;
-import mczme.lingshi.common.registry.ModMenuTypes;
-import mczme.lingshi.common.registry.ModRecipes;
+import mczme.lingshi.common.registry.*;
 import mczme.lingshi.lingshi;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -32,6 +32,7 @@ import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
@@ -46,9 +47,10 @@ public class Registry {
 //    block render
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(BlockEntityTypes.CHOPPING_BOARD_BLOCKENTITY.get(), ChoppingBoardBER::new);
-        event.registerBlockEntityRenderer(BlockEntityTypes.SKILLET_BLOCKENTITY.get(), SkilletBER::new);
-        event.registerBlockEntityRenderer(BlockEntityTypes.COOKING_POT_BLOCKENTITY.get(), CookingPotBER::new);
+        event.registerBlockEntityRenderer(BlockEntityTypes.CHOPPING_BOARD_BLOCK_ENTITY.get(), ChoppingBoardBER::new);
+        event.registerBlockEntityRenderer(BlockEntityTypes.SKILLET_BLOCK_ENTITY.get(), SkilletBER::new);
+        event.registerBlockEntityRenderer(BlockEntityTypes.COOKING_POT_BLOCK_ENTITY.get(), CookingPotBER::new);
+        event.registerBlockEntityRenderer(BlockEntityTypes.GLASS_JAR_BLOCK_ENTITY.get(), GlassJarBER::new);
     }
 
     //    menu screen
@@ -107,8 +109,10 @@ public class Registry {
 
     }
 
+//    Render
     @SubscribeEvent
     public static void registerClientExtensionsEvent(RegisterClientExtensionsEvent event) {
+//        fluid
         event.registerFluidType(new IClientFluidTypeExtensions() {
             @Override
             public ResourceLocation getStillTexture() {
@@ -144,6 +148,15 @@ public class Registry {
                 RenderSystem.setShaderFogEnd(6f); // distance when the fog starts
             }
         }, ModFluids.MOD_FLUID_TYPE.get());
+
+//        item
+//        GlassJar
+        event.registerItem(new IClientItemExtensions() {
+            @Override
+            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                return new lingshiBEWLR();
+            }
+            }, ModItems.GLASS_JAR.get());
     }
 
     //HUD

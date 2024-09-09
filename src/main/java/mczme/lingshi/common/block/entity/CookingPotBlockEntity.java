@@ -54,7 +54,7 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
     public int stewTime=0;
 
     public CookingPotBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(BlockEntityTypes.COOKING_POT_BLOCKENTITY.get(), pPos, pBlockState);
+        super(BlockEntityTypes.COOKING_POT_BLOCK_ENTITY.get(), pPos, pBlockState);
     }
 
     public boolean isFull() {

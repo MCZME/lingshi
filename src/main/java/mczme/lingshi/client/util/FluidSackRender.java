@@ -29,7 +29,6 @@ public class FluidSackRender {
     // 渲染高度
     private final int height;
 
-
     // 构造函数
     public FluidSackRender(long capacity, int width, int height) {
         Preconditions.checkArgument(capacity > 0, "capacity must be > 0");

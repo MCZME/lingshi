@@ -36,16 +36,18 @@ public class ModBlocks {
     public static final Supplier<SkilletBlock> SKILLET = BLOCKS.registerBlock("skillet", SkilletBlock::new,
             BlockBehaviour.Properties.of().destroyTime(1.5F));
     public static final Supplier<CookingPotBlock> COOKING_POT = BLOCKS.registerBlock("cooking_pot", CookingPotBlock::new,
-    BlockBehaviour.Properties.of().destroyTime(1.5F));
+            BlockBehaviour.Properties.of().destroyTime(1.5F));
     public static final Supplier<ChoppingBoardBlock> CHOPPING_BOARD = BLOCKS.registerBlock("chopping_board", ChoppingBoardBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
+    public static final Supplier<GlassJarBlock> GLASS_JAR = BLOCKS.registerBlock("glass_jar", GlassJarBlock::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS));
 
-    public static final Supplier<LiquidBlock> OIL_LIQUID_BLOCK = BLOCKS.register("oil_liquid_block",()->new OilBlock(ModFluids.OIL_SOURCE.get(),BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
-    public static final Supplier<StoveBlock> STOVE = BLOCKS.register("stove", ()->new StoveBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FURNACE)));
-//  可放置食物
-    public static final Supplier<FoodBlock> PORK_FEET_RICE = BLOCKS.register("pork_feet_rice", ()->new FoodBlock(BlockBehaviour.Properties.of().destroyTime(0.3F)));
-    public static final Supplier<PlateFoodBlock> SAUTEED_SEASONAL_VEGETABLE = BLOCKS.register("sauteed_seasonal_vegetable", ()->new PlateFoodBlock(BlockBehaviour.Properties.of().destroyTime(0.3F)));
-    public static final Supplier<StewedNoodles> STEWED_NOODLES = BLOCKS.register("stewed_noodles", ()->new StewedNoodles(BlockBehaviour.Properties.of().destroyTime(0.3F)));
+    public static final Supplier<LiquidBlock> OIL_LIQUID_BLOCK = BLOCKS.register("oil_liquid_block", () -> new OilBlock(ModFluids.OIL_SOURCE.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
+    public static final Supplier<StoveBlock> STOVE = BLOCKS.register("stove", () -> new StoveBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FURNACE)));
+    //  可放置食物
+    public static final Supplier<FoodBlock> PORK_FEET_RICE = BLOCKS.register("pork_feet_rice", () -> new FoodBlock(BlockBehaviour.Properties.of().destroyTime(0.3F)));
+    public static final Supplier<PlateFoodBlock> SAUTEED_SEASONAL_VEGETABLE = BLOCKS.register("sauteed_seasonal_vegetable", () -> new PlateFoodBlock(BlockBehaviour.Properties.of().destroyTime(0.3F)));
+    public static final Supplier<StewedNoodles> STEWED_NOODLES = BLOCKS.register("stewed_noodles", () -> new StewedNoodles(BlockBehaviour.Properties.of().destroyTime(0.3F)));
 
     public static void register(IEventBus modEventBus) {
         BLOCKS.register(modEventBus);

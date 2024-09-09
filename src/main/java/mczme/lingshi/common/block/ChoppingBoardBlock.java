@@ -36,6 +36,7 @@ import java.util.List;
 
 public class ChoppingBoardBlock extends BaseEntityBlock {
 
+    public static final MapCodec<ChoppingBoardBlock> CODEC = simpleCodec(ChoppingBoardBlock::new);
     public static final VoxelShape NORTH_SHAPE = Block.box(1.0D, 0.0D, 4.0D, 15.0D, 1.0D, 13.0D);
     public static final VoxelShape SOUTH_SHAPE = Block.box(1.0D, 0.0D, 3.0D, 15.0D, 1.0D, 12.0D);
     public static final VoxelShape WEST_SHAPE = Block.box(4.0D, 0.0D, 1.0D, 13.0D, 1.0D, 15.0D);
@@ -55,7 +56,7 @@ public class ChoppingBoardBlock extends BaseEntityBlock {
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
-        return null;
+        return CODEC;
     }
 
     @Override

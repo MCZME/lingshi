@@ -1,9 +1,6 @@
 package mczme.lingshi.common.registry;
 
-import mczme.lingshi.common.item.FoodBlockItem;
-import mczme.lingshi.common.item.KnifeItem;
-import mczme.lingshi.common.item.PotLid;
-import mczme.lingshi.common.item.SpatulaItem;
+import mczme.lingshi.common.item.*;
 import mczme.lingshi.lingshi;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -43,6 +40,7 @@ public class ModItems {
     public static final Supplier<Item> SPATULA = registerWithCreateTab("spatula", () -> new SpatulaItem(new Item.Properties().stacksTo(1)));
     public static final Supplier<Item> IRON_KNIFE = registerWithCreateTab("iron_knife", () -> new KnifeItem(Tiers.IRON, new Item.Properties()
             .attributes(SwordItem.createAttributes(Tiers.IRON, 3, -2.4F))));
+    public static final Supplier<Item> GLASS_JAR = registerWithCreateTab("glass_jar", () -> new GlassJarItem(ModBlocks.GLASS_JAR.get(), new Item.Properties().stacksTo(1)));
 
     public static final Supplier<Item> STOVE = registerWithCreateTab("stove", () -> new BlockItem(ModBlocks.STOVE.get(), new Item.Properties()));
     public static final Supplier<Item> OIL_BUCKET = registerWithCreateTab("oil_bucket", () -> new BucketItem(ModFluids.OIL_SOURCE.get(), new Item.Properties()

@@ -24,7 +24,7 @@ public class ChoppingBoardBlockEntity extends BlockEntity implements ContainerSi
     private ItemStack item = ItemStack.EMPTY;
 
     public ChoppingBoardBlockEntity( BlockPos pPos, BlockState pBlockState) {
-        super(BlockEntityTypes.CHOPPING_BOARD_BLOCKENTITY.get(), pPos, pBlockState);
+        super(BlockEntityTypes.CHOPPING_BOARD_BLOCK_ENTITY.get(), pPos, pBlockState);
     }
 
     @Override

@@ -41,6 +41,7 @@ import static mczme.lingshi.common.tag.ModTags.CAN_SUPPORT;
 
 public class SkilletBlock extends BaseEntityBlock {
 
+    public static final MapCodec<SkilletBlock> CODEC = simpleCodec(SkilletBlock::new);
     public static final BooleanProperty HAS_SUPPORT = BooleanProperty.create("has_support");
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final VoxelShape SHAPE = Shapes.join(Block.box(1, 0, 1, 15, 3, 15),
@@ -54,7 +55,7 @@ public class SkilletBlock extends BaseEntityBlock {
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
-        return null;
+        return CODEC;
     }
 
     public ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {

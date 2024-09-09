@@ -34,6 +34,7 @@ public class ChineseLanguageProvider extends LanguageProvider {
         this.add("gui.lingshi.cooking_pot_menu","烹饪锅");
         this.add(ModItems.COOKING_POT.get(), "烹饪锅");
         this.add(ModItems.POT_LID.get(),"锅盖");
+        this.add(ModItems.GLASS_JAR.get(), "玻璃罐");
 
         this.add(ModItems.STOVE.get(), "炉灶");
         this.add(ModItems.OIL_BUCKET.get(),"油桶");

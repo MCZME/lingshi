@@ -49,7 +49,7 @@ public class CookingHud implements LayeredDraw.Layer {
             return;
         }
         this.player = Minecraft.getInstance().player;
-        if (player != null && getHitResult(BlockEntityTypes.SKILLET_BLOCKENTITY.get())) {
+        if (player != null && getHitResult(BlockEntityTypes.SKILLET_BLOCK_ENTITY.get())) {
             getData((SkilletBlockEntity) Minecraft.getInstance().level.getBlockEntity(blockPos));
             int j = 0;
             if (!result.isEmpty()) {
@@ -77,7 +77,7 @@ public class CookingHud implements LayeredDraw.Layer {
                     }
                 }
             }
-        } else if (player != null && getHitResult(BlockEntityTypes.COOKING_POT_BLOCKENTITY.get())) {
+        } else if (player != null && getHitResult(BlockEntityTypes.COOKING_POT_BLOCK_ENTITY.get())) {
             getData((CookingPotBlockEntity) Minecraft.getInstance().level.getBlockEntity(blockPos));
             int j = 0;
             if (!result.isEmpty() || !itemStackHandler.getStackInSlot(7).isEmpty()) {
