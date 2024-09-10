@@ -8,6 +8,7 @@ import mczme.lingshi.client.BlockEntityRenderer.CookingPotBER;
 import mczme.lingshi.client.BlockEntityRenderer.GlassJarBER;
 import mczme.lingshi.client.BlockEntityRenderer.SkilletBER;
 import mczme.lingshi.client.ItemRender.lingshiBEWLR;
+import mczme.lingshi.client.model.GlassJarBakeModel;
 import mczme.lingshi.client.recipebook.CookingFoodRecipeLabel;
 import mczme.lingshi.client.screen.CookingHud;
 import mczme.lingshi.client.screen.CookingPotScreen;
@@ -22,20 +23,22 @@ import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent;
+import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
+
+import java.util.Map;
 
 import static mczme.lingshi.client.recipebook.ModRecipeBookCategories.*;
 import static mczme.lingshi.client.recipebook.ModRecipeBookType.COOKING_POT;
@@ -44,7 +47,7 @@ import static mczme.lingshi.client.recipebook.ModRecipeBookType.SKILLET;
 @EventBusSubscriber(modid = lingshi.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class Registry {
 
-//    block render
+    //    block render
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(BlockEntityTypes.CHOPPING_BOARD_BLOCK_ENTITY.get(), ChoppingBoardBER::new);
@@ -109,7 +112,7 @@ public class Registry {
 
     }
 
-//    Render
+    //    Render
     @SubscribeEvent
     public static void registerClientExtensionsEvent(RegisterClientExtensionsEvent event) {
 //        fluid
@@ -140,6 +143,7 @@ public class Registry {
                                                     int renderDistance, float darkenWorldAmount, Vector3f fluidFogColor) {
                 return new Vector3f(234f / 255f, 217f / 255f, 9f / 255f);
             }
+
             // 液体中的能见度 或者 说雾的范围
             @Override
             public void modifyFogRender(Camera camera, FogRenderer.FogMode mode, float renderDistance, float partialTick,
@@ -156,12 +160,29 @@ public class Registry {
             public BlockEntityWithoutLevelRenderer getCustomRenderer() {
                 return new lingshiBEWLR();
             }
-            }, ModItems.GLASS_JAR.get());
+        }, ModItems.GLASS_JAR.get());
     }
 
     //HUD
     @SubscribeEvent
     public static void registerGuiLayersEvent(RegisterGuiLayersEvent event) {
-        event.registerAboveAll(ResourceLocation.fromNamespaceAndPath(lingshi.MODID,"cooking_hud"), CookingHud.getInstance());
+        event.registerAboveAll(ResourceLocation.fromNamespaceAndPath(lingshi.MODID, "cooking_hud"), CookingHud.getInstance());
+    }
+
+    //    Model
+    @SubscribeEvent
+    public static void onModelBaked(ModelEvent.ModifyBakingResult event) {
+        // glass jar item model
+        Map<ModelResourceLocation, BakedModel> modelRegistry = event.getModels();
+        ModelResourceLocation location = new ModelResourceLocation(BuiltInRegistries.ITEM.getKey(ModItems.GLASS_JAR.get()), "inventory");
+        BakedModel bakeModel = modelRegistry.get(location);
+        if (bakeModel == null) {
+            throw new RuntimeException("Did not find Obsidian Hidden in registry");
+        } else if (bakeModel instanceof GlassJarBakeModel) {
+            throw new RuntimeException("Tried to replaceObsidian Hidden twice");
+        } else {
+            GlassJarBakeModel glassJarBakeModel = new GlassJarBakeModel(bakeModel);
+            event.getModels().put(location, glassJarBakeModel);
+        }
     }
 }

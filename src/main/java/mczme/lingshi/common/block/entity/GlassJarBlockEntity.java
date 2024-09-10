@@ -43,9 +43,13 @@ public class GlassJarBlockEntity extends BlockEntity{
     }
 
     public FluidStack removeFluidStack(int amount) {
-        if (this.fluidStack.getAmount() >= amount) {
+        if (this.fluidStack.getAmount() > amount) {
             this.fluidStack.setAmount(this.fluidStack.getAmount() - amount);
             return new FluidStack(this.fluidStack.getFluid(), amount);
+        } else if (this.fluidStack.getAmount() == amount) {
+            FluidStack temp = this.fluidStack.copy();
+            this.fluidStack = FluidStack.EMPTY;
+            return temp;
         }
         return FluidStack.EMPTY;
     }

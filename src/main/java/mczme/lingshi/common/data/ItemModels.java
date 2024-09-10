@@ -40,6 +40,6 @@ public class ItemModels extends ItemModelProvider {
         withExistingParent(String.valueOf(ModItems.SKILLET.get()), modLoc("block/skillet"));
         withExistingParent(String.valueOf(ModItems.IRON_KNIFE.get()),mcLoc("item/handheld")).texture("layer0", modLoc("item/iron_knife"));
         withExistingParent(String.valueOf(ModItems.SPATULA.get()),mcLoc("item/handheld")).texture("layer0", modLoc("item/spatula"));
-
+        withExistingParent(String.valueOf(ModItems.GLASS_JAR.get()),modLoc("block/glass_jar"));
     }
 }

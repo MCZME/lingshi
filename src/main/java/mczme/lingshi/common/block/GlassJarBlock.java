@@ -6,9 +6,7 @@ import mczme.lingshi.common.registry.ModFluids;
 import mczme.lingshi.common.registry.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -52,15 +50,32 @@ public class GlassJarBlock extends BaseEntityBlock {
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;
                 }
+            } else if (pStack.is(Items.BUCKET)) {
+                FluidStack fluidStack = blockEntity.removeFluidStack(1000);
+                if(!fluidStack.isEmpty()){
+                    pPlayer.setItemInHand(pHand, new ItemStack(fluidStack.getFluid().getBucket()));
+                    blockEntity.setChanged();
+                    return ItemInteractionResult.SUCCESS;
+                }
             }
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
         return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override
     protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
+        if(pLevel.getBlockEntity(pPos) instanceof GlassJarBlockEntity blockEntity){
 
+        }
         return InteractionResult.PASS;
+    }
+
+    @Override
+    protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
+        ItemStack itemStack = new ItemStack(ModItems.GLASS_JAR.get());
+        pLevel.getBlockEntity(pPos).saveToItem(itemStack,pLevel.registryAccess());
+        Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY(), pPos.getZ(), itemStack);
     }
 
     @Override
