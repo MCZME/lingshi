@@ -87,7 +87,7 @@ public class RenderUtil {
         bufferBuilder.addVertex(matrix, X / 16, (Y + scaledAmount) / 16, Z / 16).setUv(uMin, vMax).setNormal(0.0F, 1.0F, 0.0F).setColor(red, green, blue, alpha).setLight(pPackedLight);
         bufferBuilder.addVertex(matrix, X / 16, (Y + scaledAmount) / 16, (Z + width) / 16).setUv(uMax, vMax).setNormal(0.0F, 1.0F, 0.0F).setColor(red, green, blue, alpha).setLight(pPackedLight);
         bufferBuilder.addVertex(matrix, (X + length) / 16, (Y + scaledAmount) / 16, (Z + width) / 16).setUv(uMax, vMin).setNormal(0.0F, 1.0F, 0.0F).setColor(red, green, blue, alpha).setLight(pPackedLight);
-        bufferBuilder.addVertex(matrix, (X / 16 + length) / 16, (Y + scaledAmount) / 16, Z / 16).setUv(uMin, vMin).setNormal(0.0F, 1.0F, 0.0F).setColor(red, green, blue, alpha).setLight(pPackedLight);
+        bufferBuilder.addVertex(matrix, (X + length) / 16, (Y + scaledAmount) / 16, Z / 16).setUv(uMin, vMin).setNormal(0.0F, 1.0F, 0.0F).setColor(red, green, blue, alpha).setLight(pPackedLight);
 //        北面
         bufferBuilder.addVertex(matrix, X / 16, Y / 16, Z / 16).setUv(uMin, vMax).setNormal(0.0F, 1.0F, 0.0F).setColor(red, green, blue, alpha).setLight(pPackedLight);
         bufferBuilder.addVertex(matrix, X / 16, (Y + scaledAmount) / 16, Z / 16).setUv(uMax, vMax).setNormal(0.0F, 1.0F, 0.0F).setColor(red, green, blue, alpha).setLight(pPackedLight);

@@ -35,6 +35,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.Nullable;
 
+import static mczme.lingshi.common.util.FluidActionUtil.AddFluidStack;
+
 
 public class CookingPotBlock extends BaseEntityBlock {
 
@@ -75,6 +77,14 @@ public class CookingPotBlock extends BaseEntityBlock {
                     blockEntity.getCookingTime()[6] = 0;
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;
+                }else if (pStack.is(ModItems.GLASS_JAR.get())) {
+                    if(AddFluidStack(blockEntity, 1000,pStack,pPlayer)){
+                        blockEntity.getCookingTime()[6] = 0;
+                        blockEntity.setChanged();
+                        return ItemInteractionResult.SUCCESS;
+                    }else{
+                        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+                    }
                 }
                 if (pStack.getCount() <= 16) {
                     blockEntity.setItem(pStack.consumeAndReturn(pStack.getCount(), pPlayer));

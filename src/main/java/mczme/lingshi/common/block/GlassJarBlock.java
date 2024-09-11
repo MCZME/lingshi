@@ -75,6 +75,7 @@ public class GlassJarBlock extends BaseEntityBlock {
     protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         ItemStack itemStack = new ItemStack(ModItems.GLASS_JAR.get());
         pLevel.getBlockEntity(pPos).saveToItem(itemStack,pLevel.registryAccess());
+        pLevel.removeBlockEntity(pPos);
         Containers.dropItemStack(pLevel, pPos.getX(), pPos.getY(), pPos.getZ(), itemStack);
     }
 

@@ -184,6 +184,11 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
     }
 
     @Override
+    public int getMaxAmount(){
+        return 1000;
+    }
+
+    @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }

@@ -11,6 +11,10 @@ public interface ICanBeHeated {
 
     FluidStack getFluid();
 
+    int getMaxAmount();
+
+    void setFluid(FluidStack fluid);
+
     CookingItemStackHandler getItemStacks();
 
     int[] getCookingTime();

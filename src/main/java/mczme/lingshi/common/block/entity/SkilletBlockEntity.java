@@ -85,6 +85,7 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
         return ItemStack.EMPTY;
     }
 
+    @Override
     public FluidStack getFluid() {
         return fluidStacks;
     }
@@ -106,6 +107,7 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
         itemStackHandler.insertItem(slot, item, false);
     }
 
+    @Override
     public void setFluid(FluidStack fluid) {
         fluidStacks = fluid;
     }
@@ -145,6 +147,11 @@ public class SkilletBlockEntity extends BlockEntity implements MenuProvider, ICa
 
     public int getMAX() {
         return MAX_SLOT;
+    }
+
+    @Override
+    public int getMaxAmount(){
+        return 250;
     }
 
     @Override

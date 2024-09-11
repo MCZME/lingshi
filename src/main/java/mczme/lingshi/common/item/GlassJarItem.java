@@ -1,6 +1,7 @@
 package mczme.lingshi.common.item;
 
 import mczme.lingshi.common.block.entity.GlassJarBlockEntity;
+import mczme.lingshi.common.item.baseitem.IFluidStackItem;
 import mczme.lingshi.common.registry.ModBlocks;
 import mczme.lingshi.common.registry.ModFluids;
 import net.minecraft.client.Minecraft;
@@ -27,7 +28,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.neoforged.neoforge.fluids.FluidStack;
 
-public class GlassJarItem extends BlockItem {
+public class GlassJarItem extends BlockItem implements IFluidStackItem {
 
     public GlassJarItem(Block pBlock, Properties pProperties) {
         super(pBlock, pProperties);
@@ -74,7 +75,8 @@ public class GlassJarItem extends BlockItem {
         return InteractionResult.SUCCESS;
     }
 
-    private FluidStack getFluidStack(ItemStack pStack) {
+    @Override
+    public FluidStack getFluidStack(ItemStack pStack) {
         if(pStack.get(DataComponents.BLOCK_ENTITY_DATA)!=null) {
             CustomData customData = pStack.get(DataComponents.BLOCK_ENTITY_DATA);
             FluidStack fluidStack = FluidStack.EMPTY;

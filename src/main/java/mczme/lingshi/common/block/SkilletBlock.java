@@ -38,6 +38,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import static mczme.lingshi.common.tag.ModTags.CAN_SUPPORT;
+import static mczme.lingshi.common.util.FluidActionUtil.AddFluidStack;
 
 public class SkilletBlock extends BaseEntityBlock {
 
@@ -86,10 +87,18 @@ public class SkilletBlock extends BaseEntityBlock {
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;
                 } else if (pStack.is(ModItems.OIL_BUCKET.get())) {
-                    blockEntity.setFluid(new FluidStack(ModFluids.OIL_SOURCE.get(), 100));
+                    blockEntity.setFluid(new FluidStack(ModFluids.OIL_SOURCE.get(), 250));
                     blockEntity.getCookingTime()[5] = 0;
                     blockEntity.setChanged();
                     return ItemInteractionResult.SUCCESS;
+                } else if (pStack.is(ModItems.GLASS_JAR.get())) {
+                    if(AddFluidStack(blockEntity, 250,pStack,pPlayer)){
+                        blockEntity.getCookingTime()[5] = 0;
+                        blockEntity.setChanged();
+                        return ItemInteractionResult.SUCCESS;
+                    }else{
+                        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+                    }
                 }
                 blockEntity.setItem(pStack.consumeAndReturn(1, pPlayer));
                 blockEntity.stirFryCount = 0;
