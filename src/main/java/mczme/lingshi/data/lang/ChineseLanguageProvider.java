@@ -1,4 +1,4 @@
-package mczme.lingshi.common.data.lang;
+package mczme.lingshi.data.lang;
 
 import mczme.lingshi.common.registry.ModItems;
 import net.minecraft.data.PackOutput;
@@ -50,6 +50,7 @@ public class ChineseLanguageProvider extends LanguageProvider {
         this.add(ModItems.SAUTEED_SEASONAL_VEGETABLE.get(),"炒时蔬");
         this.add(ModItems.STEWED_NOODLES.get(), "煮面条");
         this.add("item.lingshi.egg_added_stewed_noodles","加蛋煮面条");
+        this.add(ModItems.FRIED_FISH.get(), "煎鱼");
 
     }
 }

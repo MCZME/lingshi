@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "minecraft:wooden_slabs"
+    },
+    "X": {
+      "tag": "c:glass_panes"
+    }
+  },
+  "pattern": [
+    " A ",
+    "X X",
+    " X "
+  ],
+  "result": {
+    "count": 1,
+    "id": "lingshi:glass_jar"
+  }
+}

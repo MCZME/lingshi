@@ -1,4 +1,4 @@
-package mczme.lingshi.common.data.recipe;
+package mczme.lingshi.data.recipe;
 
 import mczme.lingshi.common.registry.ModItems;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -6,8 +6,9 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.neoforged.neoforge.common.Tags;
 
-import static mczme.lingshi.common.data.recipe.Recipes.has;
+import static mczme.lingshi.data.recipe.Recipes.has;
 
 public class CraftingRecipeDataGen {
 
@@ -66,6 +67,14 @@ public class CraftingRecipeDataGen {
                 .define('X', Items.MUD_BRICKS)
                 .define('A', Items.CAMPFIRE)
                 .unlockedBy("has_iron_ingot", has(Items.MUD_BRICKS))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.GLASS_JAR.get())
+                .pattern(" A ")
+                .pattern("X X")
+                .pattern(" X ")
+                .define('X', Tags.Items.GLASS_PANES)
+                .define('A', ItemTags.WOODEN_SLABS)
+                .unlockedBy("has_glass_panes", has(Tags.Items.GLASS_PANES))
                 .save(output);
     }
 

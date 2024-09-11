@@ -1,7 +1,7 @@
-package mczme.lingshi.common.data.recipe;
+package mczme.lingshi.data.recipe;
 
 import mczme.lingshi.client.recipebook.CookingFoodRecipeLabel;
-import mczme.lingshi.common.data.builder.CookingPotRecipeBuilder;
+import mczme.lingshi.data.builder.CookingPotRecipeBuilder;
 import mczme.lingshi.common.recipe.CookingPotRecipe;
 import mczme.lingshi.common.registry.ModItems;
 import mczme.lingshi.lingshi;
@@ -15,7 +15,7 @@ import net.neoforged.neoforge.fluids.FluidStack;
 
 import java.util.List;
 
-import static mczme.lingshi.common.data.recipe.Recipes.has;
+import static mczme.lingshi.data.recipe.Recipes.has;
 
 public class CookingPotRecipeDataGen {
     public CookingPotRecipeDataGen(RecipeOutput output) {

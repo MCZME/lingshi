@@ -1,4 +1,4 @@
-package mczme.lingshi.common.data;
+package mczme.lingshi.data;
 
 import mczme.lingshi.common.datamap.ingredient.CookingFoodData;
 import mczme.lingshi.common.registry.ModFluids;

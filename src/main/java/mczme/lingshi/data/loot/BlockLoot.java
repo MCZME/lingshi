@@ -1,4 +1,4 @@
-package mczme.lingshi.common.data.loot;
+package mczme.lingshi.data.loot;
 
 import mczme.lingshi.common.registry.ModBlocks;
 import mczme.lingshi.common.registry.ModItems;

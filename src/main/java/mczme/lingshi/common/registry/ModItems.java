@@ -72,6 +72,9 @@ public class ModItems {
             .component(ITEM_NAME, Component.translatable("item.lingshi.egg_added_stewed_noodles"))));
     public static final Supplier<Item> STEWED_NOODLES = registerWithCreateTab("stewed_noodles", () -> new FoodBlockItem(ModBlocks.STEWED_NOODLES.get(), new Item.Properties()
             .food(new FoodProperties.Builder().usingConvertsTo(Items.BOWL).nutrition(6).saturationModifier(5f).build())));
+    public static final Supplier<Item> FRIED_FISH = registerWithCreateTab("fried_fish", () -> new FoodBlockItem(ModBlocks.FRIED_FISH.get(), new Item.Properties()
+            .food(new FoodProperties.Builder().usingConvertsTo(Items.BOWL).nutrition(6).saturationModifier(6f)
+                    .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 2 * 20, 0), 1.0F).build())));
 
     private static Supplier<Item> registerWithCreateTab(String item_name, Supplier<Item> itemSupplier) {
         Supplier<Item> item = ITEMS.register(item_name, itemSupplier);

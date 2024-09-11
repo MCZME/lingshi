@@ -1,10 +1,10 @@
-package mczme.lingshi.common.data;
+package mczme.lingshi.data;
 
-import mczme.lingshi.common.data.lang.ChineseLanguageProvider;
-import mczme.lingshi.common.data.loot.BlockLoot;
-import mczme.lingshi.common.data.recipe.Recipes;
-import mczme.lingshi.common.data.tag.BlockTags;
-import mczme.lingshi.common.data.tag.ItemTags;
+import mczme.lingshi.data.lang.ChineseLanguageProvider;
+import mczme.lingshi.data.loot.BlockLoot;
+import mczme.lingshi.data.recipe.Recipes;
+import mczme.lingshi.data.tag.BlockTags;
+import mczme.lingshi.data.tag.ItemTags;
 import mczme.lingshi.lingshi;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;

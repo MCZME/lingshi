@@ -1,4 +1,4 @@
-package mczme.lingshi.common.data.builder;
+package mczme.lingshi.data.builder;
 
 import mczme.lingshi.common.recipe.ChoppingBoardRecipe;
 import mczme.lingshi.lingshi;

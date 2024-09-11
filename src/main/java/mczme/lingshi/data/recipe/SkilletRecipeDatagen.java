@@ -1,7 +1,7 @@
-package mczme.lingshi.common.data.recipe;
+package mczme.lingshi.data.recipe;
 
 import mczme.lingshi.client.recipebook.CookingFoodRecipeLabel;
-import mczme.lingshi.common.data.builder.SkilletRecipeBuilder;
+import mczme.lingshi.data.builder.SkilletRecipeBuilder;
 import mczme.lingshi.common.recipe.SkilletRecipe;
 import mczme.lingshi.common.registry.ModFluids;
 import mczme.lingshi.common.registry.ModItems;
@@ -17,7 +17,7 @@ import net.neoforged.neoforge.fluids.FluidStack;
 
 import java.util.List;
 
-import static mczme.lingshi.common.data.recipe.Recipes.has;
+import static mczme.lingshi.data.recipe.Recipes.has;
 import static mczme.lingshi.common.tag.NeoforgeTags.CROPS_CABBAGE;
 
 public class SkilletRecipeDatagen {
@@ -44,8 +44,11 @@ public class SkilletRecipeDatagen {
         build(List.of(Ingredient.of(Items.SALMON)),null,new ItemStack(Items.COOKED_SALMON))
                 .setLabel(CookingFoodRecipeLabel.HEAT).save(output,create("cooked_salmon"));
         // 煎
-        build(List.of(Ingredient.of(Items.EGG)),new FluidStack(ModFluids.OIL_SOURCE.get(),100),new ItemStack(ModItems.FRIED_EGG.get()))
+        build(List.of(Ingredient.of(Items.EGG)),new FluidStack(ModFluids.OIL_SOURCE.get(),250),new ItemStack(ModItems.FRIED_EGG.get()))
                 .setLabel(CookingFoodRecipeLabel.PAN_FRY).save(output,create("fried_egg"));
+        build(List.of(Ingredient.of(Items.COD)),new FluidStack(ModFluids.OIL_SOURCE.get(),250),new ItemStack(ModItems.FRIED_FISH.get()))
+                .setContainer(new SkilletRecipe.SkilletCookingContainer(new ItemStack(Items.BOWL),1))
+                .setLabel(CookingFoodRecipeLabel.PAN_FRY).save(output,create("fried_fish"));
         //  炒
         build(List.of(Ingredient.of(Items.EGG),Ingredient.of(ModItems.RICE.get())),new FluidStack(ModFluids.OIL_SOURCE.get(),100),new ItemStack(ModItems.EGG_FRIED_RICE.get()))
                 .setLabel(CookingFoodRecipeLabel.STIR_FRY)

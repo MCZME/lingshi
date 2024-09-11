@@ -1,6 +1,6 @@
-package mczme.lingshi.common.data.recipe;
+package mczme.lingshi.data.recipe;
 
-import mczme.lingshi.common.data.builder.ChoppingBoardRecipeBuilder;
+import mczme.lingshi.data.builder.ChoppingBoardRecipeBuilder;
 import mczme.lingshi.common.registry.ModItems;
 import mczme.lingshi.common.tag.NeoforgeTags;
 import net.minecraft.data.recipes.RecipeOutput;

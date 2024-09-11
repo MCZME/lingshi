@@ -205,6 +205,7 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
             tag.put("result", result.save(pRegistries));
         }
         tag.putInt("count", stewingTime);
+        tag.putInt("stew_time", stewTime);
         return tag;
     }
 
@@ -225,6 +226,7 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
             result = ItemStack.EMPTY;
         }
         stewingTime = pTag.getInt("count");
+        stewTime = pTag.getInt("stew_time");
     }
 
     @Override
@@ -239,6 +241,7 @@ public class CookingPotBlockEntity extends BlockEntity implements ICanBeHeated, 
             pTag.put("result", result.save(pRegistries));
         }
         pTag.putInt("count", stewingTime);
+        pTag.putInt("stew_time",stewTime);
     }
 
     private void saveCookingTime(CompoundTag nbt) {

@@ -1,4 +1,4 @@
-package mczme.lingshi.common.data.tag;
+package mczme.lingshi.data.tag;
 
 import mczme.lingshi.common.registry.ModItems;
 import mczme.lingshi.lingshi;

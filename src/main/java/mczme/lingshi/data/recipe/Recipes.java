@@ -1,4 +1,4 @@
-package mczme.lingshi.common.data.recipe;
+package mczme.lingshi.data.recipe;
 
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;

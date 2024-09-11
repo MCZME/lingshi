@@ -1,4 +1,4 @@
-package mczme.lingshi.common.data;
+package mczme.lingshi.data;
 
 import mczme.lingshi.common.registry.ModBlocks;
 import mczme.lingshi.lingshi;
@@ -27,6 +27,7 @@ public class BlockStates extends BlockStateProvider {
         horizontalBlock(ModBlocks.CHOPPING_BOARD.get(), "block/chopping_board");
         horizontalBlock(ModBlocks.SAUTEED_SEASONAL_VEGETABLE.get(),"block/plate","block/sauteed_seasonal_vegetable");
 //        horizontalBlock(ModBlocks.STEWED_NOODLES.get(),"block/bowl","block/sauteed_seasonal_vegetable");
+        horizontalBlock(ModBlocks.FRIED_FISH.get(),"block/plate","block/fried_fish");
         
         simpleBlock(ModBlocks.GLASS_JAR.get(),modelFile("block/glass_jar"));
     }

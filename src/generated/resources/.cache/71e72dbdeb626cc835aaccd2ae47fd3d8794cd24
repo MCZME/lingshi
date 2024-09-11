@@ -1,4 +1,4 @@
-// 1.21	2024-09-09T22:04:36.2459739	Item Models: lingshi
+// 1.21	2024-09-11T16:41:07.9791561	Item Models: lingshi
 14f86299910462582d98bcf699b35e34c615ee8e assets/lingshi/models/item/cabbage.json
 0e18f939d46f6a164584f621fa97b024122785d9 assets/lingshi/models/item/cabbage_leaf.json
 0bcbbc8c3377f7b20a37790cc33d36690c2044c7 assets/lingshi/models/item/cabbage_seed.json
@@ -10,6 +10,7 @@ a2eecf0a3a6c93ab1c418b7953b4080059274277 assets/lingshi/models/item/egg_added_st
 37db2e9897cd20f19d58456cafcb898f113c1d4b assets/lingshi/models/item/egg_fried_rice.json
 3492c131525851e1fa451f33349d2686d2ff1fc0 assets/lingshi/models/item/flour.json
 014b17c43a62c41d623a0d944e434cf1ac3986be assets/lingshi/models/item/fried_egg.json
+4d872e0d2b22e00bc1e83385ec690b91852ac799 assets/lingshi/models/item/fried_fish.json
 bb65673aded0d1674c4329547af6263f100a1e6b assets/lingshi/models/item/glass_jar.json
 249957a6811e300efca306db358e468855851d73 assets/lingshi/models/item/iron_knife.json
 8889a4deb394774a900a518a3d4849db21da3370 assets/lingshi/models/item/noodles.json

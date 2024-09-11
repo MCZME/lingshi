@@ -48,6 +48,7 @@ public class ModBlocks {
     public static final Supplier<FoodBlock> PORK_FEET_RICE = BLOCKS.register("pork_feet_rice", () -> new FoodBlock(BlockBehaviour.Properties.of().destroyTime(0.3F)));
     public static final Supplier<PlateFoodBlock> SAUTEED_SEASONAL_VEGETABLE = BLOCKS.register("sauteed_seasonal_vegetable", () -> new PlateFoodBlock(BlockBehaviour.Properties.of().destroyTime(0.3F)));
     public static final Supplier<StewedNoodles> STEWED_NOODLES = BLOCKS.register("stewed_noodles", () -> new StewedNoodles(BlockBehaviour.Properties.of().destroyTime(0.3F)));
+    public static final Supplier<FoodBlock> FRIED_FISH = BLOCKS.register("fried_fish", () -> new PlateFoodBlock(BlockBehaviour.Properties.of().destroyTime(0.3F)));
 
     public static void register(IEventBus modEventBus) {
         BLOCKS.register(modEventBus);

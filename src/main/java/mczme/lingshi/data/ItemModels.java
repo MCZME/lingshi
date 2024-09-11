@@ -1,4 +1,4 @@
-package mczme.lingshi.common.data;
+package mczme.lingshi.data;
 
 import mczme.lingshi.common.registry.ModItems;
 import mczme.lingshi.lingshi;
@@ -23,6 +23,7 @@ public class ItemModels extends ItemModelProvider {
         basicItem(ModItems.SAUTEED_SEASONAL_VEGETABLE.get());
         basicItem(ModItems.STEWED_NOODLES.get());
         basicItem(ModItems.EGG_ADDED_STEWED_NOODLES.get());
+        basicItem(ModItems.FRIED_FISH.get());
 
         basicItem(ModItems.FRIED_EGG.get());
         basicItem(ModItems.COOKED_RICE.get());
