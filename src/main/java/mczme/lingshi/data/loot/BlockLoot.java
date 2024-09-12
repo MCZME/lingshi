@@ -39,4 +39,5 @@ public class BlockLoot extends BlockLootSubProvider {
     protected Iterable<Block> getKnownBlocks() {
         return BLOCK;
     }
+
 }

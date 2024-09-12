@@ -1,4 +1,4 @@
-// 1.21	2024-09-11T16:41:07.9791561	Item Models: lingshi
+// 1.21	2024-09-12T16:15:54.781192	Item Models: lingshi
 14f86299910462582d98bcf699b35e34c615ee8e assets/lingshi/models/item/cabbage.json
 0e18f939d46f6a164584f621fa97b024122785d9 assets/lingshi/models/item/cabbage_leaf.json
 0bcbbc8c3377f7b20a37790cc33d36690c2044c7 assets/lingshi/models/item/cabbage_seed.json
@@ -22,6 +22,8 @@ abe8ae1523c26af167289fe958382b2477d96ea1 assets/lingshi/models/item/rice_of_ear.
 57cfb1f90de649ab0f56f107cb56e1d0d2f87ae6 assets/lingshi/models/item/rice_seedling.json
 9150fce945d22c3c76b946d1aa13a9b16e50dbc3 assets/lingshi/models/item/sauteed_seasonal_vegetable.json
 cff85c127954ba63ac8129929c0d7346bf8f305d assets/lingshi/models/item/skillet.json
+dc6ee699f39fab6a9044062b8d26d7b8330a9cd6 assets/lingshi/models/item/sliced_beef.json
+44517515349bf9f89ad7329ce4d3d58f7b945229 assets/lingshi/models/item/sliced_pork.json
 da8fb27d7e9b15fbd96ca8a49b328776550bb2b3 assets/lingshi/models/item/spatula.json
 eb856ffd13b91d52b910847159984f8a63b35cb5 assets/lingshi/models/item/stewed_noodles.json
 24a37cc616a84374e2aa09a4eaee7d756a35fa10 assets/lingshi/models/item/stove.json

@@ -32,6 +32,8 @@ public class ItemModels extends ItemModelProvider {
         basicItem(ModItems.DOUGH.get());
         basicItem(ModItems.NOODLES.get());
         basicItem(ModItems.PIG_FEET.get());
+        basicItem(ModItems.SLICED_PORK.get());
+        basicItem(ModItems.SLICED_BEEF.get());
 
         basicItem(ModItems.OIL_BUCKET.get());
 

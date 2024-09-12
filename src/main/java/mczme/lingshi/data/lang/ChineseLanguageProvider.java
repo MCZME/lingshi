@@ -1,5 +1,6 @@
 package mczme.lingshi.data.lang;
 
+import mczme.lingshi.common.registry.ModEffects;
 import mczme.lingshi.common.registry.ModItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -51,6 +52,10 @@ public class ChineseLanguageProvider extends LanguageProvider {
         this.add(ModItems.STEWED_NOODLES.get(), "煮面条");
         this.add("item.lingshi.egg_added_stewed_noodles","加蛋煮面条");
         this.add(ModItems.FRIED_FISH.get(), "煎鱼");
+        this.add(ModItems.SLICED_PORK.get(), "切好的猪肉");
+        this.add(ModItems.SLICED_BEEF.get(), "切好的牛肉");
+
+        this.add(ModEffects.GRATIFICATION_EFFECT.get(),"满足");
 
     }
 }

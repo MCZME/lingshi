@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "lingshi:fried_fish",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "lingshi:fried_fish",
+              "properties": {
+                "amount": "1"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bowl",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "lingshi:fried_fish",
+              "properties": {
+                "amount": "0"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "random_sequence": "lingshi:fried_fish"
+}

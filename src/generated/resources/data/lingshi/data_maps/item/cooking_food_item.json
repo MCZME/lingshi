@@ -16,6 +16,14 @@
       "burnt_time": 25,
       "cooked_time": 8
     },
+    "lingshi:sliced_beef": {
+      "burnt_time": 15,
+      "cooked_time": 4
+    },
+    "lingshi:sliced_pork": {
+      "burnt_time": 15,
+      "cooked_time": 4
+    },
     "minecraft:beef": {
       "burnt_time": 20,
       "cooked_time": 5

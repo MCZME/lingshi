@@ -44,6 +44,8 @@ public class CookingFoodDataGen extends DataMapProvider {
         addCookingFood(Items.BROWN_MUSHROOM,3,12);
         addCookingFood(Items.BEETROOT,3,12);
         addCookingFood(ModItems.NOODLES.get(),5,20);
+        addCookingFood(ModItems.SLICED_PORK.get(),4,15);
+        addCookingFood(ModItems.SLICED_BEEF.get(),4,15);
 
         addCookingFood(Fluids.WATER,15);
         builder(COOKING_FOOD_FLUID).add(ModFluids.OIL_SOURCE.get().builtInRegistryHolder(), new CookingFoodData(8,30),false);
