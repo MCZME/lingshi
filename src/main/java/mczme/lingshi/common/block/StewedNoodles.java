@@ -1,5 +1,6 @@
 package mczme.lingshi.common.block;
 
+import mczme.lingshi.common.block.baseblock.FoodBlock;
 import mczme.lingshi.common.registry.ModEffects;
 import mczme.lingshi.common.registry.ModItems;
 import net.minecraft.core.BlockPos;

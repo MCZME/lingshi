@@ -1,5 +1,6 @@
 package mczme.lingshi.common.block;
 
+import mczme.lingshi.common.block.baseblock.FoodBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;

@@ -1,4 +1,5 @@
-// 1.21	2024-09-12T16:15:54.781192	Item Models: lingshi
+// 1.21	2024-09-13T14:57:21.0680602	Item Models: lingshi
+60ca0011c94253a1b7d4c3ca724eb58d73f18691 assets/lingshi/models/item/bean.json
 14f86299910462582d98bcf699b35e34c615ee8e assets/lingshi/models/item/cabbage.json
 0e18f939d46f6a164584f621fa97b024122785d9 assets/lingshi/models/item/cabbage_leaf.json
 0bcbbc8c3377f7b20a37790cc33d36690c2044c7 assets/lingshi/models/item/cabbage_seed.json
@@ -16,6 +17,7 @@ bb65673aded0d1674c4329547af6263f100a1e6b assets/lingshi/models/item/glass_jar.js
 8889a4deb394774a900a518a3d4849db21da3370 assets/lingshi/models/item/noodles.json
 b767fc7952daf0eff3485fe4d8c06c5bba930c22 assets/lingshi/models/item/oil_bucket.json
 8a787e79ccb05e02b90ea12cfed0a54b8fda4bf5 assets/lingshi/models/item/pig_feet.json
+c5462fe0e65c55cb54c7245f1f4e2bbbafbdaf12 assets/lingshi/models/item/pod.json
 9915c87a8e0b4628efc95f82b478e53d6d59e46f assets/lingshi/models/item/pork_feet_rice.json
 496d711c2d4af0f851d40f859b102da69188089d assets/lingshi/models/item/rice.json
 abe8ae1523c26af167289fe958382b2477d96ea1 assets/lingshi/models/item/rice_of_ear.json

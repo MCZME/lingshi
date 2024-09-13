@@ -1,4 +1,5 @@
 {
+  "block.lingshi.bean": "豆",
   "block.lingshi.cabbage": "白菜种子",
   "block.lingshi.chopping_board": "砧板",
   "block.lingshi.cooking_pot": "烹饪锅",
@@ -12,6 +13,7 @@
   "block.lingshi.stewed_noodles": "煮面条",
   "block.lingshi.stove": "炉灶",
   "block.lingshi.tea_tree": "茶树",
+  "effect.lingshi.gratification_effect": "满足",
   "gui.lingshi.cooking_pot_menu": "烹饪锅",
   "gui.lingshi.skillet_menu": "平底锅",
   "item.lingshi.cabbage": "白菜",
@@ -26,6 +28,7 @@
   "item.lingshi.noodles": "面条",
   "item.lingshi.oil_bucket": "油桶",
   "item.lingshi.pig_feet": "猪蹄",
+  "item.lingshi.pod": "豆荚",
   "item.lingshi.pot_lid": "锅盖",
   "item.lingshi.rice_of_ear": "稻穗",
   "item.lingshi.sliced_beef": "切好的牛肉",

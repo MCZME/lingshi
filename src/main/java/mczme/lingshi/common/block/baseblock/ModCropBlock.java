@@ -1,4 +1,4 @@
-package mczme.lingshi.common.block;
+package mczme.lingshi.common.block.baseblock;
 
 import mczme.lingshi.common.registry.ModItems;
 import net.minecraft.core.BlockPos;

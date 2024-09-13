@@ -1,12 +1,12 @@
 {
   "type": "lingshi:chopping_board",
   "input": {
-    "item": "minecraft:porkchop"
+    "item": "lingshi:pod"
   },
   "result": [
     {
-      "count": 2,
-      "id": "lingshi:sliced_pork"
+      "count": 3,
+      "id": "lingshi:bean"
     }
   ],
   "tool": {

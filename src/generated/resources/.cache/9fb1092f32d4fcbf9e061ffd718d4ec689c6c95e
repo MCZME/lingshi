@@ -1,4 +1,4 @@
-// 1.21	2024-09-12T16:15:54.7831919	Recipes
+// 1.21	2024-09-13T15:50:41.8886655	Recipes
 b8cb7428b718c0ca190af49165cd25554d27fa19 data/lingshi/advancement/recipes/cooking_pot/cooked_rice.json
 7d0ef4cd02c38f4648e712a935f0ea32fb50aeff data/lingshi/advancement/recipes/cooking_pot/cooked_rice_1.json
 d918a2369d899974ffa38d6a363553af9e97fdee data/lingshi/advancement/recipes/cooking_pot/cooked_rice_2.json
@@ -11,6 +11,7 @@ b324dfe8c51c5f2f94e08473d966192d14d40c5a data/lingshi/advancement/recipes/cookin
 0486b842988b1d1ac0abb797a91d26077583679e data/lingshi/advancement/recipes/decorations/pot_lid.json
 0a4b54bfda8aa98f1a26bbf1d8231c76ed12e770 data/lingshi/advancement/recipes/decorations/skillet.json
 129f0de548d7a7b62ee9dcaeb54da65d7095a009 data/lingshi/advancement/recipes/decorations/stove.json
+bb88842bdcc06e396f9884774adfe5f1291ac547 data/lingshi/advancement/recipes/misc/bean.json
 e4ccb4f32d90b93ef63a3f2a17e843c6a8b2322b data/lingshi/advancement/recipes/skillet/baked_potato.json
 c9b88b929d6f4b7d68c10c6a3915182cb096d363 data/lingshi/advancement/recipes/skillet/cooked_beef.json
 0235c27183fa0a2f93fdf2a6726f2f9d1acc95b7 data/lingshi/advancement/recipes/skillet/cooked_chicken.json
@@ -27,14 +28,16 @@ e241bb59f1e7d265a9afbd0f38efdc05d5b325eb data/lingshi/advancement/recipes/skille
 47116fef6fadd5ebb9231aee1717b2830949e776 data/lingshi/advancement/recipes/skillet/stewed_noodles.json
 0e940fa2ba82aed478ee367c4b998f0bc7ead5c3 data/lingshi/advancement/recipes/tools/iron_knife.json
 e511f76246f906a279fc1ec531922d8f70dfb68c data/lingshi/advancement/recipes/tools/spatula.json
+c2ef322f776e7c9d28a7a5c300dae408b2c81b98 data/lingshi/recipe/bean.json
 bec1047337843fdd073fe87393c3b500ae11a1de data/lingshi/recipe/chopping_board.json
+296eac908fe9bf9969c692bece480488e7d33676 data/lingshi/recipe/chopping_board/bean.json
 85577ffce21473f6f122b7ef8a92eacaa2e5cfd2 data/lingshi/recipe/chopping_board/cabbage_leaf.json
 dbe74c08be4c49a28a0f8bf9dd1ec1825c557d55 data/lingshi/recipe/chopping_board/dough.json
 df6343e05449c8aded71e42701d18e37311ea0c9 data/lingshi/recipe/chopping_board/flour.json
 771ae63028a23ade683357752f8152f0ebb2203b data/lingshi/recipe/chopping_board/noodles.json
 3e41620c4ec5b19f87046dad7fe5c7ed6ede21c2 data/lingshi/recipe/chopping_board/rice.json
-20eec978b731fd5911176390fca13d7107648c9e data/lingshi/recipe/chopping_board/sliced_beef.json
-8abaaf136ecebe8470e08ffb36eece5b1bb28ca9 data/lingshi/recipe/chopping_board/sliced_pork.json
+d5a3ea12f03dfc18cd8989daf7e626da171b5a88 data/lingshi/recipe/chopping_board/sliced_beef.json
+0d173ef6637fabaa6aee42f311464c496c40b1ba data/lingshi/recipe/chopping_board/sliced_pork.json
 2bca8f59bf6fc074377fc44b2331427a96aea5d4 data/lingshi/recipe/cooking_pot.json
 2e23fcd215c647e72e989050fbfe466f419bed56 data/lingshi/recipe/cooking_pot/cooked_rice.json
 d0f1076aaf14e4191918a911196f1aeac7d7a59d data/lingshi/recipe/cooking_pot/cooked_rice_1.json

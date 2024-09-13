@@ -23,6 +23,7 @@ public class ChoppingBoardRecipeDatagen {
         build(List.of(new ItemStack(ModItems.CABBAGE_LEAF.get(),3)),Ingredient.of(NeoforgeTags.KNIFE),Ingredient.of(ModItems.CABBAGE.get()),output,"cabbage_leaf");
         build(List.of(new ItemStack(ModItems.SLICED_PORK.get(),2)),Ingredient.of(NeoforgeTags.KNIFE),Ingredient.of(Items.PORKCHOP),output,"sliced_pork");
         build(List.of(new ItemStack(ModItems.SLICED_BEEF.get(),2)),Ingredient.of(NeoforgeTags.KNIFE),Ingredient.of(Items.BEEF),output,"sliced_beef");
+        build(List.of(new ItemStack(ModItems.BEAN.get(),3)),Ingredient.of(NeoforgeTags.KNIFE),Ingredient.of(ModItems.POD.get()),output,"bean");
 
     }
 

@@ -12,7 +12,7 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.client.model.generators.VariantBlockStateBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
-import static mczme.lingshi.common.block.FoodBlock.AMOUNT;
+import static mczme.lingshi.common.block.baseblock.FoodBlock.AMOUNT;
 
 public class BlockStates extends BlockStateProvider {
 

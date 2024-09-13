@@ -76,6 +76,11 @@ public class CraftingRecipeDataGen {
                 .define('A', ItemTags.WOODEN_SLABS)
                 .unlockedBy("has_glass_panes", has(Tags.Items.GLASS_PANES))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.BEAN.get())
+                .pattern("A")
+                .define('A', ModItems.POD.get())
+                .unlockedBy("has_pod", has(ModItems.POD.get()))
+                .save(output);
     }
 
 }
