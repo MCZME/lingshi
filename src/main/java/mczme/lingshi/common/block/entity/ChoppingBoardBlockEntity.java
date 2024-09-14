@@ -3,7 +3,6 @@ package mczme.lingshi.common.block.entity;
 import mczme.lingshi.common.recipe.ChoppingBoardRecipe;
 import mczme.lingshi.common.registry.BlockEntityTypes;
 import mczme.lingshi.common.registry.ModRecipes;
-import mczme.lingshi.common.tag.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -69,18 +68,23 @@ public class ChoppingBoardBlockEntity extends BlockEntity implements ContainerSi
         if (level.isClientSide()) {
             return null;
         }
-        if(tool.is(ModTags.ChoppingBoard_TOOL)) {
-            RecipeManager recipes = level.getRecipeManager();
-            Optional<RecipeHolder<ChoppingBoardRecipe>> optional = recipes.getRecipeFor(
-                    ModRecipes.CHOPPING_BOARD_RECIPE.get(),
-                    input,
-                    level
-            );
-            return optional
-                    .map(RecipeHolder::value)
-                    .map(e -> e.getResults())
-                    .orElse(new ArrayList<>());
+        RecipeManager recipes = level.getRecipeManager();
+        Optional<RecipeHolder<ChoppingBoardRecipe>> optional = recipes.getRecipeFor(
+                ModRecipes.CHOPPING_BOARD_RECIPE.get(),
+                input,
+                level
+        );
+
+        List<ItemStack> result = optional.map(RecipeHolder::value)
+                .map(e -> e.getResults())
+                .orElse(new ArrayList<>());
+        Ingredient tool1 = optional.map(RecipeHolder::value)
+                .map(e -> e.getTool())
+                .orElse(Ingredient.EMPTY);
+        if(!result.isEmpty() && tool1.test(tool)){
+            return result;
         }
+
         return new ArrayList<>();
     }
 

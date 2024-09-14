@@ -65,6 +65,9 @@ public class ModItems {
             .nutrition(2).saturationModifier(1.2f).build())));
     public static final Supplier<Item> SLICED_BEEF = registerWithCreateTab("sliced_beef", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
             .nutrition(2).saturationModifier(1.2f).build())));
+    public static final Supplier<Item> SOYBEAN_MILK = registerWithCreateTab("soybean_milk", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
+            .nutrition(4).saturationModifier(6f)
+            .effect(()-> new MobEffectInstance(MobEffects.MOVEMENT_SPEED,5*20),1.0F).build())));
     //可放置食物
     public static final Supplier<Item> PORK_FEET_RICE = registerWithCreateTab("pork_feet_rice", () -> new FoodBlockItem(ModBlocks.PORK_FEET_RICE.get(), new Item.Properties()
             .food(new FoodProperties.Builder().usingConvertsTo(Items.BOWL).nutrition(12).saturationModifier(9.4f)

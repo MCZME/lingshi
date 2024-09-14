@@ -1,5 +1,9 @@
 {
   "values": {
+    "lingshi:bean": {
+      "burnt_time": 22,
+      "cooked_time": 8
+    },
     "lingshi:cabbage_leaf": {
       "burnt_time": 12,
       "cooked_time": 3
@@ -75,6 +79,10 @@
     "minecraft:salmon": {
       "burnt_time": 20,
       "cooked_time": 5
+    },
+    "minecraft:sugar": {
+      "burnt_time": 20,
+      "cooked_time": 2
     }
   }
 }

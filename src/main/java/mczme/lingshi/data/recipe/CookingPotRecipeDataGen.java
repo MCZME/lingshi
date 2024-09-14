@@ -49,12 +49,20 @@ public class CookingPotRecipeDataGen {
                 .unlockedBy("has_noodles", has(ModItems.NOODLES.get()))
                 .setContainer(new CookingPotRecipe.CookingPotContainer(new ItemStack(Items.BOWL),0))
                 .save(output,create("egg_added_stewed_noodles"));
+        build(List.of(Ingredient.of(ModItems.BEAN.get()),Ingredient.of(ModItems.BEAN.get()),Ingredient.of(ModItems.BEAN.get()),Ingredient.of(Items.SUGAR)),new FluidStack(Fluids.WATER,1000),new ItemStack(ModItems.SOYBEAN_MILK.get(),4)
+                ,CookingFoodRecipeLabel.BOIL)
+                .unlockedBy("has_bean", has(ModItems.BEAN.get()))
+                .setContainer(new CookingPotRecipe.CookingPotContainer(new ItemStack(Items.GLASS_BOTTLE),0))
+                .save(output,create("soybean_milk"));
 //        炖
         build(List.of(Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.RICE.get()),Ingredient.of(ModItems.CABBAGE_LEAF.get()),Ingredient.of(ModItems.PIG_FEET.get())),new FluidStack(Fluids.WATER,1000),new ItemStack(ModItems.PORK_FEET_RICE.get(),2)
                 ,CookingFoodRecipeLabel.STEW)
                 .unlockedBy("has_pig_feet", has(ModItems.PIG_FEET.get()))
                 .setContainer(new CookingPotRecipe.CookingPotContainer(new ItemStack(Items.BOWL),5))
                 .save(output,create("pork_feet_rice"));
+//        油炸
+
+//        其他
 
     }
 

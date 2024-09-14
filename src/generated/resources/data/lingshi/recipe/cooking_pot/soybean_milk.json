@@ -1,0 +1,34 @@
+{
+  "type": "lingshi:cooking_pot",
+  "container": {
+    "braising_time": 0,
+    "container": {
+      "count": 1,
+      "id": "minecraft:glass_bottle"
+    }
+  },
+  "fluid": {
+    "amount": 1000,
+    "id": "minecraft:water"
+  },
+  "group": "",
+  "ingredients": [
+    {
+      "item": "lingshi:bean"
+    },
+    {
+      "item": "lingshi:bean"
+    },
+    {
+      "item": "lingshi:bean"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "label": "boil",
+  "result": {
+    "count": 4,
+    "id": "lingshi:soybean_milk"
+  }
+}
