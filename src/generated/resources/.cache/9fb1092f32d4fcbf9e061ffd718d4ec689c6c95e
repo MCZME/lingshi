@@ -1,4 +1,4 @@
-// 1.21	2024-09-13T20:55:00.8843819	Recipes
+// 1.21	2024-09-15T11:59:51.5097641	Recipes
 b8cb7428b718c0ca190af49165cd25554d27fa19 data/lingshi/advancement/recipes/cooking_pot/cooked_rice.json
 7d0ef4cd02c38f4648e712a935f0ea32fb50aeff data/lingshi/advancement/recipes/cooking_pot/cooked_rice_1.json
 d918a2369d899974ffa38d6a363553af9e97fdee data/lingshi/advancement/recipes/cooking_pot/cooked_rice_2.json
@@ -13,6 +13,7 @@ b324dfe8c51c5f2f94e08473d966192d14d40c5a data/lingshi/advancement/recipes/cookin
 0a4b54bfda8aa98f1a26bbf1d8231c76ed12e770 data/lingshi/advancement/recipes/decorations/skillet.json
 129f0de548d7a7b62ee9dcaeb54da65d7095a009 data/lingshi/advancement/recipes/decorations/stove.json
 bb88842bdcc06e396f9884774adfe5f1291ac547 data/lingshi/advancement/recipes/food/bean.json
+7923e34a9e332be9c998177df6224a46cb062ff7 data/lingshi/advancement/recipes/food/buns_filled_with_cabbage_and_pork.json
 e4ccb4f32d90b93ef63a3f2a17e843c6a8b2322b data/lingshi/advancement/recipes/skillet/baked_potato.json
 c9b88b929d6f4b7d68c10c6a3915182cb096d363 data/lingshi/advancement/recipes/skillet/cooked_beef.json
 0235c27183fa0a2f93fdf2a6726f2f9d1acc95b7 data/lingshi/advancement/recipes/skillet/cooked_chicken.json
@@ -29,7 +30,8 @@ e241bb59f1e7d265a9afbd0f38efdc05d5b325eb data/lingshi/advancement/recipes/skille
 47116fef6fadd5ebb9231aee1717b2830949e776 data/lingshi/advancement/recipes/skillet/stewed_noodles.json
 0e940fa2ba82aed478ee367c4b998f0bc7ead5c3 data/lingshi/advancement/recipes/tools/iron_knife.json
 e511f76246f906a279fc1ec531922d8f70dfb68c data/lingshi/advancement/recipes/tools/spatula.json
-c2ef322f776e7c9d28a7a5c300dae408b2c81b98 data/lingshi/recipe/bean.json
+788361cad718382ccd6e890edf01ed71c3a5a04b data/lingshi/recipe/bean.json
+651470b8bb6f1d0f878fdc5351176d9e03beac6d data/lingshi/recipe/buns_filled_with_cabbage_and_pork.json
 bec1047337843fdd073fe87393c3b500ae11a1de data/lingshi/recipe/chopping_board.json
 296eac908fe9bf9969c692bece480488e7d33676 data/lingshi/recipe/chopping_board/bean.json
 85577ffce21473f6f122b7ef8a92eacaa2e5cfd2 data/lingshi/recipe/chopping_board/cabbage_leaf.json

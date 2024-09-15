@@ -57,6 +57,7 @@ public class ChineseLanguageProvider extends LanguageProvider {
         this.add(ModItems.SLICED_PORK.get(), "切好的猪肉");
         this.add(ModItems.SLICED_BEEF.get(), "切好的牛肉");
         this.add(ModItems.SOYBEAN_MILK.get(), "豆浆");
+        this.add(ModItems.BUNS_FILLED_WITH_CABBAGE_AND_PORK.get(), "白菜猪肉馅包子");
 
         this.add(ModEffects.GRATIFICATION_EFFECT.get(),"满足");
 

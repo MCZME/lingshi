@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "lingshi:dough"
+    },
+    {
+      "item": "lingshi:sliced_pork"
+    },
+    {
+      "tag": "neoforge:crops/cabbage"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "lingshi:buns_filled_with_cabbage_and_pork"
+  }
+}

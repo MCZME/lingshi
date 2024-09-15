@@ -1,9 +1,11 @@
 package mczme.lingshi.data.recipe;
 
 import mczme.lingshi.common.registry.ModItems;
+import mczme.lingshi.common.tag.NeoforgeTags;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.Tags;
@@ -76,10 +78,15 @@ public class CraftingRecipeDataGen {
                 .define('A', ItemTags.WOODEN_SLABS)
                 .unlockedBy("has_glass_panes", has(Tags.Items.GLASS_PANES))
                 .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.BEAN.get())
-                .pattern("A")
-                .define('A', ModItems.POD.get())
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.BEAN.get())
+                .requires(ModItems.POD.get())
                 .unlockedBy("has_pod", has(ModItems.POD.get()))
+                .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.BUNS_FILLED_WITH_CABBAGE_AND_PORK.get(),4)
+                .requires(ModItems.DOUGH.get())
+                .requires(ModItems.SLICED_PORK.get())
+                .requires(NeoforgeTags.CROPS_CABBAGE)
+                .unlockedBy("has_dough", has(ModItems.DOUGH.get()))
                 .save(output);
     }
 

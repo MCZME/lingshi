@@ -31,6 +31,7 @@ public class lingshi
         ModMenuTypes.register(modEventBus);
         ModFluids.register(modEventBus);
         ModEffects.register(modEventBus);
+        ModDataComponents.register(modEventBus);
 
         IndependentEvent.register();
 
